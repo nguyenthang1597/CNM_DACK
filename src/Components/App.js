@@ -8,6 +8,11 @@ import Reducers from '../Reducers'
 import thunk from 'redux-thunk'
 import Login from '../Containers/Login'
 import Home from './Home'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faStroopwafel)
 
 const store = createStore(Reducers, applyMiddleware(thunk));
 

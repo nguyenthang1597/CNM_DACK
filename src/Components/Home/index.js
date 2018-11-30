@@ -1,8 +1,12 @@
 import React from 'react'
-
+import Topbar from '../Topbar'
 const Home = (props) => {
+  document.title = 'Home'
   return (
-    <div>Home</div>
+    <React.Fragment>
+      <Topbar/>
+      <div>home</div>
+    </React.Fragment>
   )
 }
 
