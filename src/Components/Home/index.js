@@ -1,11 +1,12 @@
 import React from 'react'
 import Topbar from '../Topbar'
+import Profile from '../Profile'
 const Home = (props) => {
   document.title = 'Home'
   return (
     <React.Fragment>
       <Topbar/>
-      <div>home</div>
+      <Profile/>
     </React.Fragment>
   )
 }
