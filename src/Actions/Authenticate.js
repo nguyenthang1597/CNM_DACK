@@ -9,5 +9,5 @@ const successAuth = (data) => ({type: SUCCESS_AUTH, data})
 
 export const authenticate = data => dispatch => {
   dispatch(requestAuth());
-  // return setTimeout(() => dispatch(successAuth()), 1000);
+  return setTimeout(() => dispatch(successAuth()), 1000);
 }
