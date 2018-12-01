@@ -22,8 +22,9 @@ const App = (props) => {
     <Provider store={store}>
       <BrowserRouter>
         <Switch>
-          <UnAuthenticateComponent exact path='/login' component={Login}/>
-          <AuthenticateComponent exact path='/' component={Home}/>
+          {/* <UnAuthenticateComponent exact path='/login' component={Login}/>
+          <AuthenticateComponent exact path='/' component={Home}/> */}
+          <Home path='/'></Home>
         </Switch>
       </BrowserRouter>
     </Provider>
