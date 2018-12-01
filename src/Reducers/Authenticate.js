@@ -2,7 +2,7 @@ import {REQUEST_AUTH, SUCCESS_AUTH, FAILER_AUTH} from '../Actions/Authenticate'
 
 const initState = {
   isAuthenticating: false,
-  isAuthenticated: false,
+  isAuthenticated: true,
   token: null,
   error: null
 }

@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import './Topbar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHome, faBell, faEnvelope, faUser} from '@fortawesome/free-solid-svg-icons'
+import {Link} from 'react-router-dom'
 const Topbar = (props) => {
   let [tab, setTab] = useState('home');
   let [caret, setCaret] = useState(false);
@@ -29,7 +30,7 @@ const Topbar = (props) => {
                 </li>
                 <div className='divider'/>
                 <li className='info'>
-                  <FontAwesomeIcon icon={faUser} style={{marginRight: 10}}/> Hồ sơ
+                  <Link to='/info'><FontAwesomeIcon icon={faUser} style={{marginRight: 10}}/> Hồ sơ</Link>
                 </li>
                 <div className='divider'/>
                 <li>
