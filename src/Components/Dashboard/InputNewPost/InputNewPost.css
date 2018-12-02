@@ -1,0 +1,36 @@
+.box{
+  border: 1px solid #e6ecf0;
+  background-color: #e7f5fd;
+  width: 100%;
+  height: 58px;
+  display: flex;
+  flex-direction: row;
+}
+
+.box-avatar{
+  margin-left: 16px;
+}
+
+.inputNewPost{
+  height: 36px;
+  width: 506px;
+  margin-left: 10px;
+  margin-top: 8px;
+  border-radius: 10px;
+  padding-left: 8px;
+  border: 1px solid #e6ecf0;
+}
+
+.inputNewPost:focus{
+  outline: none;
+}
+
+
+.box-avatar-img{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
