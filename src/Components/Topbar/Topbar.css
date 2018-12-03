@@ -33,6 +33,7 @@
   line-height: 45px;
   font-size: 13px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .active {

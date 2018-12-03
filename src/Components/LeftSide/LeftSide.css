@@ -40,6 +40,19 @@
   box-sizing: border-box;
 }
 
+.profileCard-img-avatar{
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  position: relative;
+  border: 2px solid white;
+  position: absolute;
+  transform: translateX(-50%) translateY(-50%);
+  top: 50%;
+  left: 50%;
+}
+
+
 .userFields {
   position: absolute;
   top: 103px;
@@ -71,7 +84,7 @@
   top: 50px;
 }
 
-.stat{
+.stat {
   vertical-align: bottom;
   flex: 1;
   text-align: center;
@@ -90,20 +103,68 @@
   align-items: center;
 }
 
-.statLabel{
+.statLabel {
   color: #657786;
-    font-size: 12px;
-    font-weight: bold;
-    letter-spacing: .02em;
-    line-height: 16px;
-    overflow: hidden;
-    transition: color .15s ease-in-out;
+  font-size: 12px;
+  font-weight: bold;
+  letter-spacing: .02em;
+  line-height: 16px;
+  overflow: hidden;
+  transition: color .15s ease-in-out;
 }
 
-.statValue{
+.statValue {
   display: block;
-    font-size: 18px;
-    font-weight: bold;
-    padding-top: 3px;
-    transition: color .15s ease-in-out;
+  font-size: 18px;
+  font-weight: bold;
+  padding-top: 3px;
+  transition: color .15s ease-in-out;
+}
+
+.clickAvatar {
+  left: 43px;
+  top: 115px;
+}
+
+.dropdown-clickAvatar-menu {
+  left: 160px;
+  top: 124px;
+  position: absolute;
+  width: 150px;
+  display: block;
+  background-color: red;
+  -webkit-transform: translateX(-192px);
+  transform: translateX(-192px);
+  float: left;
+  padding: 10px 0;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 1px 1px rgba(0, 0, 0, 0.1);
+  background-clip: padding-box;
+  list-style: none;
+  z-index: 1;
+  border: 1px solid #e6ecf0;
+}
+
+.fileInput {
+  opacity: 0;
+  position: relative;
+  top: -20px;
+  z-index: 2;
+  width: 150px;
+  height: 24px;
+}
+
+.menuText{
+  line-height: 24px;
+  text-align: center;
+}
+
+.menuItem{
+  width: 100%;
+  height: 30px;
+}
+
+.menuItem:hover{
+  background-color: #1DA1F2;
 }

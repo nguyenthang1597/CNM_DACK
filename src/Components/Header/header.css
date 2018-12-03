@@ -2,9 +2,10 @@
   position: relative;
   top: 0;
   width: 100vw;
-  height: 45px;
+  height: 60px;
   border-bottom: 1px solid rgba(0, 0, 0, .25);
   background-color: white;
+  display: flex;
 }
 .big_avatar {
   border-radius: 50%;
@@ -12,8 +13,17 @@
   height: 200px;
   position: absolute;
   left: 5%;
-  top: 30%;
+  margin-top: -174px;
+  background-color: #4c0e76;
+  border: 5px solid white;
 }
+
+.big_avatar:hover {
+  -webkit-box-shadow:inset 0px 0px 0px 5px #c69ee0;
+  -moz-box-shadow:inset 0px 0px 0px 5px #c69ee0;
+  box-shadow:inset 0px 0px 0px 5px #c69ee0;
+}
+
 .Arrange {
   box-sizing: border-box;
   display: table;
@@ -48,4 +58,165 @@ ul.Arrange {
   overflow: hidden;
   text-transform: uppercase;
   transition: color 0.15s ease-in-out 0s;
+}
+
+.Header {
+  position: absolute;
+  left: 0;
+  margin-bottom: 3px
+}
+
+.Header-Photo {
+  background: #4c0e76;
+  margin-top: 46px;
+}
+
+.Header-Photo:hover {
+  -webkit-box-shadow:inset 0px 0px 0px 5px #c69ee0;
+    -moz-box-shadow:inset 0px 0px 0px 5px #c69ee0;
+    box-shadow:inset 0px 0px 0px 5px #c69ee0;
+    margin-top: 46px;
+}
+
+.Header-Photo svg.svg-inline--fa.fa-camera.fa-w-16 {
+  width: 45px;
+  height: 45px;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  display: table;
+}
+
+h4.add_photo {
+  color: white;
+  font-size: 21px;
+}
+
+.add-photo-container {
+  margin-left: auto;
+  margin-right: auto;
+  display: table;
+  position: relative;
+  top: 60%;
+}
+
+.add-photo-container-edit{
+  background-color: rgba(0,0,0,.2);
+}
+
+
+
+h4.add-profile-photo {
+  color: white;
+  text-align: center;
+  position: absolute;
+  z-index: 1;
+  width: 100%;
+}
+
+.add-profile-container svg.svg-inline--fa.fa-camera.fa-w-16 {
+  width: 35px;
+  height: 35px;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  display: table;
+}
+
+.add-profile-container {
+  position: relative;
+  top: 29%;
+}
+
+.button-container {
+  margin: auto;
+  margin-right: 60px;
+}
+
+.follow-container {
+  display: flex;
+  flex: 1;
+  margin-left: 360px;
+  flex-direction: row;
+}
+
+.button-container button {
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: 10px;
+  border-radius: 50px;
+  background: transparent;
+  border-color: #4c0e76;
+  border: 1px solid;
+  font-weight: bold;
+  font-size: 15px;
+}
+
+.button-container button:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.Header-Photo-NoEdit {
+  background: #1DA1F2;
+  margin-top: 46px;
+}
+
+.big-avatar-NoEdit {
+  border-radius: 50%;
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 5%;
+  margin-top: -174px;
+  background-color: #1DA1F2;
+  border: 5px solid white;
+}
+
+.add-profile-container-NoEdit {
+  position: relative;
+  top: 40%;
+}
+
+.add-profile-container-NoEdit svg.svg-inline--fa.fa-camera.fa-w-16 {
+  width: 35px;
+  height: 35px;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  display: table;
+}
+
+.ProfileBar_label{
+  color: #657786;
+    font-weight: bold;
+    font-size: 12px;
+    letter-spacing: .02em;
+}
+
+.ProfileBar_value{
+  color: #66757f;
+    font-size: 18px;
+    font-weight: bold;
+    padding-top: 3px;
+}
+.ProfileBar_Item{
+  box-sizing: border-box;
+    border-bottom: 0 solid;
+    display: block;
+    line-height: 1;
+    padding: 14px 15px 7px;
+    vertical-align: bottom;
+    text-align: center;
+}
+
+.ProfileAvatar{
+  width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: absolute;
+    top: 42px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 0;
 }
