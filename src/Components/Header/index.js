@@ -1,28 +1,72 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './header.css'
-const Header = (props) => {
-return (
-  <div>
-      <img style={{width:'100%', height: '300px'}} src='https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&h=350'/>
-      <div className="bar">
-        <ul className="Arrange" style={{marginLeft:'30%'}}>
-          <li className="ArrangeSizeFit">
-            <a title="9.840 Tweet">
-              <span className="StatLabel">Tweets</span>
-              <span className="StatValue">9.840</span>
-            </a>
-          </li>
-          <li className="ArrangeSizeFit">
-            <a  title="885 Following">
-              <span className="StatLabel">Following</span>
-              <span className="StatValue">885</span>
-            </a>
-          </li>
-        </ul>
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
+import {withRouter} from 'react-router-dom'
+const Header = ({editProfile, setEditProfile, Avatar, history}) => {
+  return (
+    <div className="Header">
+      <div className={editProfile ? "Header-Photo" : "Header-Photo-NoEdit"} style={{ width: '100%', height: !editProfile ? '175px' : '320px' }} >
+        <div className="add-photo-container">
+          {
+            editProfile && <React.Fragment>
+            <FontAwesomeIcon icon={faCamera} />
+            <h4 className="add_photo">Add a header photo</h4>
+          </React.Fragment>
+          }
+        </div>
       </div>
-      <img className='big_avatar' src='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png' alt='avatar'/>
-  </div>
-)
+
+
+      <div className="bar">
+        <div className="follow-container">
+          <div className='ProfileBar_Item' onClick={()=>{history.push('/following')}}>
+            <span className='ProfileBar_label'>Following</span>
+            <div className='ProfileBar_value'>1</div>
+          </div>
+          <div className='ProfileBar_Item'>
+            <span className='ProfileBar_label'>Follower</span>
+            <div className='ProfileBar_value'>1</div>
+          </div>
+        </div>
+        <div className="button-container">
+          {!editProfile ?
+            <button onClick={()=> setEditProfile(true)}>Edit</button> :
+            <React.Fragment>
+              <button onClick={()=> setEditProfile(false)}>Cancel</button>
+              <button>Save changes</button>
+            </React.Fragment>
+          }
+        </div>
+      </div>
+
+      {
+        Avatar ?
+        <div className='big_avatar'>
+          <div className="add-profile-container">
+            <img src={Avatar} className='ProfileAvatar'/>
+            {
+              editProfile && <React.Fragment>
+              <FontAwesomeIcon icon={faCamera} style={{zIndex: 1, position: 'relative'}}/>
+              <h4 className="add-profile-photo">Choose new image</h4>
+            </React.Fragment>
+            }
+          </div>
+        </div>
+        :
+        editProfile ?  <div className='big_avatar'>
+        <div className="add-profile-container">
+          <FontAwesomeIcon icon={faCamera} />
+          <h4 className="add-profile-photo">Add a profile photo</h4>
+        </div>
+      </div>:  <div className='big-avatar-NoEdit'>
+        <div className="add-profile-container-NoEdit">
+          <FontAwesomeIcon icon={faCamera} />
+        </div>
+      </div>
+      }
+    </div>
+  )
 }
 
-export default Header
+export default withRouter(Header)

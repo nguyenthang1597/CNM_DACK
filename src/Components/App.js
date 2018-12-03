@@ -11,7 +11,8 @@ import Home from './Home'
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
-
+import Topbar from './Topbar'
+import Following from './Following'
 library.add(faStroopwafel)
 
 const store = createStore(Reducers, applyMiddleware(thunk));
@@ -21,11 +22,10 @@ const App = (props) => {
   return (
     <Provider store={store}>
       <BrowserRouter>
-        <Switch>
-          {/* <UnAuthenticateComponent exact path='/login' component={Login}/>
-          <AuthenticateComponent exact path='/' component={Home}/> */}
-          <Home path='/'></Home>
-        </Switch>
+          <Switch>
+            <UnAuthenticateComponent exact path='/login' component={Login}/>
+            <AuthenticateComponent path='/' component={Home}/>
+          </Switch>
       </BrowserRouter>
     </Provider>
   )

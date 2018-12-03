@@ -1,23 +1,30 @@
 import React from 'react'
 import './post.css'
-import {faComment, faRetweet, faHeart} from '@fortawesome/free-solid-svg-icons'
+import {faComment, faRetweet, faHeart, faEnvelope} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-const Post = (props) => {
+const Post = ({owner, postAt, content, actions: {answer, tweet, like}}) => {
   return (
    <div className="post">
-       <div className="header">
-          <img className='avatar_32' src='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png' alt='avatar'/>
-          <h3>   Nguyen Van A</h3>
-          <h5>- 1/12</h5>
-       </div>
-       <div className="body">
-        <p>This is body</p>
-       </div>
-       <div className="footer">
-        <FontAwesomeIcon icon={faComment} style={{marginRight: 20}}/>
-        <FontAwesomeIcon icon={faRetweet} style={{marginRight: 20}}/>
-        <FontAwesomeIcon icon={faHeart} style={{marginRight: 20}}/>
-       </div>
+      <div>
+        <img className='post-avatar' src='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png' alt='avatar'/>
+      </div>
+      <div className='postContent'>
+        <div className="header">
+           <div className='postOwner'>{owner}</div>
+           <div className='postAt'>{postAt}</div>
+        </div>
+        <div className="body">
+         <p>{content}</p>
+        </div>
+        <div className="footer">
+          <div><FontAwesomeIcon icon={faComment}/> {answer}</div>
+          <div><FontAwesomeIcon icon={faRetweet}/> {tweet}</div>
+          <div><FontAwesomeIcon icon={faHeart}/> {like}</div>
+          <div><FontAwesomeIcon icon={faEnvelope}/></div>
+        </div>
+      </div>
+
+
    </div>
   )
 }

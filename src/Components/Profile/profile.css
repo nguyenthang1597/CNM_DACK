@@ -1,6 +1,65 @@
-.profile {
-    margin-left: 5% ;
+.profile .grid {
+  top: 300px;
+  display: grid;
+  grid-column-gap: 20px;
+  grid-template-columns: 290px 590px 290px;
+  position: relative;
+  left: 5%;
 }
-.title {
-    margin-bottom: 10px
+
+.profile_grid {
+  top: 430px;
+  display: grid;
+  grid-column-gap: 20px;
+  grid-template-columns: 290px 590px 290px;
+  position: relative;
+  left: 5%;
+}
+
+.ProfileCard_Name {
+  color: black;
+  font-size: 21px;
+  font-weight: bold;
+  line-height: 28px;
+  margin-right: 2px;
+  word-wrap: break-word;
+}
+
+.ProfileCard_Text {
+  color: #657786;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.ProfileCard_JoinDate {
+  color: #657786;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 8px;
+  position: relative;
+}
+
+.ProfileInput {
+  color: #14171a;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 28px;
+  padding: 4px 7px;
+  width: 80%;
+}
+.Name {
+  font-size: 21px;
+}
+
+input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+    display: none;
+    -webkit-appearance: none;
+}
+.follow {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap
 }
