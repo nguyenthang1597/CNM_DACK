@@ -2,7 +2,7 @@ import React from 'react'
 import './post.css'
 import {faComment, faRetweet, faHeart, faEnvelope} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-const Post = ({owner, postAt, content, actions: {answer, tweet, like}}) => {
+const Post = ({owner, postAt, content, actions: {comment, share, like}}) => {
   return (
    <div className="post">
       <div>
@@ -17,10 +17,9 @@ const Post = ({owner, postAt, content, actions: {answer, tweet, like}}) => {
          <p>{content}</p>
         </div>
         <div className="footer">
-          <div><FontAwesomeIcon icon={faComment}/> {answer}</div>
-          <div><FontAwesomeIcon icon={faRetweet}/> {tweet}</div>
-          <div><FontAwesomeIcon icon={faHeart}/> {like}</div>
-          <div><FontAwesomeIcon icon={faEnvelope}/></div>
+          <div className='postStat'><FontAwesomeIcon icon={faComment}/> {comment} <span className='tooltiptext'>Bình luận</span></div>
+          <div className='postStat'><FontAwesomeIcon icon={faRetweet}/> {share} <span className='tooltiptext'>Chia sẻ</span></div>
+          <div className='postStat'><FontAwesomeIcon icon={faHeart}/> {like} <span className='tooltiptext'>Thích</span></div>
         </div>
       </div>
 

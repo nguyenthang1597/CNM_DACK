@@ -42,9 +42,9 @@ const Topbar = (props) => {
                   <div className='name'>@NguyenVanA123</div>
                 </li>
                 <div className='divider'/>
-                <li className='info'>
-                  <Link to='/profile' style={{textDecoration: 'none', color: 'black'}}><FontAwesomeIcon icon={faUser} style={{marginRight: 10}}/> Hồ sơ</Link>
-                </li>
+                  <li className='info'>
+                    <Link to='/profile' style={{textDecoration: 'none', color: 'black'}}><FontAwesomeIcon icon={faUser} style={{marginRight: 10}}/> Hồ sơ</Link>
+                  </li>
                 <div className='divider'/>
                 <li>
                   Đăng xuất

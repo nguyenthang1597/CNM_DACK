@@ -49,11 +49,11 @@ const ProfileForm = ({Name, Username, Phone, Address, DoB}) => {
   let dob = useFormInput(DoB);
   return (
     <React.Fragment>
-      <input {...name} placeholder='Name' className='ProfileInput Name'/>
-      <div className='ProfileCard_Username'>{Username}</div>
-      <input {...phone} placeholder='Phone' className='ProfileInput'/>
-      <input {...address} placeholder='Address' className='ProfileInput'/>
-      <input {...dob} placeholder='Date of birth' className='ProfileInput' type='date'/>
+      <input {...name} placeholder='Họ Tên' className='ProfileInput Name'/>
+      <div className='ProfileCard_Username'>@{Username}</div>
+      <input {...phone} placeholder='Số Điện Thoại' className='ProfileInput'/>
+      <input {...address} placeholder='Địa Chỉ' className='ProfileInput'/>
+      <input {...dob} placeholder='Ngày Sinh' className='ProfileInput' type='date'/>
     </React.Fragment>
   )
 }

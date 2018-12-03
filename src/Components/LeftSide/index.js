@@ -6,19 +6,18 @@ import { withRouter } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {updateAvatar} from '../../Actions/Profile'
 
-const LeftSide = ({Avatar, updateAvatar, history}) => {
+const LeftSide = ({Avatar, updateAvatar, history, Name, Username}) => {
   let [clickAvatar, setClickAvatar] = useState(false);
   let handleImgChange = (event) => {
     if (event.target.files && event.target.files[0]) {
            let reader = new FileReader();
            reader.onload = (e) => {
-               
+
            };
            reader.readAsDataURL(event.target.files[0]);
        }
        setClickAvatar(false)
   }
-  console.log(Avatar);
   return (
     <div className='leftSide'>
       <div className='profileCard'>
@@ -55,21 +54,21 @@ const LeftSide = ({Avatar, updateAvatar, history}) => {
             </div>
           }
           <div className='userFields'>
-            <div className='name'>Nguyễn Văn A</div>
-            <span className='username'>@NguyenVanA123</span>
+            <div className='name'>{Name}</div>
+            <span className='username'>@{Username}</span>
           </div>
           <div className='stats'>
             <ul className='statlist'>
               <li className='stat'>
-                  <span className='statLabel'>Tweet</span>
+                  <span className='statLabel'>Bài đăng</span>
                   <span className='statValue'>0</span>
               </li>
               <li className='stat'>
-                  <span className='statLabel'>Following</span>
+                  <span className='statLabel'>Người theo dõi</span>
                   <span className='statValue'>0</span>
               </li>
               <li className='stat'>
-                  <span className='statLabel'>Follower</span>
+                  <span className='statLabel'>Đang theo dõi</span>
                   <span className='statValue'>0</span>
               </li>
             </ul>
@@ -80,7 +79,7 @@ const LeftSide = ({Avatar, updateAvatar, history}) => {
   )
 }
 
-const mapStateToProps = ({Profile: {Avatar}}) => ({Avatar})
+const mapStateToProps = ({Profile: {Avatar, Name, Username}}) => ({Avatar, Name, Username})
 const mapDispathToProps = dispatch => ({
   updateAvatar: (image) => dispatch(updateAvatar(image))
 })

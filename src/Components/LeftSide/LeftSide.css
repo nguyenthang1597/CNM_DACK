@@ -7,7 +7,6 @@
 .profileCard {
   height: 225px;
   position: relative;
-  background-color: red;
 }
 
 .bgUser {
@@ -18,11 +17,9 @@
 }
 
 .profileCardContent {
-  width: calc(100% - 32px);
+  width: 100%;
   height: calc(225px - 95px);
   background-color: white;
-  padding-left: 16px;
-  padding-right: 16px;
 }
 
 .profileCard-avatar {
@@ -32,6 +29,7 @@
   background-color: #1DA1F2;
   position: absolute;
   top: calc(95px - 36px);
+  left: 16px;
   border: 2px solid white;
   line-height: 72px;
   font-size: 36px;

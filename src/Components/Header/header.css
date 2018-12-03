@@ -151,10 +151,12 @@ h4.add-profile-photo {
   border: 1px solid;
   font-weight: bold;
   font-size: 15px;
+  outline: none;
 }
 
 .button-container button:hover {
   background-color: rgba(0, 0, 0, 0.2);
+  outline: none;
 }
 
 .Header-Photo-NoEdit {
