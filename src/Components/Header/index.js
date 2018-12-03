@@ -1,9 +1,13 @@
 import React from 'react'
 import './header.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCamera } from '@fortawesome/free-solid-svg-icons'
 const Header = (props) => {
 return (
-  <div>
-      <img style={{width:'100%', height: '300px'}} src='https://images.pexels.com/photos/255379/pexels-photo-255379.jpeg?auto=compress&cs=tinysrgb&h=350'/>
+  <div className="Header">
+      <div className="Header-Photo" style={{width:'100%', height: '320px'}} >
+        <FontAwesomeIcon icon={faCamera}/>
+      </div>
       <div className="bar">
         <ul className="Arrange" style={{marginLeft:'30%'}}>
           <li className="ArrangeSizeFit">
@@ -20,7 +24,9 @@ return (
           </li>
         </ul>
       </div>
-      <img className='big_avatar' src='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png' alt='avatar'/>
+      <div className='big_avatar'>
+
+      </div>
   </div>
 )
 }

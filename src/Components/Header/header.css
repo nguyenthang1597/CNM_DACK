@@ -12,7 +12,9 @@
   height: 200px;
   position: absolute;
   left: 5%;
-  top: 30%;
+  margin-top: -174px;
+  background-color: #4c0e76;
+  border: 5px solid white;
 }
 .Arrange {
   box-sizing: border-box;
@@ -48,4 +50,23 @@ ul.Arrange {
   overflow: hidden;
   text-transform: uppercase;
   transition: color 0.15s ease-in-out 0s;
+}
+
+.Header {
+  position: absolute;
+  left: 0;
+}
+
+.Header-Photo {
+  background: #4c0e76;
+}
+
+.Header-Photo svg.svg-inline--fa.fa-camera.fa-w-16 {
+  margin-top: 70px;
+  width: 45px;
+  height: 45px;
+  color: white;
+  position: relative;
+  top: 40%;
+  left: 50%;
 }

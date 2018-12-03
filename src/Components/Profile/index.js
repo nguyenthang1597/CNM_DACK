@@ -2,10 +2,12 @@ import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt, faLink, faCalendar,faBirthdayCake, faImage} from '@fortawesome/free-solid-svg-icons'
 import './profile.css'
+import Header from '../Header'
 const Profile = (props) => {
   return (
    <div className="profile">
-       <h3>Nguyễn Văn A</h3>
+      <Header/>
+       {/* <h3>Nguyễn Văn A</h3>
        <p>@nguyenvanA</p>
        <div className="title">
         <FontAwesomeIcon icon={faMapMarkerAlt} style={{marginRight: 10}}/>
@@ -22,7 +24,7 @@ const Profile = (props) => {
         <div className="title">
         <FontAwesomeIcon icon={faBirthdayCake} style={{marginRight: 10}}/>
         1/1/1997
-        </div>
+        </div> */}
    </div>
   )
 }
