@@ -33,6 +33,7 @@
   line-height: 45px;
   font-size: 13px;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .active {
@@ -142,5 +143,9 @@
   width: 100%;
   height: 1px;
   background-color: rgba(0, 0, 0, .25);
-  margin: 10px 0;
+  position: relative;
+}
+
+.dropdown-menu li {
+  margin: 8px 0;
 }
