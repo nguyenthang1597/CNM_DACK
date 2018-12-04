@@ -28,7 +28,7 @@ const Topbar = (props) => {
           <div className={`tab ${tab === 'msg' ? 'active' : null}`} onClick={() => {props.history.push('/message')}}><FontAwesomeIcon icon={faEnvelope} style={{marginRight: 5}}/>Tin nhắn</div>
         </div>
         <div className='avatar' onClick={() => setCaret(!caret)}>
-          <img className='avatar_32' src='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png' alt='avatar'/>
+          <img className='avatar_32' src={props.Avatar || 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'} alt='avatar'/>
           {
             caret &&
             <div>

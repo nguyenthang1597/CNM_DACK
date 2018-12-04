@@ -12,12 +12,14 @@ const LeftSide = ({Avatar, updateAvatar, history, Name, Username}) => {
     if (event.target.files && event.target.files[0]) {
            let reader = new FileReader();
            reader.onload = (e) => {
-
+             console.log(e.target)
+             updateAvatar(e.target.result)
            };
            reader.readAsDataURL(event.target.files[0]);
        }
        setClickAvatar(false)
   }
+  console.log(Avatar);
   return (
     <div className='leftSide'>
       <div className='profileCard'>
