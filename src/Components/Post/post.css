@@ -7,6 +7,16 @@
   border: 1px solid #e6ecf0;
 }
 
+.showComment{
+  margin-bottom: 0px;
+}
+
+.comments{
+  margin-bottom: 10px;
+  width: 100%;
+  background-color:
+}
+
 .header {
   display: flex;
   position: relative;

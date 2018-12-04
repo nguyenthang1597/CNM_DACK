@@ -14,7 +14,19 @@ const initState = {
     "comment": 29,
     "share": 1,
     "like": 75
-  }
+  },
+  comments: [
+    {
+      "owner": "Roseline Rentz",
+      "postAt": "3/27/2018",
+      "content": "パーティーへ行かないか"
+    },
+    {
+      "owner": "Leesa Dorgan",
+      "postAt": "7/25/2018",
+      "content": " "
+    }
+  ]
 }, {
   "id": 2,
   "owner": "Roseline Rentz",

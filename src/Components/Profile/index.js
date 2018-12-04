@@ -4,10 +4,35 @@ import { faMapMarkerAlt, faLink, faCalendar,faBirthdayCake, faImage, faPhone} fr
 import './profile.css'
 import Header from '../Header'
 import useFormInput from '../../Functions/useFormInput'
+import {Route} from 'react-router-dom';
+import ListFollow from '../../Containers/FollowComponent';
+import ListPost from '../ListPost'
+
+
+let posts = [{
+  "id": 1,
+  "owner": "Nguyễn Văn A",
+  "postAt": "7/27/2018",
+  "content": "울란바토르",
+  "actions": {
+    "comment": 29,
+    "share": 1,
+    "like": 75
+  }
+}, {
+  "id": 1,
+  "owner": "Nguyễn Văn A",
+  "postAt": "7/27/2018",
+  "content": "울란바토르",
+  "actions": {
+    "comment": 29,
+    "share": 1,
+    "like": 75
+  }
+}]
 
 const Profile = ({Profile}) => {
   let [editProfile, setEditProfile] = useState(false);
-
   return (
    <div className="profile">
      <Header editProfile={editProfile} setEditProfile={setEditProfile} Avatar={Profile.Avatar} Wallpaper={Profile.Wallpaper}/>
@@ -33,10 +58,19 @@ const Profile = ({Profile}) => {
            <ProfileForm {...Profile}/>
          }
        </div>
+       <div>
+         <Route exact path='/profile' render={props => {
+             return(
+               <div>
+                 <div>Bài đăng của tôi</div>
+                 <ListPost posts={posts}/>
+               </div>
+             )
+           }} />
+         <Route exact path='/profile/following' component={ListFollow} />
+         <Route exact path='/profile/follower' component={ListFollow} />
+       </div>
      </div>
-     {
-       editProfile && <div style={{width: 'calc(100vw - 362px)', height: 'calc(100vh - 427px)', backgroundColor: 'rgba(0,0,0,0.2)', position: 'absolute', top: 427, left: 362}}></div>
-     }
    </div>
   )
 }

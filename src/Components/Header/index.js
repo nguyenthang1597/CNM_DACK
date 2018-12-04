@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import './header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
-
-const Header = ({editProfile, setEditProfile, Avatar}) => {
+import {withRouter} from 'react-router-dom'
+const Header = ({editProfile, setEditProfile, Avatar, history}) => {
   return (
     <div className="Header">
       <div className={editProfile ? "Header-Photo" : "Header-Photo-NoEdit"} style={{ width: '100%', height: !editProfile ? '175px' : '320px' }} >
@@ -20,13 +20,13 @@ const Header = ({editProfile, setEditProfile, Avatar}) => {
 
       <div className="bar">
         <div className="follow-container">
-          <div className='ProfileBar_Item'>
-            <span className='ProfileBar_label'>Following</span>
-            <div className='ProfileBar_value'>1</div>
+          <div className='ProfileBar_Item' onClick={()=>{history.push('/profile/following')}}>
+            <span className='ProfileBar_label'>Đang theo dõi</span>
+            <div className='ProfileBar_value'>7</div>
           </div>
-          <div className='ProfileBar_Item'>
-            <span className='ProfileBar_label'>Follower</span>
-            <div className='ProfileBar_value'>1</div>
+          <div className='ProfileBar_Item' onClick={()=>{history.push('/profile/follower')}}>
+            <span className='ProfileBar_label'>Theo dõi</span>
+            <div className='ProfileBar_value'>7</div>
           </div>
         </div>
         <div className="button-container">
@@ -76,4 +76,4 @@ const Header = ({editProfile, setEditProfile, Avatar}) => {
   )
 }
 
-export default Header
+export default withRouter(Header)
