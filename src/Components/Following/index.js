@@ -3,7 +3,7 @@ import './following.css'
 const Following = ({user,username,content}) => {
   return (
     <div className="card">
-     <div className='header'></div>
+     <div className='header_follow'></div>
      <div className="avt">
       <img src='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'/>
       <button className="btn">Following</button>

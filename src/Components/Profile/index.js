@@ -34,7 +34,6 @@ const Profile = ({Profile}) => {
            <ProfileForm {...Profile}/>
          }
        </div>
-      <div className="follow"><ListFollow/></div>
      </div>
      {
        editProfile && <div style={{width: 'calc(100vw - 362px)', height: 'calc(100vh - 427px)', backgroundColor: 'rgba(0,0,0,0.2)', position: 'absolute', top: 427, left: 362}}></div>

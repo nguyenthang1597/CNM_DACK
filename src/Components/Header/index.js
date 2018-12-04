@@ -21,11 +21,11 @@ const Header = ({editProfile, setEditProfile, Avatar, history}) => {
       <div className="bar">
         <div className="follow-container">
           <div className='ProfileBar_Item' onClick={()=>{history.push('/following')}}>
-            <span className='ProfileBar_label'>Following</span>
+            <span className='ProfileBar_label'>Đang theo dõi</span>
             <div className='ProfileBar_value'>1</div>
           </div>
-          <div className='ProfileBar_Item'>
-            <span className='ProfileBar_label'>Follower</span>
+          <div className='ProfileBar_Item' onClick={()=>{history.push('/follower')}}>
+            <span className='ProfileBar_label'>Theo dõi</span>
             <div className='ProfileBar_value'>1</div>
           </div>
         </div>
