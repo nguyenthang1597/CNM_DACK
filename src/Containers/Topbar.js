@@ -1,7 +1,9 @@
 import {connect} from 'react-redux';
-
 import Topbar from '../Components/Topbar'
+import {getInfo} from '../Actions/Profile'
+const mapStateToProps = ({Profile: {Avatar, Name}, Authenticate: {PublicKey}}) => ({Avatar, Name, Username: PublicKey});
 
-const mapStateToProps = ({Profile: {Avatar}}) => ({Avatar});
-
-export default connect(mapStateToProps)(Topbar);
+const mapDispatchToProps = dispatch => ({
+  getInfo: address => dispatch(getInfo(address))
+})
+export default connect(mapStateToProps, mapDispatchToProps)(Topbar);

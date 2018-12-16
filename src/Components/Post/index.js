@@ -3,8 +3,8 @@ import './post.css'
 import {faComment, faRetweet, faHeart, faEnvelope} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Comment from '../Comment'
-
-const Post = ({owner, postAt, content, actions: {comment, share, like}, comments = []}) => {
+import moment from 'moment'
+const Post = ({Content, Method, Time}) => {
   let [showComment, setShowComment] = useState(false);
   return (
     <React.Fragment>
@@ -14,30 +14,22 @@ const Post = ({owner, postAt, content, actions: {comment, share, like}, comments
          </div>
          <div className='postContent'>
            <div className="header">
-              <div className='postOwner'>{owner}</div>
-              <div className='postAt'>{postAt}</div>
+              <div className='postOwner'>{Method === 'AccountWasCreatedBy' ? Content : Method === 'ReceivePayment' ? Content.From : 'Me'}</div>
+              <div className='postAt'>{moment(Time).format('DD/MM/YYYY hh:mm:ss')}</div>
            </div>
            <div className="body">
-            <p>{content}</p>
+            <p>{
+                Method === 'AccountWasCreatedBy' ? 'Tài khoản của bạn được tạo bởi ' + Content : Method === 'ReceivePayment' ?`Đã gửi cho bạn ${Content.Amount}` : `Bạn đã chuyển ${Content.Amount} cho ${Content.To}`
+              }</p>
            </div>
            <div className="footer">
-             <div className='postStat' onClick={() => setShowComment(!showComment)}><FontAwesomeIcon icon={faComment}/> {comment} <span className='tooltiptext'>Bình luận</span></div>
-             <div className='postStat'><FontAwesomeIcon icon={faRetweet}/> {share} <span className='tooltiptext'>Chia sẻ</span></div>
-             <div className='postStat'><FontAwesomeIcon icon={faHeart}/> {like} <span className='tooltiptext'>Thích</span></div>
+             <div className='postStat' onClick={() => setShowComment(!showComment)}><FontAwesomeIcon icon={faComment}/> {0} <span className='tooltiptext'>Bình luận</span></div>
+             <div className='postStat'><FontAwesomeIcon icon={faRetweet}/> {0} <span className='tooltiptext'>Chia sẻ</span></div>
+             <div className='postStat'><FontAwesomeIcon icon={faHeart}/> {0} <span className='tooltiptext'>Thích</span></div>
            </div>
          </div>
       </div>
-      {
-        showComment &&
-        <div className='comments'>
-          {
-            comments.length === 0 && <div style={{textAlign:'center', marginTop: 10}}>Không có bình luận</div>
-          }
-          {
-            comments.map(comment => <Comment {...comment}/> )
-          }
-        </div>
-      }
+
     </React.Fragment>
 
   )

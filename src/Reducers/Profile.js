@@ -1,20 +1,18 @@
-import {UPDATE_INFO, UPDATE_AVATAR} from '../Actions/Profile'
+import {UPDATE_INFO, UPDATE_AVATAR,REQUEST_INFO, RECEIVE_INFO} from '../Actions/Profile'
 
 const initState = {
-  Name: 'Nguyễn Văn A',
-  Username: 'NguyenVanA123',
-  Phone: '0901234567',
-  Address: '1/2/3 Đường a, Phường B, Quận C',
-  DoB: '2000-01-01',
-  Avatar: null,
-  Wallpaper: null
+  Name: '',
+  Avatar: '',
+  loading: false
 }
 
 
 export default (state = initState, action) => {
   switch(action.type){
-    case UPDATE_AVATAR:
-      return {...state, Avatar: action.image}
+    case REQUEST_INFO:
+      return {...state, loading: true}
+    case RECEIVE_INFO:
+      return {...state, loading: false, Name: action.info.Name, Avatar: action.info.Avatar}
     default:
       return state;
   }

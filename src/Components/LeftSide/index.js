@@ -81,7 +81,7 @@ const LeftSide = ({Avatar, updateAvatar, history, Name, Username}) => {
   )
 }
 
-const mapStateToProps = ({Profile: {Avatar, Name, Username}}) => ({Avatar, Name, Username})
+const mapStateToProps = ({Profile: {Avatar, Name}, Authenticate: {PublicKey: Username}}) => ({Avatar, Name, Username})
 const mapDispathToProps = dispatch => ({
   updateAvatar: (image) => dispatch(updateAvatar(image))
 })

@@ -8,6 +8,8 @@ const Topbar = (props) => {
   let [caret, setCaret] = useState(false);
 
   useEffect(() => {
+    console.log(props);
+    props.getInfo(props.Username);
     switch(props.location.pathname){
       case "/":
         return setTab('home');
@@ -18,7 +20,7 @@ const Topbar = (props) => {
       default:
         setTab(null);
     }
-  }, [props.location.pathname])
+  }, [props.location.pathname, props.getInfo])
   return (
     <div className='topbar'>
       <div className='topbar_content'>
@@ -38,8 +40,8 @@ const Topbar = (props) => {
               </div>
               <div className='dropdown-menu'>
                 <li className='userInfo'>
-                  <div className='fullName'>Nguyễn Văn A</div>
-                  <div className='name'>@NguyenVanA123</div>
+                  <div className='fullName'>{props.Name}</div>
+                  <div className='name'>@{props.Username}</div>
                 </li>
                 <div className='divider'/>
                   <li className='info'>

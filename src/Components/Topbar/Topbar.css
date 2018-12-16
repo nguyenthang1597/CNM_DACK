@@ -133,6 +133,7 @@
 }
 .name{
   color: #657786;
+  word-wrap: break-word;
 }
 
 .info{

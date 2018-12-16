@@ -4,6 +4,7 @@ import AuthenticateComponent from '../Containers/AuthenticateComponent';
 import UnAuthenticateComponent from '../Containers/UnAuthenticateComponent';
 import {Provider} from 'react-redux'
 import {createStore, applyMiddleware} from 'redux'
+import {createLogger} from 'redux-logger'
 import Reducers from '../Reducers'
 import thunk from 'redux-thunk'
 import Login from '../Containers/Login'
@@ -14,8 +15,8 @@ import { faStroopwafel } from '@fortawesome/free-solid-svg-icons'
 import Topbar from './Topbar'
 import Following from './Following'
 library.add(faStroopwafel)
-
-const store = createStore(Reducers, applyMiddleware(thunk));
+const logger = createLogger();
+const store = createStore(Reducers, applyMiddleware(thunk, logger));
 
 
 const App = (props) => {
