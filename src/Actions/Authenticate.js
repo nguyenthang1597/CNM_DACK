@@ -18,7 +18,7 @@ export const logOut = () => (dispatch) => {
 
 export const authenticate = (PublicKey, SecretKey) => dispatch => {
   dispatch(requestAuth());
-  return Login(PublicKey)
+  return Login(PublicKey, SecretKey)
   .then(res => {
     if(res.status === 200) {
       dispatch(successAuth({PublicKey, SecretKey}))
@@ -27,3 +27,4 @@ export const authenticate = (PublicKey, SecretKey) => dispatch => {
       dispatch(failerAuth())
     }
   })
+}
