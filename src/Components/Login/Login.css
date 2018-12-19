@@ -55,22 +55,6 @@
   transform: translateX(-50%);
 }
 
-
-.loginFooter{
-  position: relative;
-  margin-top: 30px;
-}
-.signup{
-  position: absolute;
-  left: 5%;
-}
-.forgetPassword{
-  position: relative;
-  right: 10px;
-  left: 65%;
-  right: 5%;
-}
-
 .lds-dual-ring {
   display: inline-block;
   width: 28px;

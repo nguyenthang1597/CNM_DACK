@@ -1,0 +1,5 @@
+.listFollow{
+  display: grid;
+  grid-template-columns: 290px 290px;
+  grid-column-gap: 10px;
+}

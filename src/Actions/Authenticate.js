@@ -1,13 +1,31 @@
+import Login from '../API/login'
 export const REQUEST_AUTH = 'REQUEST_AUTH';
 export const SUCCESS_AUTH = 'SUCCESS_AUTH';
 export const FAILER_AUTH = 'FAILER_AUTH';
+export const LOGOUT = "LOGOUT"
 
 const requestAuth = () => ({type: REQUEST_AUTH})
 
 const successAuth = (data) => ({type: SUCCESS_AUTH, data})
 
+const failerAuth = () => ({type: FAILER_AUTH})
 
-export const authenticate = data => dispatch => {
+export const logOut = () => (dispatch) => {
+  dispatch({
+    type: LOGOUT
+  })
+}
+
+export const authenticate = (PublicKey, SecretKey) => dispatch => {
   dispatch(requestAuth());
-  return setTimeout(() => dispatch(successAuth()), 1000);
+  return Login(PublicKey)
+  .then(res => {
+    if(res.status === 200) {
+      dispatch(successAuth({PublicKey, SecretKey}))
+    }
+    else {
+      dispatch(failerAuth())
+    }
+  })
+  .catch(e => dispatch(failerAuth()))
 }

@@ -13,7 +13,7 @@ const Dashboard = (props) => {
         <InputNewPost/>
         <ListPost/>
       </div>
-      <div style={{backgroundColor: 'blue', height: 100}}></div>
+      <div style={{backgroundColor: 'blue', height: 100}}>chưa biết bỏ gì vô</div>
     </div>
   )
 }

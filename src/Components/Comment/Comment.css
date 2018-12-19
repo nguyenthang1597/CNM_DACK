@@ -1,0 +1,22 @@
+.comment {
+  margin: 0 0;
+  position: relative;
+  left: 5%;
+  width: 95%;
+  border: 0px;
+  min-height: 60px;
+    vertical-align:middle;
+}
+
+.comment .postContent{
+  word-break: break-all;
+  color: #14171a;
+  font-size: 14px;
+  font-weight: bold;
+
+}
+
+
+.commentContent{
+  margin-left: 10px;
+}

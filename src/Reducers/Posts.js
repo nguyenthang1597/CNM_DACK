@@ -1,78 +1,34 @@
+import {REQUEST_POST,RECEIVE_POST, RECEIVE_ERROR, RECEIVE_LOADMORE} from '../Actions/Posts'
 
-const initState = [
-  {
-    owner: 'Nguyen Van B',
-    postAt: '1/12/2018',
-    content: 'post #1',
-    actions: {
-      answer: 100,
-      tweet: 10,
-      like: 10
-    }
-  },
-  {
-    owner: 'Nguyen Van C',
-    postAt: '1/12/2018',
-    content: 'post #2',
-    actions: {
-      answer: 100,
-      tweet: 10,
-      like: 10
-    }
-  },
-  {
-    owner: 'Nguyen Van D',
-    postAt: '1/12/2018',
-    content: 'post #3',
-    actions: {
-      answer: 100,
-      tweet: 10,
-      like: 10
-    }
-  },
-  {
-    owner: 'Nguyen Van E',
-    postAt: '1/12/2018',
-    content: 'post #4',
-    actions: {
-      answer: 100,
-      tweet: 10,
-      like: 10
-    }
-  },
-  {
-    owner: 'Nguyen Van F',
-    postAt: '1/12/2018',
-    content: 'post #5',
-    actions: {
-      answer: 100,
-      tweet: 10,
-      like: 10
-    }
-  },
-  {
-    owner: 'Nguyen Van G',
-    content: 'post #1',
-    actions: {
-      answer: 100,
-      tweet: 10,
-      like: 10
-    }
-  },
-  {
-    owner: 'Nguyen Van H',
-    postAt: '1/12/2018',
-    content: 'post #6',
-    actions: {
-      answer: 100,
-      tweet: 10,
-      like: 10
-    }
-  }
-]
+
+const initState = {
+  loading: false,
+  error:false,
+  loadmore: false,
+  posts: [],
+  page: 1,
+  perpage: 10,
+  pages: null
+}
 
 export default (state = initState, action) => {
   switch(action.type){
+    case REQUEST_POST:
+      return {
+        ...state, loading: true
+      }
+    case RECEIVE_POST:
+      return {
+        ...state,
+        loading: false,
+        posts: action.posts.data,
+        perpage: action.posts.perpage,
+        pages: action.posts.pages
+      }
+    case RECEIVE_ERROR:
+      return {
+        ...state, error: true
+      }
     default:
     return state;
   }
