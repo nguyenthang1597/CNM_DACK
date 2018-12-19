@@ -6,3 +6,71 @@
   left: 5%;
   top: 55px;
 }
+
+.rightColumn {
+  background-color: white; 
+  display: block;
+  padding: 10px
+}
+
+.right-colum-title {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.right-colum-title .title-link {
+  font-size: 14px;
+  margin-left: 5px;
+  color: #1DA1F2
+}
+
+.right-colum-title .title-link:hover {
+  font-size: 14px;
+  margin-left: 5px;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.rightColumn .info-orther-people {
+  margin-top: 7px;
+  height: 63px;
+  border-bottom: 1px solid rgba(161, 158, 158, 0.4);
+}
+
+.rightColumn .info-orther-people img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  float: left;
+}
+
+.rightColumn .info-orther-people .information{
+  height: 53px;
+  margin-left: 55px;
+  font-weight: bold;
+  font-size: 14px
+}
+
+.rightColumn .info-orther-people .information button {
+  padding: 5px;
+  margin-top: -10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: 10px;
+  border-radius: 50px;
+  background: transparent;
+  border-color: #1DA1F2;
+  border: 1px solid;
+  font-weight: bold;
+  font-size: 15px;
+  outline: none;
+  color: #1DA1F2;
+  font-size: 12px
+}
+
+.rightColumn .info-orther-people .information button:hover {
+  cursor: pointer;
+  background-color: rgb(201, 229, 247);
+}
+
+
