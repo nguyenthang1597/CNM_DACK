@@ -7,7 +7,7 @@ const mapStateToProps = ({Authenticate: {isAuthenticating}}) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-  authenticate: (data) => dispatch(authenticate(data))
+  authenticate: (publickey, secretkey) => dispatch(authenticate(publickey, secretkey))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

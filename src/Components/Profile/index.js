@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faMapMarkerAlt, faLink, faCalendar,faBirthdayCake, faImage, faPhone} from '@fortawesome/free-solid-svg-icons'
 import './profile.css'
@@ -31,8 +31,13 @@ let posts = [{
   }
 }]
 
-const Profile = ({Profile}) => {
+const Profile = ({Profile, Posts, getPosts, getInfo}) => {
   let [editProfile, setEditProfile] = useState(false);
+  useEffect(() => {
+      getPosts('GAJQ47RMDTXYTCBMMW4A4DUMTB5RQLTGQZDMMABW6RTQJGKINJ4JTRTP',1,10);
+      getInfo('GAJQ47RMDTXYTCBMMW4A4DUMTB5RQLTGQZDMMABW6RTQJGKINJ4JTRTP')
+  }, [getPosts, getInfo])
+  console.log(getInfo);
   return (
    <div className="profile">
      <Header editProfile={editProfile} setEditProfile={setEditProfile} Avatar={Profile.Avatar} Wallpaper={Profile.Wallpaper}/>
@@ -43,30 +48,13 @@ const Profile = ({Profile}) => {
            <React.Fragment>
              <div className='ProfileCard_Name'>{Profile.Name}</div>
              <div className='ProfileCard_Text'>@ {Profile.Username}</div>
-             {
-               Profile.Phone && <div className='ProfileCard_Text'><FontAwesomeIcon icon={faPhone} style={{marginRight: 5}}/>{Profile.Phone}</div>
-             }
-             {
-               Profile.DoB && <div className='ProfileCard_Text'><FontAwesomeIcon icon={faBirthdayCake} style={{marginRight: 5}}/>{Profile.DoB}</div>
-             }
-             {
-               Profile.Address && <div className='ProfileCard_Text'><FontAwesomeIcon icon={faMapMarkerAlt} style={{marginRight: 5}}/>{Profile.Phone}</div>
-             }
-             <div className='ProfileCard_JoinDate'><FontAwesomeIcon icon={faCalendar} style={{marginRight: 5, marginTop: 20}} />Đã tham gia tháng 12 năm 2018</div>
            </React.Fragment>
            :
            <ProfileForm {...Profile}/>
          }
        </div>
        <div>
-         <Route exact path='/profile' render={props => {
-             return(
-               <div>
-                 <div>Bài đăng của tôi</div>
-                 <ListPost posts={posts}/>
-               </div>
-             )
-           }} />
+
          <Route exact path='/profile/following' component={ListFollow} />
          <Route exact path='/profile/follower' component={ListFollow} />
        </div>
