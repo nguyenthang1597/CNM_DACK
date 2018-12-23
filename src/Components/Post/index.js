@@ -9,8 +9,8 @@ const Post = (props) => {
   let [showComment, setShowComment] = useState(false);
   let [post, setPost] = useState({});
 
-  useEffect(async () => {
-    let _post = await convertToPost(props.post);
+  useEffect(() => {
+    let _post = convertToPost(props.post);
     setPost(_post)
   }, [convertToPost])
   return (

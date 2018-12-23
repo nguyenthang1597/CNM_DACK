@@ -1,30 +1,29 @@
-const vstruct = require('varstruct');
-const crypto = require('crypto');
-const { Keypair } = require('stellar-base');
-const v1 = require('./v1');
-
+const vstruct = require("varstruct");
+const crypto = require("crypto");
+const { Keypair } = require("stellar-base");
+const v1 = require("./v1");
 
 const Transaction = vstruct([
-  { name: 'version', type: vstruct.UInt8 },
-  { name: 'account', type: vstruct.Buffer(35) },
-  { name: 'sequence', type: vstruct.UInt64BE },
-  { name: 'memo', type: vstruct.VarBuffer(vstruct.UInt8) },
-  { name: 'operation', type: vstruct.UInt8 },
-  { name: 'params', type: vstruct.VarBuffer(vstruct.UInt16BE) },
-  { name: 'signature', type: vstruct.Buffer(64) },
+  { name: "version", type: vstruct.UInt8 },
+  { name: "account", type: vstruct.Buffer(35) },
+  { name: "sequence", type: vstruct.UInt64BE },
+  { name: "memo", type: vstruct.VarBuffer(vstruct.UInt8) },
+  { name: "operation", type: vstruct.UInt8 },
+  { name: "params", type: vstruct.VarBuffer(vstruct.UInt16BE) },
+  { name: "signature", type: vstruct.Buffer(64) }
 ]);
 
-function encode(tx) {
+export function encode(tx) {
   switch (tx.version) {
     case 1:
       return v1.encode(tx);
 
     default:
-      throw Error('Unsupport version');
-  };
+      throw Error("Unsupport version");
+  }
 }
 
-function decode(data) {
+export function decode(data) {
   const versionTx = Transaction.decode(data);
   switch (versionTx.version) {
     case 1:
@@ -32,37 +31,38 @@ function decode(data) {
       break;
 
     default:
-      throw Error('Unsupport version');
+      throw Error("Unsupport version");
   }
 }
 
-function getUnsignedHash(tx) {
+export function getUnsignedHash(tx) {
   return crypto
-    .createHash('sha256')
-    .update(encode({
-      ...tx,
-      signature: Buffer.alloc(64, 0),
-    }))
+    .createHash("sha256")
+    .update(
+      encode({
+        ...tx,
+        signature: Buffer.alloc(64, 0)
+      })
+    )
     .digest();
 }
 
-function sign(tx, secret) {
+export function sign(tx, secret, UnsignedHash) {
   const key = Keypair.fromSecret(secret);
   tx.account = key.publicKey();
-  tx.signature = key.sign(getUnsignedHash(tx));
+  tx.signature = key.sign(UnsignedHash);
 }
 
-function verify(tx) {
+export function verify(tx) {
   const key = Keypair.fromPublicKey(tx.account);
   return key.verify(getUnsignedHash(tx), tx.signature);
 }
 
-function hash(tx) {
-  return tx.hash = crypto.createHash('sha256')
+export function hash(tx) {
+  return (tx.hash = crypto
+    .createHash("sha256")
     .update(encode(tx))
     .digest()
-    .toString('hex')
-    .toUpperCase();
+    .toString("hex")
+    .toUpperCase());
 }
-
-module.exports = { encode, decode, verify, sign, hash };

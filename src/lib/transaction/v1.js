@@ -56,7 +56,8 @@ const ReactContent = vstruct([
   { name: 'type', type: vstruct.UInt8 },
   { name: 'reaction', type: vstruct.UInt8 },
 ]);
-function encode(tx) {
+
+export function encode(tx) {
   let params, operation;
   if (tx.version !== 1) {
     throw Error('Wrong version');
@@ -107,11 +108,11 @@ function encode(tx) {
       operation = 4;
       break;
     case 'interact':
-      if(tx.params.content.type === 1){
-        tx.params.content = PlainTextContent.encode({type: 1, text: tx.params.data})
+      if (tx.params.content.type === 1) {
+        tx.params.content = PlainTextContent.encode({ type: 1, text: tx.params.data })
       }
-      if(tx.params.content.type === 2){
-        tx.params.content = ReactContent.encode({type: 2, reaction: tx.params.content.reaction})
+      if (tx.params.content.type === 2) {
+        tx.params.content = ReactContent.encode({ type: 2, reaction: tx.params.content.reaction })
       }
       params = InteractParams.encode({
         ...tx.params,
@@ -134,7 +135,7 @@ function encode(tx) {
   });
 }
 
-function decode(data) {
+export function decode(data) {
   const tx = Transaction.decode(data);
   if (tx.version !== 1) {
     throw Error('Wrong version');
@@ -180,10 +181,10 @@ function decode(data) {
       params = InteractParams.decode(tx.params);
       params.object = params.object.toString('hex').toUpperCase();
       let content = Content.decode(params.content);
-      if(content.type === 1){
+      if (content.type === 1) {
         params.content = PlainTextContent.decode(params.content)
       }
-      if(content.type === 2){
+      if (content.type === 2) {
         params.content = ReactContent.decode(params.content)
       }
       break;
@@ -201,4 +202,3 @@ function decode(data) {
   };
 }
 
-module.exports = { encode, decode };
