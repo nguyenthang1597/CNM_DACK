@@ -16,15 +16,16 @@ export const logOut = () => (dispatch) => {
   })
 }
 
-export const authenticate = (PublicKey, SecretKey) => dispatch => {
+export const authenticate = (SecretKey) => dispatch => {
   dispatch(requestAuth());
-  return Login(PublicKey, SecretKey)
+  return Login(SecretKey)
   .then(res => {
     if(res.status === 200) {
-      dispatch(successAuth({PublicKey, SecretKey}))
+      dispatch(successAuth({PublicKey: res.data.PublicKey, SecretKey}))
     }
     else {
       dispatch(failerAuth())
     }
   })
+  .catch(e => dispatch(failerAuth()))
 }

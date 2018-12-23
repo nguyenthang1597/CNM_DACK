@@ -1,11 +1,17 @@
 import {API_URL} from '../Config'
 import axios from 'axios'
-const Login = (publickey, secretkey) => {
+import {Keypair} from 'stellar-base'
+const Login = (secretkey) => {
   let url = `${API_URL}/login`;
-  return axios.post(url, {
-    PublicKey: publickey,
-    SecretKey: secretkey
-  });
+  try {
+    let key = Keypair.fromSecret(secretkey);
+    let publickey = key.publicKey();
+    return axios.post(url, {
+      publickey,
+    });
+  } catch (error) {
+    throw error;
+  }
 }
 
 export default Login;

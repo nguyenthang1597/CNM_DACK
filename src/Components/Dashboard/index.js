@@ -1,18 +1,26 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import LeftSide from '../LeftSide'
 import './Dashboard.css'
 import InputNewPost from './InputNewPost'
 import Post from '../Post'
 import { Link, withRouter } from 'react-router-dom'
-import ListPost from '../../Containers/ListPost'
-
-const Dashboard = (props) => {
+import ListPost from '../ListPost'
+import explorePost from '../../API/explorePost'
+const Dashboard = ({PublicKey}) => {
+  let [explore, setExplore] = useState([]);
+  useEffect(() => {
+    explorePost(PublicKey,1, 30).then(res => {
+      console.log(res);
+      
+      setExplore(res.data.Post)
+    })
+  }, [explorePost])
   return (
     <div className='grid'>
       <LeftSide />
       <div>
         <InputNewPost />
-        <ListPost />
+        <ListPost posts={explore}/>
       </div>
       <div className={"rightColumn"}>
         <div className={"right-colum-title"}>

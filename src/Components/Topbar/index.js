@@ -11,7 +11,6 @@ const Topbar = (props) => {
   }
 
   useEffect(() => {
-    props.getInfo(props.Username);
     switch (props.location.pathname) {
       case "/":
         return setTab('home');

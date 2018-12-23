@@ -1,11 +1,18 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './post.css'
 import {faComment, faRetweet, faHeart, faEnvelope} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Comment from '../Comment'
 import moment from 'moment'
-const Post = ({Content, Method, Time}) => {
+import convertToPost from '../../Functions/convertToPost';
+const Post = (props) => {
   let [showComment, setShowComment] = useState(false);
+  let [post, setPost] = useState({});
+
+  useEffect(async () => {
+    let _post = await convertToPost(props.post);
+    setPost(_post)
+  }, [convertToPost])
   return (
     <React.Fragment>
       <div className={`post ${showComment? 'showComment' : null}` }>
@@ -14,12 +21,12 @@ const Post = ({Content, Method, Time}) => {
          </div>
          <div className='postContent'>
            <div className="header">
-              <div className='postOwner'>{Method === 'AccountWasCreatedBy' ? Content : Method === 'ReceivePayment' ? Content.From : 'Me'}</div>
-              <div className='postAt'>{moment(Time).format('DD/MM/YYYY hh:mm:ss')}</div>
+              <div className='postOwner'>{post.owner}</div>
+              <div className='postAt'>{moment(post.time).format('DD/MM/YYYY hh:mm:ss')}</div>
            </div>
            <div className="body">
             <p>{
-                Method === 'AccountWasCreatedBy' ? 'Tài khoản của bạn được tạo bởi ' + Content : Method === 'ReceivePayment' ?`Đã gửi cho bạn ${Content.Amount}` : `Bạn đã chuyển ${Content.Amount} cho ${Content.To}`
+                post.content
               }</p>
            </div>
            <div className="footer">
