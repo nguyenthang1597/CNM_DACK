@@ -23,9 +23,6 @@ const Topbar = (props) => {
         setTab(null);
     }
   }, [props.location.pathname, props.getInfo])
-
-  console.log("Topbar", props);
-  console.log("Topbar Tab: ", tab);
   return (
     <div className='topbar'>
       <div className='topbar_content'>
@@ -58,6 +55,7 @@ const Topbar = (props) => {
                 <div className='divider' />
                 <li className='info'>
                   <Link to='/login' onClick={() => handleLogout()} style={{ textDecoration: 'none', color: 'black' }}><FontAwesomeIcon icon={faSignOutAlt} style={{ marginRight: 10 }} /> Đăng xuất</Link>
+
                 </li>
               </div>
             </div>
