@@ -5,6 +5,7 @@ import Dashboard from '../Dashboard'
 import Notification from '../Notification'
 import Follow from '../Follow'
 import Profile from '../../Containers/Profile'
+import SendMoney from '../SendMoney'
 const Home = (props) => {
   document.title = 'Home'
   return (
@@ -13,7 +14,7 @@ const Home = (props) => {
       <Route exact path='/' component={Dashboard} />
       <Route exact path='/notification' component={Notification}/>
       <Route path='/profile' component={Profile}/>
-
+      <Route path='/sendmoney' component={SendMoney}/>
     </React.Fragment>
   )
 }
