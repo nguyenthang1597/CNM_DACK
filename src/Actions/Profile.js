@@ -8,6 +8,9 @@ export const UPDATE_INFO = 'UPDATE_INFO';
 export const REQUEST_INFO = 'REQUEST_INFO';
 export const RECEIVE_INFO = 'RECEIVE_INFO';
 
+export const ADD_FOLLOW = 'ADD_FOLLOW';
+export const REMOVE_FOLLOW = 'REMOVE_FOLLOW';
+
 export const updateAvatar = (Avatar) => ({type: UPDATE_AVATAR, Avatar})
 export const updateInfo = (info) => ({type: UPDATE_AVATAR, info})
 export const receiveInfo = (info) => ({type: RECEIVE_INFO, info})
@@ -19,5 +22,19 @@ export const getUserInfo = address => dispatch => {
   return getAllInfo(address)
   .then(res => {
     dispatch(receiveInfo(res.data))
+  })
+}
+
+export const AddFollow = (newFollow) => dispatch => {
+  dispatch({
+    type: ADD_FOLLOW,
+    newFollow: newFollow,
+  })
+}
+
+export const RemoveFollow = (follower) => dispatch => {
+  dispatch({
+    type: REMOVE_FOLLOW,
+    follower: follower,
   })
 }

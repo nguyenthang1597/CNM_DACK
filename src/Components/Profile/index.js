@@ -4,22 +4,11 @@ import Header from "../Header";
 import useFormInput from "../../Functions/useFormInput";
 import { Route } from "react-router-dom";
 import ListFollow from "../ListFollow";
-import ListPost from "../ListPost";
-import getAvatar from "../../API/getAvatar";
-import getName from "../../API/getName";
-import getFollow from "../../API/getFollow";
-import getEnergy from "../../API/getEnergy";
-import getAllInfo from "../../API/getAllInfo";
-const Profile = ({PublicKey,SecretKey, Posts, follower, match: { params } }) => {
-  let [editProfile, setEditProfile] = useState(false);
-  let [Profile, setProfile] = useState({});
-  useEffect(() => {
-    getProfile()
-  }, [getProfile])
 
-  let getProfile = () => {
-    getAllInfo(params.address).then(res => setProfile(res.data))
-  }
+const Profile = ({PublicKey,SecretKey, Profile, match: { params } }) => {
+  let [editProfile, setEditProfile] = useState(false);
+  // let [Profile, setProfile] = useState({});
+
   return (
     <div className="profile">
       <Header
@@ -34,7 +23,6 @@ const Profile = ({PublicKey,SecretKey, Posts, follower, match: { params } }) => 
         Sequence={Profile.Sequence}
         PublicKey={PublicKey}
         SecretKey={SecretKey}
-        getProfile={getProfile}
       />
       <div className={!editProfile ? "grid" : "profile_grid"}>
         <div style={{marginTop:40}}>
@@ -50,12 +38,12 @@ const Profile = ({PublicKey,SecretKey, Posts, follower, match: { params } }) => 
           <Route
             exact
             path="/profile/:id/following"
-            render={props => <ListFollow array={Profile.Following} {...props} />}
+            render={props => <ListFollow type={1} array={Profile.Following} {...props} PublicKey={PublicKey} SecretKey={SecretKey} />}
           />
           <Route
             exact
             path="/profile/:id/follower"
-            render={props => <ListFollow array={Profile.Followers} {...props} />}
+            render={props => <ListFollow type={2} arrayFollowing={Profile.Following}  array={Profile.Followers} {...props} PublicKey={PublicKey} SecretKey={SecretKey}/>}
           />
         </div>
       </div>
