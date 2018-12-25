@@ -1,0 +1,275 @@
+.container {
+    height: auto;
+    margin-top: 55px;
+}
+
+.left-column {
+    float: left;
+    width: 45%;
+}
+
+.right-column {
+    float: right;
+    width: 55%;
+}
+
+.my-profile {
+    margin: 10px;
+    flex-direction: row;
+    display: flex;
+    background-color: white;
+    padding: 10px;
+}
+
+.my-avatar {
+    width: 150px;
+    height: 150px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.my-infomation {
+    width: 200px;
+    height: 150px;
+    flex-grow: 1;
+    margin-left: 5px;
+}
+
+.my-name {
+    font-size: 18px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    width: 200px; 
+    white-space: nowrap;
+}
+
+.public-key {
+    line-height: 20px;
+    word-wrap: break-word;
+}
+
+.info-money {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.form-send-money {
+    padding: 10px;
+}
+
+.money {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.input-money {
+    width: 100%;
+    height: 100px;
+    font-size: 18px;
+    border: 0px
+}
+
+.send-to {
+    height: 100px;
+}
+
+.receiver-profile-container {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    height: 115px;
+}
+
+.receiver-profile {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding: 10px;
+    width: 100%;
+}
+
+.receiver-avatar {
+    width: 65px;
+    height: 65px;
+    background-color: red;
+    border-radius: 50%;
+}
+
+.receiver-infomation {
+    width: 200px;
+    height: 100px;
+    flex-grow: 1;
+    margin-left: 5px;
+}
+
+.receiver-name {
+    font-size: 18px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    width: 200px; 
+    white-space: nowrap;
+}
+
+.receiver-public-key {
+    line-height: 20px;
+    word-wrap: break-word;
+}
+
+.delete-receiver {
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 10px;
+    border-radius: 50px;
+    background: transparent;
+    border-color: #4c0e76;
+    border: 1px solid;
+    font-weight: bold;
+    font-size: 15px;
+    outline: none;
+    height: 45px;
+    margin-left: 10px;
+}
+
+.delete-receiver:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    outline: none;
+    cursor: pointer;
+}
+
+.btn-send {
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-right: 20px;
+    border-radius: 50px;
+    background: 4c0e76;
+    border-color: #4c0e76;
+    border: 1px solid;
+    font-weight: bold;
+    font-size: 15px;
+    outline: none;
+    height: 45px;
+    margin-top: 10px;
+}
+
+.btn-send:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    outline: none;
+    cursor: pointer;
+}
+
+.div-button {
+    display: flex;
+    justify-content: center;
+}
+
+.search {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+}
+
+.input-search {
+    width: 100%;
+    font-size: 18px;
+    height: 40px;
+}
+
+.btn-search {
+    background-color: white;
+    width: 50px;
+    margin-left: 5px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-search:hover {
+    cursor: pointer;
+    background-color: rgb(207, 207, 202)
+}
+
+.list-receiver {
+    width: 100%;
+    margin-left: 10px;
+}
+
+.receiver-item {
+    display: flex;
+    background-color: white;
+    border-bottom: 1px solid black;
+    height: 60px;
+    padding: 5px;
+    flex-direction: row;
+    margin-top: 2px;
+}
+
+.receiver-item img {
+    width: 60px;
+    border-radius: 50%;
+}
+
+.receiver-item-info {
+    height: 60px;
+    width: auto;
+    margin-left: 5px;
+}
+
+.receiver-item-info .Name {
+    font-size: 16px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    overflow: hidden; 
+    width: 200px; 
+    white-space: nowrap;
+}
+
+.receiver-item-info .Key {
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+.receiver-item:hover {
+    background-color: #c3c2f7;
+    cursor: pointer;
+}
+
+.list-receiver-container {
+    height: 530px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between
+}
+
+.next-prev {
+    height: 50px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.next-prev button {
+    padding-left: 60px;
+    padding-right: 60px;
+    margin-right: 20px;
+    border-radius: 50px;
+    background: 4c0e76;
+    border-color: #4c0e76;
+    border: 1px solid;
+    font-weight: bold;
+    font-size: 15px;
+    outline: none;
+    height: 45px;
+}
+
+.next-prev button:hover {
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.2);
+}

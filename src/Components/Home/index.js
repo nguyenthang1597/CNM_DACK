@@ -4,6 +4,8 @@ import {Switch, Route, BrowserRouter}  from 'react-router-dom';
 import Dashboard from '../Dashboard'
 import Notification from '../Notification'
 import Profile from '../../Containers/Profile'
+import SendMoney from '../SendMoney'
+
 import Test from '../test'
 import updateName from '../../Functions/updateName'
 
@@ -20,6 +22,7 @@ const Home = ({PublicKey, getInfo, getFollow, SecretKey}) => {
       <Route exact path='/' render={props => <Dashboard {...props} PublicKey={PublicKey} SecretKey={SecretKey}/>} />
       <Route exact path='/notification' component={Notification}/>
       <Route path='/profile' component={Profile}/>
+      <Route path='/sendmoney' component={SendMoney}/>
     </React.Fragment>
   )
 }
