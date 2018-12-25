@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Comment from './Comment'
 import moment from 'moment'
 import convertToPost from '../../Functions/convertToPost';
+import makeTx from '../../Functions/makeTx'
 
 const Post = (props) => {
   let [showComment, setShowComment] = useState(false);
@@ -26,6 +27,14 @@ const Post = (props) => {
     if(hasInteraction && index === interaction.index) {
       setHasInterraction(false);
       setInteraction(defaultInter);
+      const Params = {
+        object: props.post.Hash,
+        content: {
+          type: 2,
+          reaction: 0,
+        } 
+      }
+      makeTx(props.PublicKey,'interact',Params,props.SecretKey);
       return;
     }
     let newInter;
@@ -53,6 +62,14 @@ const Post = (props) => {
     }
     setInteraction(newInter);
     setHasInterraction(true);
+    const Params = {
+      object: props.post.Hash,
+      content: {
+        type: 2,
+        reaction: newInter.index,
+      } 
+    }
+    makeTx(props.PublicKey,'interact',Params,props.SecretKey);
   }
 
   return (

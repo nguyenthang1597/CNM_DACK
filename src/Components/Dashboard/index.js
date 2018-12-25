@@ -19,7 +19,7 @@ const Dashboard = ({PublicKey, SecretKey}) => {
       <LeftSide />
       <div>
         <InputNewPost PublicKey={PublicKey} SecretKey={SecretKey}/>
-        <ListPost posts={explore}/>
+        <ListPost posts={explore} PublicKey={PublicKey} SecretKey={SecretKey}/>
       </div>
       <div className={"rightColumn"}>
         <div className={"right-colum-title"}>
