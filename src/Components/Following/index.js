@@ -59,7 +59,7 @@ const Following = (props) => {
      <div className="avt">
       <img className="fl-avatar" src={avatar ? `data:image/png;base64,${avatar}` : `https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png`}/>
       
-      {(props.type === 2 && props.arrayFollowing.find(e => e === publickey)) ? <div></div> :
+      {(props.PublicKey !== props.address ? <div></div> : props.type === 2 && props.arrayFollowing.find(e => e === publickey)) ? <div></div> :
       <button onClick={handleButtonClick} className="btn-follow-unfollow">{props.type === 1 ? "Bỏ theo dõi" : 'Theo dõi'}</button> }
       </div>
       <div className="info">
