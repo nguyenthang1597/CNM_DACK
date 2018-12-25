@@ -1,26 +1,37 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import './post.css'
 import {faComment, faRetweet, faHeart, faEnvelope} from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import Comment from '../Comment'
+import Comment from './Comment'
 import moment from 'moment'
-const Post = ({Content, Method, Time}) => {
+import convertToPost from '../../Functions/convertToPost';
+const Post = (props) => {
   let [showComment, setShowComment] = useState(false);
+  let [post, setPost] = useState({});
+
+  useEffect(() => {
+    convertToPost(props.post).then(_post => setPost(_post))
+
+  }, [convertToPost])
+  console.log(post)
   return (
     <React.Fragment>
-      <div className={`post ${showComment? 'showComment' : null}` }>
+      <div className='post'>
          <div>
-           <img className='post-avatar' src='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png' alt='avatar'/>
+           <img className='post-avatar' src={post.ownerImage ? `data:image/jpeg;base64,${post.ownerImage}` : 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'} alt='avatar'/>
          </div>
          <div className='postContent'>
            <div className="header">
-              <div className='postOwner'>{Method === 'AccountWasCreatedBy' ? Content : Method === 'ReceivePayment' ? Content.From : 'Me'}</div>
-              <div className='postAt'>{moment(Time).format('DD/MM/YYYY hh:mm:ss')}</div>
+              <div className={post.owner && post.owner.length > 20 ? 'cut-word postOwner' : 'postOWner'}>{post.owner}</div>
+              <div className='postAt'>{moment(post.time).format('DD/MM/YYYY HH:mm:ss')}</div>
            </div>
            <div className="body">
             <p>{
-                Method === 'AccountWasCreatedBy' ? 'Tài khoản của bạn được tạo bởi ' + Content : Method === 'ReceivePayment' ?`Đã gửi cho bạn ${Content.Amount}` : `Bạn đã chuyển ${Content.Amount} cho ${Content.To}`
+                post.content
               }</p>
+            {
+              post.image && <img src={`data:image/jpeg;base64,${post.image}`} />
+            }
            </div>
            <div className="footer">
              <div className='postStat' onClick={() => setShowComment(!showComment)}><FontAwesomeIcon icon={faComment}/> {0} <span className='tooltiptext'>Bình luận</span></div>
@@ -29,7 +40,9 @@ const Post = ({Content, Method, Time}) => {
            </div>
          </div>
       </div>
-
+      {
+        showComment && <Comment hash={props.post.Hash} close={setShowComment}/>
+      }
     </React.Fragment>
 
   )

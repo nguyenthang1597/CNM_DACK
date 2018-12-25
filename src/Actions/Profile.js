@@ -20,7 +20,7 @@ export const getInfo = address => dispatch => {
   .then(res => {
     let info = {
       Name: res[0].data.Name,
-      Avatar: res[1].data.Avatar
+      Avatar: res[1].data.Marker + res[1].data.Avatar
     }
     dispatch(receiveInfo(info))
   })

@@ -3,18 +3,16 @@ import './Login.css';
 import useFormInput from '../../Functions/useFormInput'
 const Login = ({isAuthenticating, authenticate}) => {
   document.title = 'Login';
-  let publickey = useFormInput();
-  let secretkey = useFormInput();
+  let secretkey = useFormInput('SARDDYAEVEABQTGOZEDOI454XUBXCF5LMNDX6Q3MGFZ53MONF2XDDQIU');
   let submit = () => {
-    authenticate(publickey.value, secretkey.value);
+    authenticate(secretkey.value);
   }
 
 
   return (
     <div className='loginContainer'>
       <div className='loginTitle'>Login</div>
-      <input className='textInput' {...publickey} placeholder='Public key'/>
-      <input className='textInput' {...secretkey} placeholder='Secret key'/>
+      <input className='textInput' {...secretkey} placeholder='Secret key' />
       <div className={!isAuthenticating ? 'loginButton' : 'loginButtonLoading'} onClick={() => {if(!isAuthenticating) submit()}}>
         {
           !isAuthenticating && <div>Login</div>
