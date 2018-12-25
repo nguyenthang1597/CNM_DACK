@@ -8,7 +8,7 @@ export const REQUEST_INFO = 'REQUEST_INFO';
 export const RECEIVE_INFO = 'RECEIVE_INFO';
 
 export const updateAvatar = (Avatar) => ({type: UPDATE_AVATAR, Avatar})
-export const updateInfo = (info) => ({type: UPDATE_AVATAR, info})
+export const updateInfo = (info) => ({type: UPDATE_INFO, info})
 export const receiveInfo = (info) => ({type: RECEIVE_INFO, info})
 
 const requestInfo = () => ({type: REQUEST_INFO});

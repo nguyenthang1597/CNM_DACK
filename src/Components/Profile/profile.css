@@ -70,3 +70,17 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   display: flex;
   flex-wrap: wrap;
 }
+.btnName {
+  padding: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-right: 10px;
+  border-radius: 50px;
+  background: transparent;
+  border-color: #4c0e76;
+  border: 1px solid;
+  font-weight: bold;
+  font-size: 15px;
+  outline: none;
+  margin-top: 20px
+}

@@ -5,8 +5,8 @@ import useFormInput from "../../Functions/useFormInput";
 import { Route } from "react-router-dom";
 import ListFollow from "../ListFollow";
 import ListPost from "../../Containers/ListPost";
-
-const Profile = ({ Profile, Posts, following, follower,Username,getPosts}) => {
+import UpdateName from '../../Functions/updateName';
+const Profile = ({ Profile, Posts, following, follower,Username,getPosts,SecretKey}) => {
   let [editProfile, setEditProfile] = useState(false);
   useEffect(() => {
     getPosts(Username,1, 30)
@@ -32,7 +32,7 @@ const Profile = ({ Profile, Posts, following, follower,Username,getPosts}) => {
               <div className="ProfileCard_Text">Energy: {Profile.Energy} OXY</div>
             </React.Fragment>
           ) : (
-            <ProfileForm {...Profile} />
+            <ProfileForm Username={Username} SecretKey={SecretKey} {...Profile} />
           )}
         </div>
         <div>
@@ -57,12 +57,22 @@ const Profile = ({ Profile, Posts, following, follower,Username,getPosts}) => {
   );
 };
 
-const ProfileForm = ({ Name, Username, Phone, Address, DoB }) => {
+const ProfileForm = ({ Name, Username, Phone, Address, DoB ,SecretKey}) => {
   let name = useFormInput(Name);
+  const updateName = async() =>{
+    console.log("NAME",Username)
+    console.log("NAME1",SecretKey)
+  try {
+    await UpdateName(Username, name.value, SecretKey)
+    alert('Update thành công!')
+  } catch (error) {
+    alert('Update không thành công')
+  }
+}
   return (
     <React.Fragment>
       <input {...name} placeholder="Họ Tên" className="ProfileInput Name" />
-      <div className="ProfileCard_Username">@{Username}</div>
+      <button className="btnName" onClick={updateName}>Cập nhật</button>
     </React.Fragment>
   );
 };

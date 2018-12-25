@@ -2,9 +2,10 @@ import {connect} from 'react-redux';
 import Home from '../Components/Home'
 import {getInfo} from '../Actions/Profile'
 import {GetFollow} from '../Actions/Follow'
-const mapStateToProps = ({Authenticate: {PublicKey, SecretKey}}) => ({
+const mapStateToProps = ({Profile : {Avatar},Authenticate: {PublicKey, SecretKey}}) => ({
+  Avatar,  
   PublicKey,
-  SecretKey
+  SecretKey,
 })
 
 const mapDispatchToProps = dispatch => ({

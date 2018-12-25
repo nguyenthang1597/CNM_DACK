@@ -3,7 +3,7 @@ import './Login.css';
 import useFormInput from '../../Functions/useFormInput'
 const Login = ({isAuthenticating, authenticate}) => {
   document.title = 'Login';
-  let secretkey = useFormInput('SARDDYAEVEABQTGOZEDOI454XUBXCF5LMNDX6Q3MGFZ53MONF2XDDQIU');
+  let secretkey = useFormInput('SB4POAZW2GX3KPCKHHRY4UNMLLALPI627DXLSFYRR2IQB2D7APM47AM5');
   let submit = () => {
     authenticate(secretkey.value);
   }

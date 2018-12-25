@@ -1,18 +1,60 @@
 import React, { useState, useEffect } from 'react'
 import './post.css'
-import { faShare, faComment, faThumbsUp, faHeart,faGrinSquintTears, faSurprise, faAngry, faFrown } from '@fortawesome/free-solid-svg-icons'
+import { faShare, faComment, faThumbsUp, faHeart, faGrinSquintTears, faSurprise, faAngry, faFrown } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Comment from './Comment'
 import moment from 'moment'
 import convertToPost from '../../Functions/convertToPost';
+
 const Post = (props) => {
   let [showComment, setShowComment] = useState(false);
   let [post, setPost] = useState({});
+  let [hasInteraction, setHasInterraction] = useState(false);
+  const defaultInter = {icon: faThumbsUp, text: 'Thích', class: '', index: 0 }
+  let [interaction, setInteraction] = useState(defaultInter)
 
   useEffect(() => {
     convertToPost(props.post).then(_post => setPost(_post))
 
   }, [convertToPost])
+
+  function createInteraction(_icon, _text, _class, _index) {
+    return {icon: _icon, text: _text, class: _class, index: _index }
+  }
+
+  function hadleInteractionClick(index) {
+    if(hasInteraction && index === interaction.index) {
+      setHasInterraction(false);
+      setInteraction(defaultInter);
+      return;
+    }
+    let newInter;
+    switch (index) {
+      case 1:
+        newInter = createInteraction(faThumbsUp, "Thích", "like", 1);
+        break;
+      case 2:
+        newInter = createInteraction(faHeart, "Yêu thích", "love", 2);
+        break;
+      case 3:
+        newInter = createInteraction(faGrinSquintTears, "Haha", "haha", 3);
+        break;
+      case 4:
+        newInter = createInteraction(faSurprise, "Wow", "haha", 4);
+        break;
+      case 5:
+        newInter = createInteraction(faFrown, "Buồn", "haha", 5);
+        break;
+      case 6:
+        newInter = createInteraction(faAngry, "Giận dữ", "angry", 6);
+        break;
+      default:
+        newInter = defaultInter;
+    }
+    setInteraction(newInter);
+    setHasInterraction(true);
+  }
+
   return (
     <React.Fragment>
       <div className='post'>
@@ -25,7 +67,7 @@ const Post = (props) => {
             <div className='postAt'>{moment(post.time).format('DD/MM/YYYY HH:mm:ss')}</div>
           </div>
           <div className="body">
-            <p>{
+            <p className="content">{
               post.content
             }</p>
             {
@@ -34,18 +76,17 @@ const Post = (props) => {
           </div>
           <div className="footer">
             <div className='footer-item postStat'>
-              <FontAwesomeIcon icon={faThumbsUp} />
-              <div className="footer-item-content">
-                Thích
-                <div className='popup-content'>
-                  <div className='interaction like'><FontAwesomeIcon icon={faThumbsUp}/><span className='tooltiptext'>Thích</span></div>
-                  <div className='interaction love'><FontAwesomeIcon icon={faHeart}/><span className='tooltiptext'>Yêu thích</span></div>
-                  <div className='interaction haha'><FontAwesomeIcon icon={faGrinSquintTears}/><span className='tooltiptext'>Haha</span></div>
-                  <div className='interaction haha'><FontAwesomeIcon icon={faSurprise}/><span className='tooltiptext'>Wow</span></div>
-                  <div className='interaction haha'><FontAwesomeIcon icon={faFrown}/><span className='tooltiptext'>Buồn</span></div>
-                  <div className='interaction angry'><FontAwesomeIcon icon={faAngry}/><span className='tooltiptext'>Phẫn nộ</span></div>
-                </div>
+              <div className={`item-interaction ${interaction.class}`} >
+                <FontAwesomeIcon icon={interaction.icon} /> {interaction.text}
               </div>
+              <div className='popup-content'>
+                  <div onClick={() => hadleInteractionClick(1)} className='interaction like'><FontAwesomeIcon icon={faThumbsUp} /><span className='tooltiptext'>Thích</span></div>
+                  <div onClick={() => hadleInteractionClick(2)} className='interaction love'><FontAwesomeIcon icon={faHeart} /><span className='tooltiptext'>Yêu thích</span></div>
+                  <div onClick={() => hadleInteractionClick(3)} className='interaction haha'><FontAwesomeIcon icon={faGrinSquintTears} /><span className='tooltiptext'>Haha</span></div>
+                  <div onClick={() => hadleInteractionClick(4)} className='interaction haha'><FontAwesomeIcon icon={faSurprise} /><span className='tooltiptext'>Wow</span></div>
+                  <div onClick={() => hadleInteractionClick(5)} className='interaction haha'><FontAwesomeIcon icon={faFrown} /><span className='tooltiptext'>Buồn</span></div>
+                  <div onClick={() => hadleInteractionClick(6)} className='interaction angry'><FontAwesomeIcon icon={faAngry} /><span className='tooltiptext'>Phẫn nộ</span></div>
+                </div>
             </div>
             <div className='footer-item' onClick={() => setShowComment(!showComment)}>
               <FontAwesomeIcon icon={faComment} />

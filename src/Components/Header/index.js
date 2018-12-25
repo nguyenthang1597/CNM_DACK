@@ -39,7 +39,6 @@ const Header = ({editProfile, setEditProfile, Avatar, history, Following, Follow
             <button onClick={()=> setEditProfile(true)}>Edit</button> :
             <React.Fragment>
               <button onClick={()=> setEditProfile(false)}>Cancel</button>
-              <button>Save changes</button>
             </React.Fragment>
           }
         </div>

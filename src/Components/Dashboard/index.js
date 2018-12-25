@@ -6,7 +6,7 @@ import Post from '../Post'
 import { Link, withRouter } from 'react-router-dom'
 import ListPost from '../ListPost'
 import explorePost from '../../API/explorePost'
-const Dashboard = ({PublicKey, SecretKey}) => {
+const Dashboard = ({PublicKey, SecretKey,Avatar}) => {
   let [explore, setExplore] = useState([]);
   useEffect(() => {
     explorePost(PublicKey,1, 30).then(res => {
@@ -18,7 +18,7 @@ const Dashboard = ({PublicKey, SecretKey}) => {
     <div className='grid'>
       <LeftSide />
       <div>
-        <InputNewPost PublicKey={PublicKey} SecretKey={SecretKey}/>
+        <InputNewPost PublicKey={PublicKey} SecretKey={SecretKey} Avatar={Avatar}/>
         <ListPost posts={explore}/>
       </div>
       <div className={"rightColumn"}>
