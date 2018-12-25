@@ -3,7 +3,8 @@ import './header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import {withRouter} from 'react-router-dom'
-const Header = ({editProfile, setEditProfile, Avatar, history}) => {
+// import Following from '../Following';
+const Header = ({editProfile, setEditProfile, Avatar, history, Following, Follower}) => {
   return (
     <div className="Header">
       <div className={editProfile ? "Header-Photo" : "Header-Photo-NoEdit"} style={{ width: '100%', height: !editProfile ? '175px' : '320px' }} >
@@ -22,11 +23,11 @@ const Header = ({editProfile, setEditProfile, Avatar, history}) => {
         <div className="follow-container">
           <div className='ProfileBar_Item' onClick={()=>{history.push('/profile/following')}}>
             <span className='ProfileBar_label'>Đang theo dõi</span>
-            <div className='ProfileBar_value'>7</div>
+            <div className='ProfileBar_value'>{Following ? Following.length : 0}</div>
           </div>
           <div className='ProfileBar_Item' onClick={()=>{history.push('/profile/follower')}}>
             <span className='ProfileBar_label'>Theo dõi</span>
-            <div className='ProfileBar_value'>7</div>
+            <div className='ProfileBar_value'>{Follower ? Follower.length : 0}</div>
           </div>
         </div>
         <div className="button-container">

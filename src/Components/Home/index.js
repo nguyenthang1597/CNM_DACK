@@ -4,25 +4,22 @@ import {Switch, Route, BrowserRouter}  from 'react-router-dom';
 import Dashboard from '../Dashboard'
 import Notification from '../Notification'
 import Profile from '../../Containers/Profile'
+import Test from '../test'
+import updateName from '../../Functions/updateName'
 
-import makeTx from '../../Functions/makeTx'
-
-const Home = ({PublicKey, getInfo, getFollow}) => {
-
-
-
+const Home = ({PublicKey, getInfo, getFollow, SecretKey}) => {
   document.title = 'Home'
   useEffect(() => {
-    getInfo(PublicKey);
+    getInfo(PublicKey)
     getFollow(PublicKey)
-    makeTx('GAJQ47RMDTXYTCBMMW4A4DUMTB5RQLTGQZDMMABW6RTQJGKINJ4JTRTP', 'payment', {address: 'GDFNYQOHLZEHUQTUHWB4IH34QXXB6YEXJT5UFKM4O2D3CFGFWEQS4EB4', amount: 10}, 'SARDDYAEVEABQTGOZEDOI454XUBXCF5LMNDX6Q3MGFZ53MONF2XDDQIU')
-  }, [getInfo, getFollow, makeTx])
+  }, [getInfo, getFollow])
   return (
     <React.Fragment>
+      <Test/>
       <Topbar/>
-      {/* <Route exact path='/' render={props => <Dashboard {...props} PublicKey={PublicKey}/>} />
+      <Route exact path='/' render={props => <Dashboard {...props} PublicKey={PublicKey} SecretKey={SecretKey}/>} />
       <Route exact path='/notification' component={Notification}/>
-      <Route path='/profile' component={Profile}/> */}
+      <Route path='/profile' component={Profile}/>
     </React.Fragment>
   )
 }

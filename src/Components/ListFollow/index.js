@@ -2,11 +2,15 @@ import React from 'react'
 import Following from '../Following'
 import './ListFollow.css'
 
-const ListFollow = ({follow}) => <div className='listFollow'>
-{
-  follow.map((i, index) => <Following key={index} {...i}/>)
+const ListFollow = ({array}) => {
+  return (
+    <div className='listFollow'>
+      {
+        array.map((i, index) => <Following key={index} publickey={i} />)
+      }
+    </div>
+  )
 }
-</div>
 
 
 export default ListFollow;
