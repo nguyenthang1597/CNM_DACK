@@ -1,7 +1,11 @@
 import React, {useState, useEffect, Fragment} from 'react';
 import './following.css'
+import getName from '../../API/getName';
 const Following = ({publickey}) => {
   let [user, setUser] = useState('');
+  useEffect(() => {
+    getName(publickey).then(res => setUser(res.data.Name))
+  })
   return (
     <div className="card">
      <div className='header_follow'></div>
@@ -13,14 +17,14 @@ const Following = ({publickey}) => {
       {
         user !== '' && 
         <Fragment>
-          <h3 >{user}</h3>
-        <p>{publickey}</p>
+          <h3 className='cut-word'>{user}</h3>
+        <p className='cut-word'>{publickey}</p>
 
         </Fragment>
       }
       {
         user === '' &&
-        <h3 style={{overflowY: 'hidden', overflowX: 'scroll'}}>{publickey}</h3>
+        <h3 className='cut-word'>{publickey}</h3>
       }
       </div>
     </div>

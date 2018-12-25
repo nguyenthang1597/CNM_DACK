@@ -21,7 +21,7 @@ const Topbar = (props) => {
       default:
         setTab(null);
     }
-  }, [props.location.pathname, props.getInfo])
+  }, [props.location.pathname])
   return (
     <div className='topbar'>
       <div className='topbar_content'>
@@ -34,7 +34,7 @@ const Topbar = (props) => {
           <div className={`tab ${tab === 'smo' ? 'active' : null}`} onClick={() => { props.history.push('/sendmoney'); setTab('smo'); }}><FontAwesomeIcon icon={faDollarSign} style={{ marginRight: 5 }} />Chuyển tiền</div>
         </div>
         <div className='avatar' onClick={() => setCaret(!caret)}>
-          <img className='avatar_32' src={props.Avatar || 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'} alt='avatar' />
+          <img className='avatar_32' src={props.Avatar ? `data:image/jpeg;base64,${props.Avatar.Avatar}` : 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'} alt='avatar' />
           {
             caret &&
             <div>
@@ -45,11 +45,10 @@ const Topbar = (props) => {
               <div className='dropdown-menu'>
                 <li className='userInfo'>
                   <div className='fullName'>{props.Name}</div>
-                  <div className='name'>@{props.Username}</div>
                 </li>
                 <div className='divider' />
                 <li className='info'>
-                  <Link to='/profile' style={{ textDecoration: 'none', color: 'black' }}><FontAwesomeIcon icon={faUser} style={{ marginRight: 10 }} /> Hồ sơ</Link>
+                  <Link to={`/profile/${props.PublicKey}`} style={{ textDecoration: 'none', color: 'black' }}><FontAwesomeIcon icon={faUser} style={{ marginRight: 10 }} /> Hồ sơ</Link>
                 </li>
                 <div className='divider' />
                 <li className='info'>

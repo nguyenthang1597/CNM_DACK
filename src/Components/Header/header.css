@@ -222,3 +222,39 @@ h4.add-profile-photo {
     transform: translateX(-50%) translateY(-50%);
     z-index: 0;
 }
+
+.NewProfileAvatar{
+  width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: absolute;
+    top: 42px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 1;
+}
+
+.ProfileAvatarInput{
+  width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    position: absolute;
+    top: 42px;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: 0;
+    opacity: 0;
+}
+
+.btnSaveAvatar{
+  position: absolute;
+  top: 160px;
+  left: 24px;
+  border: 1px solid white;
+  height: 30px;
+  color: white;
+  line-height: 30px;
+  background-color: #4f3276;
+  font-weight: 500;
+  z-index: 10;
+}
