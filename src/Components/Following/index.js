@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState, useEffect, Fragment} from 'react';
 import './following.css'
-const Following = ({user,username,content}) => {
+const Following = ({publickey}) => {
+  let [user, setUser] = useState('');
   return (
     <div className="card">
      <div className='header_follow'></div>
@@ -9,9 +10,18 @@ const Following = ({user,username,content}) => {
       <button className="btn">Following</button>
       </div>
       <div className="info">
-      <h3>{user}</h3>
-      <p>{username}</p>
-      <p>{content}</p>
+      {
+        user !== '' && 
+        <Fragment>
+          <h3 >{user}</h3>
+        <p>{publickey}</p>
+
+        </Fragment>
+      }
+      {
+        user === '' &&
+        <h3 style={{overflowY: 'hidden', overflowX: 'scroll'}}>{publickey}</h3>
+      }
       </div>
     </div>
   )

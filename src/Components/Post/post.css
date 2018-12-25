@@ -40,10 +40,16 @@
 }
 
 .postOwner {
-  word-break: break-all;
+
   color: #14171a;
   font-size: 14px;
   font-weight: bold;
+}
+.cut-word{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 150px;
+  white-space: nowrap;
 }
 
 .postAt{

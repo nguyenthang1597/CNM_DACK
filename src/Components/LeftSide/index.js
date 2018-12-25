@@ -6,7 +6,9 @@ import { withRouter } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {updateAvatar} from '../../Actions/Profile'
 
-const LeftSide = ({Avatar, updateAvatar, history, Name, Username}) => {
+const LeftSide = ({Avatar, updateAvatar, history, Name, Username, follower, following}) => {
+  console.log(following);
+  
   let [clickAvatar, setClickAvatar] = useState(false);
   let handleImgChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -19,7 +21,6 @@ const LeftSide = ({Avatar, updateAvatar, history, Name, Username}) => {
        }
        setClickAvatar(false)
   }
-  console.log(Avatar);
   return (
     <div className='leftSide'>
       <div className='profileCard'>
@@ -67,11 +68,11 @@ const LeftSide = ({Avatar, updateAvatar, history, Name, Username}) => {
               </li>
               <li className='stat'>
                   <span className='statLabel'>Người theo dõi</span>
-                  <span className='statValue'>0</span>
+                  <span className='statValue'>{follower.length}</span>
               </li>
               <li className='stat'>
                   <span className='statLabel'>Đang theo dõi</span>
-                  <span className='statValue'>0</span>
+                  <span className='statValue'>{following.length}</span>
               </li>
             </ul>
           </div>
@@ -81,7 +82,7 @@ const LeftSide = ({Avatar, updateAvatar, history, Name, Username}) => {
   )
 }
 
-const mapStateToProps = ({Profile: {Avatar, Name}, Authenticate: {PublicKey: Username}}) => ({Avatar, Name, Username})
+const mapStateToProps = ({Profile: {Avatar, Name}, Authenticate: {PublicKey: Username}, Follow: {following, follower, loading}}) => ({Avatar, Name, Username, following, follower, loading})
 const mapDispathToProps = dispatch => ({
   updateAvatar: (image) => dispatch(updateAvatar(image))
 })
