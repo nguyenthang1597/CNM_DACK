@@ -104,7 +104,7 @@
   background-color: white;
   text-align: center;
   height: 40px;
-  margin-top: -63px;
+  margin-top: -50px;
   margin-left: -25px;
   width: 270px;
   border: 1px solid rgba(0, 0, 0, 0.4);
@@ -182,4 +182,24 @@
 .postContent .body {
   width: auto;
   word-break: break-word;
+}
+
+
+.item-interaction.like {
+  color:rgb(94, 186, 248);
+}
+
+.item-interaction.love {
+  color: rgba(243, 45, 38, 0.979);
+
+}
+
+.item-interaction.haha {
+  color: #cebd2f;
+
+}
+
+.item-interaction.angry {
+  color: rgba(241, 157, 30, 0.979);
+
 }
