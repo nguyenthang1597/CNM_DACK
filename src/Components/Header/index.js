@@ -3,53 +3,109 @@ import './header.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCamera } from '@fortawesome/free-solid-svg-icons'
 import {withRouter} from 'react-router-dom'
-// import Following from '../Following';
-const Header = ({editProfile, setEditProfile, Avatar, history, Following, Follower}) => {
+import resizeImage from 'resize-image'
+import makeTx from '../../Functions/makeTx';
+const Marker = 'data:image/jpeg;base64,'
+let i =1;
+const Header = ({getProfile, PublicKey,SecretKey, editProfile, setEditProfile, Avatar, history, Following, Follower, Address, Energy, Money, Sequence}) => {
+  let [newAvatar, setNewAvatar] = useState(null);
+  let handleImgChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+           let reader = new FileReader();
+           reader.onload = (e) => {
+             setNewAvatar(e.target.result)
+           };
+           reader.readAsDataURL(event.target.files[0]);
+           
+       }
+  }
+
+  let updateAvatar = () => {
+    var tmpimage = new Image();
+    tmpimage.onload = async() => {
+      var data = resizeImage.resize(tmpimage, 100, 100, resizeImage.JPEG);
+      console.log(data.slice(Marker.length))
+      let params = {
+        key: 'picture',
+        value: data.slice(Marker.length)
+      }
+      try {
+        await makeTx(PublicKey,'update_account', params, SecretKey)
+        alert('Update avatar thành công!')
+        getProfile()
+      } catch (error) {
+        alert('update avatar không thành công')
+      }
+    }
+    tmpimage.src= newAvatar;
+  }
+
   return (
     <div className="Header">
-      <div className={editProfile ? "Header-Photo" : "Header-Photo-NoEdit"} style={{ width: '100%', height: !editProfile ? '175px' : '320px' }} >
+      <div className={editProfile ? "Header-Photo" : "Header-Photo-NoEdit"} style={{ width: '100%', height: '175px' }} >
         <div className="add-photo-container">
-          {
-            editProfile && <React.Fragment>
-            <FontAwesomeIcon icon={faCamera} />
-            <h4 className="add_photo">Add a header photo</h4>
-          </React.Fragment>
-          }
+          
+            
         </div>
       </div>
-
-
       <div className="bar">
         <div className="follow-container">
-          <div className='ProfileBar_Item' onClick={()=>{history.push('/profile/following')}}>
+          <div className='ProfileBar_Item' onClick={()=>{history.push(`/profile/${Address}/following`)}}>
             <span className='ProfileBar_label'>Đang theo dõi</span>
             <div className='ProfileBar_value'>{Following ? Following.length : 0}</div>
           </div>
-          <div className='ProfileBar_Item' onClick={()=>{history.push('/profile/follower')}}>
-            <span className='ProfileBar_label'>Theo dõi</span>
+          <div className='ProfileBar_Item' onClick={()=>{history.push(`/profile/${Address}/follower`)}}>
+            <span className='ProfileBar_label'>Theo dõi tôi</span>
             <div className='ProfileBar_value'>{Follower ? Follower.length : 0}</div>
           </div>
+          <div className='ProfileBar_Item'>
+            <span className='ProfileBar_label'>Năng lượng</span>
+            <div className='ProfileBar_value'>{Energy ? `${Math.ceil(Energy)} OXY` : 0}</div>
+          </div>
+          <div className='ProfileBar_Item'>
+            <span className='ProfileBar_label'>Tiền</span>
+            <div className='ProfileBar_value'>{Money ? `${Money} CEL`: 0}</div>
+          </div>
+          <div className='ProfileBar_Item'>
+            <span className='ProfileBar_label'>Sequence</span>
+            <div className='ProfileBar_value'>{Sequence}</div>
+          </div>
         </div>
-        <div className="button-container">
+        {
+          PublicKey === Address && 
+          <div className="button-container">
           {!editProfile ?
             <button onClick={()=> setEditProfile(true)}>Edit</button> :
             <React.Fragment>
-              <button onClick={()=> setEditProfile(false)}>Cancel</button>
-              <button>Save changes</button>
+              <button onClick={()=> {
+                setNewAvatar(null)
+                setEditProfile(false)
+                
+              }}>Cancel</button>
             </React.Fragment>
           }
         </div>
+        }
+        
       </div>
 
       {
         Avatar ?
         <div className='big_avatar'>
           <div className="add-profile-container">
-            <img src={Avatar} className='ProfileAvatar'/>
+            <img src={`${Avatar.Marker}${Avatar.Avatar}`} className='ProfileAvatar'/>
             {
               editProfile && <React.Fragment>
               <FontAwesomeIcon icon={faCamera} style={{zIndex: 1, position: 'relative'}}/>
               <h4 className="add-profile-photo">Choose new image</h4>
+              <input type='file' className='ProfileAvatarInput' onChange={handleImgChange}/>
+              {
+                newAvatar && 
+                <React.Fragment>
+                  <img src={newAvatar} className='NewProfileAvatar'/>
+                  <div className='btnSaveAvatar' onClick={updateAvatar}>Thay đổi ảnh đại diện </div>
+                </React.Fragment>
+              }
             </React.Fragment>
             }
           </div>

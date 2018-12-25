@@ -7,7 +7,8 @@ const useFormInput = (initValue = '') => {
 
   return {
     value,
-    onChange
+    onChange,
+    setValue
   }
 }
 

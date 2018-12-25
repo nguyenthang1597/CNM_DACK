@@ -38,3 +38,10 @@
 .info {
     margin-left: 20px
 }
+
+.cut-word{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    width: 280px;
+    white-space: nowrap;
+  }

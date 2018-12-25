@@ -1,15 +1,13 @@
 import {connect} from 'react-redux';
 import Home from '../Components/Home'
-import {getInfo} from '../Actions/Profile'
-import {GetFollow} from '../Actions/Follow'
+import {getUserInfo} from '../Actions/Profile'
 const mapStateToProps = ({Authenticate: {PublicKey, SecretKey}}) => ({
   PublicKey,
   SecretKey
 })
 
 const mapDispatchToProps = dispatch => ({
-  getInfo: (address) => dispatch(getInfo(address)),
-  getFollow: (address) => dispatch(GetFollow(address))
+  getUserInfo: (address) => dispatch(getUserInfo(address)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

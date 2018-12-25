@@ -1,22 +1,12 @@
 import React, {useState, useEffect} from 'react'
 import './comment.css'
-import getCommentReaction from '../../../API/getCommentReaction'
 import comment from '../../../Functions/comment'
 import useFormInput from '../../../Functions/useFormInput'
+import CommentItem from '../CommentItem'
 const Comment = (props) => {
-  let [comments, setComments] = useState([]);
-  let [reactions, setReactions] = useState([]);
+ 
   let content = useFormInput('');
-  console.log(props.hash);
-  useEffect(() => {
-    getCommentReaction(props.hash)
-    .then(res => {
-      setComments(res.data.comments);
-      setReactions(res.data.reactions)
-    })
-  }, [getCommentReaction])
-  console.log(comments);
-  console.log(reactions);
+  const{comments} = props;
   return (
     <div className='comments'>
       <div className='cmHeader'>
@@ -28,7 +18,7 @@ const Comment = (props) => {
       </div>
       <div className='cmList'>
         {
-          comments.map(comment => <div>{comment.Address} - {comment.Params.content.text}</div>)
+          comments.map(comment => <CommentItem comment={comment} />)
         }
       </div>
       <div className='cmInput'>

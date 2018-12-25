@@ -5,40 +5,57 @@ import useFormInput from "../../Functions/useFormInput";
 import { Route } from "react-router-dom";
 import ListFollow from "../ListFollow";
 import ListPost from "../ListPost";
-
-const Profile = ({ Profile, Posts, following, follower }) => {
+import getAvatar from "../../API/getAvatar";
+import getName from "../../API/getName";
+import getFollow from "../../API/getFollow";
+import getEnergy from "../../API/getEnergy";
+import getAllInfo from "../../API/getAllInfo";
+const Profile = ({PublicKey,SecretKey, Posts, follower, match: { params } }) => {
   let [editProfile, setEditProfile] = useState(false);
-  console.log('Followings', following)
+  let [Profile, setProfile] = useState({});
+  useEffect(() => {
+    getProfile()
+  }, [getProfile])
+
+  let getProfile = () => {
+    getAllInfo(params.address).then(res => setProfile(res.data))
+  }
   return (
     <div className="profile">
       <Header
         editProfile={editProfile}
         setEditProfile={setEditProfile}
         Avatar={Profile.Avatar}
-        Following={following}
-        Follower={follower}
+        Following={Profile.Following}
+        Follower={Profile.Followers}
+        Address={params.address}
+        Energy={Profile.Energy}
+        Money={Profile.Balance}
+        Sequence={Profile.Sequence}
+        PublicKey={PublicKey}
+        SecretKey={SecretKey}
+        getProfile={getProfile}
       />
       <div className={!editProfile ? "grid" : "profile_grid"}>
-        <div style={{ paddingTop: 40 }}>
+        <div style={{marginTop:40}}>
           {!editProfile ? (
             <React.Fragment>
               <div className="ProfileCard_Name">{Profile.Name}</div>
-              <div className="ProfileCard_Text">@ {Profile.Username}</div>
             </React.Fragment>
           ) : (
-            <ProfileForm {...Profile} />
-          )}
+              <ProfileForm {...Profile} />
+            )}
         </div>
         <div>
           <Route
             exact
-            path="/profile/following"
-            render={props => <ListFollow array={following} {...props} />}
+            path="/profile/:id/following"
+            render={props => <ListFollow array={Profile.Following} {...props} />}
           />
           <Route
             exact
-            path="/profile/follower"
-            render={props => <ListFollow array={follower} {...props} />}
+            path="/profile/:id/follower"
+            render={props => <ListFollow array={Profile.Followers} {...props} />}
           />
         </div>
       </div>

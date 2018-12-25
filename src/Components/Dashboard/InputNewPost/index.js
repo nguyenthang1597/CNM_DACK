@@ -7,6 +7,8 @@ const InputNewPost = (props) => {
 
   async function sendPost(){
     try {
+      if(text.value === '')
+        return;
       let res = await post(props.PublicKey, text.value, props.SecretKey)
       alert('Thành công')
     } catch (error) {
@@ -23,7 +25,10 @@ const InputNewPost = (props) => {
           <img className='box-avatar-img' src='https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png' alt='avatar'/>
       </div>
       <input className='inputNewPost' {...text}/>
-      <button onClick={() => sendPost()}>Đăng</button>
+      <button onClick={() => {
+        // sendPost()
+        text.setValue('')
+      }}>Đăng</button>
     </div>
   )
 }
