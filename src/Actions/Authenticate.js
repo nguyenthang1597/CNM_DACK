@@ -27,3 +27,4 @@ export const authenticate = (PublicKey, SecretKey) => dispatch => {
       dispatch(failerAuth())
     }
   })
+}
