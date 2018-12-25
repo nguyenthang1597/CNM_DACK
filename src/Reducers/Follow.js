@@ -1,58 +1,17 @@
-import {RECEIVE_FOLLOW} from '../Actions/Follow'
-
+import {REQUEST_FOLLOW, RECEIVE_FOLLOW} from '../Actions/Follow'
 
 const initState = {
-  loading: false,
-  error:false,
-  loadmore: false,
-  follow: [
-    {
-      id: 1,
-      user: 'Nguyen Van B',
-      username: '@NguyenB',
-      content: 'Đây là mô tả của B',
-    },
-    {
-        id: 2,
-        user: 'Nguyen Van B',
-        username: '@NguyenB',
-        content: 'Đây là mô tả của B',
-    },
-    {
-      id: 3,
-      user: 'Nguyen Van B',
-      username: '@NguyenB',
-      content: 'Đây là mô tả của B',
-  },
-  {
-    id: 3,
-    user: 'Nguyen Van B',
-    username: '@NguyenB',
-    content: 'Đây là mô tả của B',
-},
-{
-  id: 3,
-  user: 'Nguyen Van B',
-  username: '@NguyenB',
-  content: 'Đây là mô tả của B',
-},
-{
-  id: 3,
-  user: 'Nguyen Van B',
-  username: '@NguyenB',
-  content: 'Đây là mô tả của B',
-},
-{
-  id: 3,
-  user: 'Nguyen Van B',
-  username: '@NguyenB',
-  content: 'Đây là mô tả của B',
-}
-  ]
+  following: [],
+  follower: [],
+  loading: false
 }
 
 export default (state = initState, action) => {
   switch(action.type){
+    case REQUEST_FOLLOW:
+      return {...state, loading: true}
+    case RECEIVE_FOLLOW:
+      return {...state, following: action.data.follow, follower: action.data.follower}
     default:
     return state;
   }
