@@ -1,6 +1,6 @@
 import getAvatar from '../API/getAvatar'
 import getName from '../API/getName'
-
+import GetInfo from '../API/getInfo'
 export const UPDATE_AVATAR = 'UPDATE_AVATAR';
 export const UPDATE_INFO = 'UPDATE_INFO';
 
@@ -15,12 +15,14 @@ const requestInfo = () => ({type: REQUEST_INFO});
 
 export const getInfo = address => dispatch => {
   dispatch(requestInfo());
-  let array = [getName(address), getAvatar(address)];
-  return Promise.all(array)
+  return GetInfo(address)
   .then(res => {
     let info = {
-      Name: res[0].data.Name,
-      Avatar: res[1].data.Marker + res[1].data.Avatar
+      Name: res.data.Name,
+      Avatar: res.data.Avatar.Marker + res.data.Avatar.Avatar,
+      Sequence: res.data.Sequence,
+      Energy: res.data.Energy,
+      Balance: res.data.Balance
     }
     dispatch(receiveInfo(info))
   })

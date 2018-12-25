@@ -18,7 +18,12 @@
     margin-left: 20px
 }
 .avt img {
-    border-radius: 50%
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    position: relative;
+    left: 8px;
+    top: 8px;
 }
 .btn {
   padding: 10px;
@@ -37,4 +42,11 @@
 }
 .info {
     margin-left: 20px
+}
+.username {
+    font-size: 12px;
+    padding-right: 5px;
+    color: #66757f;
+    line-height: 20px;
+    word-wrap: break-word;
 }

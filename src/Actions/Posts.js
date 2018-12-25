@@ -18,7 +18,6 @@ export const getPosts = (address, page, perpage) => dispatch => {
     else
       return res.json();
   }).then(data => {
-    console.log(data);
     dispatch(receivePost(data));
   })
 }

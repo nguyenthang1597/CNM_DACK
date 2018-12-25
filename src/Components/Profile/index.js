@@ -4,11 +4,14 @@ import Header from "../Header";
 import useFormInput from "../../Functions/useFormInput";
 import { Route } from "react-router-dom";
 import ListFollow from "../ListFollow";
-import ListPost from "../ListPost";
+import ListPost from "../../Containers/ListPost";
 
-const Profile = ({ Profile, Posts, following, follower }) => {
+const Profile = ({ Profile, Posts, following, follower,Username,getPosts}) => {
   let [editProfile, setEditProfile] = useState(false);
-  console.log('Followings', following)
+  useEffect(() => {
+    getPosts(Username,1, 30)
+  }, [getPosts])
+  console.log('Post', Posts)
   return (
     <div className="profile">
       <Header
@@ -23,13 +26,21 @@ const Profile = ({ Profile, Posts, following, follower }) => {
           {!editProfile ? (
             <React.Fragment>
               <div className="ProfileCard_Name">{Profile.Name}</div>
-              <div className="ProfileCard_Text">@ {Profile.Username}</div>
+              <div className="ProfileCard_Text">@{Username}</div>
+              <div className="ProfileCard_Text">Sequence: {Profile.Sequence -1}</div>
+              <div className="ProfileCard_Text">Balance: {Profile.Balance} TRE</div>
+              <div className="ProfileCard_Text">Energy: {Profile.Energy} OXY</div>
             </React.Fragment>
           ) : (
             <ProfileForm {...Profile} />
           )}
         </div>
         <div>
+        <Route
+            exact
+            path="/profile"
+            render={props => <ListPost posts={Posts}/>}
+          />
           <Route
             exact
             path="/profile/following"

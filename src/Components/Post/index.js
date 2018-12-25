@@ -13,7 +13,6 @@ const Post = (props) => {
     convertToPost(props.post).then(_post => setPost(_post))
 
   }, [convertToPost])
-  console.log(post)
   return (
     <React.Fragment>
       <div className='post'>

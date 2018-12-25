@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {updateAvatar} from '../../Actions/Profile'
 
-const LeftSide = ({Avatar, updateAvatar, history, Name, Username, follower, following}) => {
+const LeftSide = ({Avatar, updateAvatar, history, Name, Username, follower, following,posts}) => {
   console.log(following);
   
   let [clickAvatar, setClickAvatar] = useState(false);
@@ -64,7 +64,7 @@ const LeftSide = ({Avatar, updateAvatar, history, Name, Username, follower, foll
             <ul className='statlist'>
               <li className='stat'>
                   <span className='statLabel'>Bài đăng</span>
-                  <span className='statValue'>0</span>
+                  <span className='statValue'>{posts.length}</span>
               </li>
               <li className='stat'>
                   <span className='statLabel'>Người theo dõi</span>
@@ -82,7 +82,7 @@ const LeftSide = ({Avatar, updateAvatar, history, Name, Username, follower, foll
   )
 }
 
-const mapStateToProps = ({Profile: {Avatar, Name}, Authenticate: {PublicKey: Username}, Follow: {following, follower, loading}}) => ({Avatar, Name, Username, following, follower, loading})
+const mapStateToProps = ({Profile: {Avatar, Name}, Authenticate: {PublicKey: Username}, Follow: {following, follower, loading},Posts:{posts}}) => ({Avatar, Name, Username, following, follower, loading,posts})
 const mapDispathToProps = dispatch => ({
   updateAvatar: (image) => dispatch(updateAvatar(image))
 })
