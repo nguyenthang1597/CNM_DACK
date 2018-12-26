@@ -152,7 +152,7 @@ const Post = props => {
             </div>
           </div>
           <div className="body">
-            <p>{post.content}</p>
+            <p className="content">{post.content}</p>
             {post.image && <img src={`data:image/jpeg;base64,${post.image}`} />}
           </div>
           <div className="footer">

@@ -25,8 +25,8 @@ const InputNewPost = (props) => {
       <div className='box-avatar'>
           <img className='box-avatar-img' src={props.Avatar ? `data:image/png;base64,${props.Avatar.Avatar}` : 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'} alt='avatar'/>
       </div>
-      <input className='inputNewPost' {...text}/>
-      <button onClick={() => {
+      <textarea className='inputNewPost' {...text}/>
+      <button className='btnDang' onClick={() => {
         sendPost()
         text.setValue('')
       }}>Đăng</button>

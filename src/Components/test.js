@@ -1,13 +1,5 @@
-import makeTx from '../Functions/makeTx'
+const { Keypair } = require('stellar-base');
 
-import React from 'react'
-
-const Test = (props) => {
-
-
-  return (
-    null
-  )
-}
-
-export default Test;
+const key = Keypair.random();
+console.log(key.secret());
+console.log(key.publicKey());

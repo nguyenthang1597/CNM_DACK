@@ -110,7 +110,7 @@ class SendMoney extends Component {
 
     handleReceiverItemClick = (item, info) => {
         let _receiver = {
-            avatarUrl: info.Avatar.Marker+info.Avatar.Avatar,
+            avatarUrl: (info.Avatar.Avatar ==="") ? 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png' :info.Avatar.Marker+info.Avatar.Avatar,
             name: info.Name,
             publicKey: item.Address,
         }
@@ -133,8 +133,8 @@ class SendMoney extends Component {
                                 <p className="my-name">{Profile.Name}</p>
                                 <p className="public-key">@{PublicKey}</p>
                                 <div className="info-money">
-                                    <p>Balance: {Profile.Balance}</p>
-                                    <p>Energy: {Profile.Energy}</p>
+                                    <p>Tiền: {Profile.Balance} TRE</p>
+                                    <p>Năng lượng: {Math.ceil(Profile.Energy)} OXY</p>
                                 </div>
                             </div>
                         </div>
@@ -198,7 +198,7 @@ const ProfileForm = ({item,click}) => {
     return (
     info ? 
     <div onClick={() => click(item, info)} className="receiver-item">
-        <img src={info.Avatar.Marker+info.Avatar.Avatar}></img>
+        <img src= {(info.Avatar.Avatar ==="") ? 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png': info.Avatar.Marker+info.Avatar.Avatar}></img>
         <div className="receiver-item-info">
             <div className='Name'>{info.Name}</div>
             <div className="Key">@{item.Address}</div>

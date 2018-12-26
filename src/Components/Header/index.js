@@ -48,6 +48,9 @@ const Header = ({handleBtnFollowChange ,getProfile, PublicKey,SecretKey, editPro
       </div>
       <div className="bar">
         <div className="follow-container">
+          <div className='ProfileBar_Item' onClick={()=>{history.push(`/profile/${Address}`)}}>
+            <span className='ProfileBar_label'>Bài đăng</span>
+          </div>
           <div className='ProfileBar_Item' onClick={()=>{history.push(`/profile/${Address}/following`)}}>
             <span className='ProfileBar_label'>Đang theo dõi</span>
             <div className='ProfileBar_value'>{Following ? Following.length : 0}</div>
