@@ -4,7 +4,8 @@ import {
   REQUEST_INFO,
   RECEIVE_INFO,
   ADD_FOLLOW,
-  REMOVE_FOLLOW
+  REMOVE_FOLLOW,
+  CHANGE_NAME
 } from '../Actions/Profile';
 
 const initState = {
@@ -21,16 +22,21 @@ const initState = {
 export default (state = initState, action) => {
   switch (action.type) {
     case REQUEST_INFO:
-      return {...state, loading: true};
+      return { ...state, loading: true };
     case RECEIVE_INFO:
-      return {...state, loading: false, ...action.info};
+      return { ...state, loading: false, ...action.info };
     case ADD_FOLLOW:
-      return {...state, Following: [...state.Following, action.newFollow]};
+      return { ...state, Following: [...state.Following, action.newFollow] };
     case REMOVE_FOLLOW:
       return {
         ...state,
-        Following: state.Following.filter (e => e !== action.follower),
+        Following: state.Following.filter(e => e !== action.follower),
       };
+    case CHANGE_NAME:
+      return {
+        ...state,
+        Name: action.newName,
+      }
     default:
       return state;
   }

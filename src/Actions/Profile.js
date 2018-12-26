@@ -11,6 +11,8 @@ export const RECEIVE_INFO = 'RECEIVE_INFO';
 export const ADD_FOLLOW = 'ADD_FOLLOW';
 export const REMOVE_FOLLOW = 'REMOVE_FOLLOW';
 
+export const CHANGE_NAME =  'CHANGE_NAME';
+
 export const updateAvatar = (Avatar) => ({type: UPDATE_AVATAR, Avatar})
 export const updateInfo = (info) => ({type: UPDATE_AVATAR, info})
 export const receiveInfo = (info) => ({type: RECEIVE_INFO, info})
@@ -36,5 +38,12 @@ export const RemoveFollow = (follower) => dispatch => {
   dispatch({
     type: REMOVE_FOLLOW,
     follower: follower,
+  })
+}
+
+export const ChangeName = (newName) => dispatch =>{
+  dispatch({
+    type: CHANGE_NAME,
+    newName: newName,
   })
 }

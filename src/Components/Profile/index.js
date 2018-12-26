@@ -71,7 +71,7 @@ class Profile extends React.Component {
                 <div className="ProfileCard_Name">{Profile.Name}</div>
               </React.Fragment>
             ) : (
-                <ProfileForm {...Profile} PublicKey={PublicKey} SecretKey={SecretKey} />
+                <ProfileForm {...Profile} PublicKey={PublicKey} SecretKey={SecretKey} ChangeName={this.props.ChangeName} />
               )}
           </div>
           <div>
@@ -92,7 +92,7 @@ class Profile extends React.Component {
   }
 }
 
-const ProfileForm = ({ Name, PublicKey, SecretKey }) => {
+const ProfileForm = ({ Name, PublicKey, SecretKey, ChangeName }) => {
   let name = useFormInput(Name);
   let handleBtnUpdatenameClick = async () => {
     const Params = {
@@ -101,7 +101,7 @@ const ProfileForm = ({ Name, PublicKey, SecretKey }) => {
     }
     try {
       await makeTx(PublicKey, 'update_account', Params, SecretKey);
-      alert('Thành công')
+      ChangeName(name.value);
     } catch (error) {
       alert('Thất bại')
     }

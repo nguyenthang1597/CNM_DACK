@@ -15,7 +15,7 @@ const Following = (props) => {
     getAvatar(publickey).then(res => {
       setAvatar(res.data.Avatar)
     }).catch(err => setAvatar(null));
-  }, [getName, getAvatar])
+  }, [publickey])
 
   let handleButtonClick = async() => {
     switch(props.type) {
@@ -52,7 +52,7 @@ const Following = (props) => {
       break;
     }
   }
-  
+
   return (
     <div className="card">
      <div className='header_follow'></div>
