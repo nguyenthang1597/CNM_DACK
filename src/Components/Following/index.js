@@ -76,9 +76,6 @@ const Following = (props) => {
     }
   }
 
-  console.log(props.array);
-  console.log(props.PublicKey);
-
   return (
     <div className="card">
       <div className='header_follow'></div>

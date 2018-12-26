@@ -10,7 +10,8 @@
 .rightColumn {
   background-color: white; 
   display: block;
-  padding: 10px
+  padding: 10px;
+  height: 100vh;
 }
 
 .right-colum-title {
@@ -18,42 +19,47 @@
   font-size: 18px;
 }
 
-.right-colum-title .title-link {
-  font-size: 14px;
-  margin-left: 5px;
+.title-link {
+  font-size: 18px;
+  margin-left: 10px;
+  padding: 7px;
   color: #1DA1F2
 }
 
-.right-colum-title .title-link:hover {
-  font-size: 14px;
-  margin-left: 5px;
+.title-link:hover {
   text-decoration: underline;
   cursor: pointer;
 }
 
 .rightColumn .info-orther-people {
   margin-top: 7px;
-  height: 63px;
+  height: 70px;
   border-bottom: 1px solid rgba(161, 158, 158, 0.4);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .rightColumn .info-orther-people img{
-  width: 50px;
-  height: 50px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  float: left;
 }
 
 .rightColumn .info-orther-people .information{
-  height: 53px;
-  margin-left: 55px;
+  height: 70px;
+  margin-left: 5px;
   font-weight: bold;
-  font-size: 14px
+  font-size: 12px;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  width: 100%; 
+  white-space: nowrap;
 }
 
 .rightColumn .info-orther-people .information button {
   padding: 5px;
-  margin-top: -10px;
+  margin-top: 5px;
   padding-left: 20px;
   padding-right: 20px;
   margin-right: 10px;
@@ -65,12 +71,19 @@
   font-size: 15px;
   outline: none;
   color: #1DA1F2;
-  font-size: 12px
+  font-size: 12px;
+
 }
 
 .rightColumn .info-orther-people .information button:hover {
   cursor: pointer;
   background-color: rgb(201, 229, 247);
+}
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 

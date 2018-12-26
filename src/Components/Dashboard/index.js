@@ -6,6 +6,7 @@ import InputNewPost from './InputNewPost'
 import {  withRouter } from 'react-router-dom'
 import ListPost from '../ListPost'
 import explorePost from '../../API/explorePost'
+import RightColumn from './RightColumn'
 window.WebSocket = window.WebSocket || window.MozWebSocket;
 var connection = new WebSocket('ws://localhost:8081');
 
@@ -44,9 +45,6 @@ class Dashboard extends React.Component {
             message.data);
         return;
       }
-
-      
-      
     };
   }
 
@@ -85,9 +83,7 @@ class Dashboard extends React.Component {
             loadmore: false
           })
         }
-  
       })
-      
     }
   };
   render() {
@@ -100,39 +96,7 @@ class Dashboard extends React.Component {
           <InputNewPost PublicKey={PublicKey} SecretKey={SecretKey} />
           <ListPost posts={explore} PublicKey={PublicKey} SecretKey={SecretKey}/>
         </div>
-        <div className={"rightColumn"}>
-          <div className={"right-colum-title"}>
-            <span>Đề nghị</span>
-            <span className={'title-link'}> Tải lại</span>
-            <span className={'title-link'}> Xem tất cả</span>
-          </div>
-          {/*  */}
-          <div className="info-orther-people">
-            <img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></img>
-            <div className="information">
-              <p>Tên người kia</p>
-              <button>Theo dõi</button>
-            </div>
-          </div>
-          {/* End info other people */}
-
-          <div className="info-orther-people">
-            <img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></img>
-            <div className="information">
-              <p>Tên người kia</p>
-              <button>Theo dõi</button>
-            </div>
-          </div>
-
-          <div className="info-orther-people">
-            <img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></img>
-            <div className="information">
-              <p>Tên người kia</p>
-              <button>Theo dõi</button>
-            </div>
-          </div>
-
-        </div>
+        <RightColumn />
       </div>
     )
   }
