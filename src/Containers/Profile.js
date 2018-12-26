@@ -1,10 +1,8 @@
 import {connect} from 'react-redux';
 import Profile from '../Components/Profile'
-import {getPosts} from '../Actions/Posts'
-import {getInfo} from '../Actions/Profile'
-const mapStateToProps = ({Profile, Posts, Follow: {following, follower, loading}}) => ({Profile, Posts, following, follower})
-const mapDispathToProps = dispatch => ({
-  getPosts: (address,page,perpage) => dispatch(getPosts(address,page,perpage)),
-  getInfo: (address) => dispatch(getInfo(address))
+import { ChangeName } from '../Actions/Profile';
+const mapStateToProps = ({Authenticate: {PublicKey, SecretKey}, Profile}) => ({MyProfile: Profile, PublicKey, SecretKey})
+const mapDispatchToPros = (dispatch) => ({
+    ChangeName: (newName) => {dispatch(ChangeName(newName))}
 })
-export default connect(mapStateToProps, mapDispathToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToPros)(Profile);

@@ -6,16 +6,23 @@ const convertToPost = async (tx) => {
   let post = {};
   post['time'] = tx.Time;
   let reqOwnerName = await getName(tx.Address);
-  let reqOwnerImage = await getAvatar(tx.Address);
-  let ownerName = reqOwnerName.data.Name || tx.Address;
-  let ownerImage = reqOwnerImage.data.Avatar
+  try {
+    let reqOwnerImage = await getAvatar(tx.Address);
+    let ownerImage = reqOwnerImage.data.Avatar
+    post['ownerImage'] = ownerImage;
+  } catch (error) {
+    post['ownerImage'] = null;
+  }
+  
+  let ownerName = reqOwnerName.data.Name;
+  
   post['owner'] = ownerName;
-  post['ownerImage'] = ownerImage;
+  
   if (tx.Operation === 'payment') {
     let reqOtherName = await getName(tx.Params.address);
     let otherName = reqOtherName.data.Name || tx.Params.address;
     post['othername'] = otherName;
-    post['content'] = `Đã chuyển ${tx.Params.amount} cho ${otherName}`;
+    post['content'] = `Đã chuyển ${tx.Params.amount} CEL cho ${otherName}`;
   }
   if (tx.Operation === 'update_account') {
     if (tx.Params.key === 'name')
@@ -24,7 +31,13 @@ const convertToPost = async (tx) => {
       post['content'] = `Đã cập nhật ảnh đại diện thành`
       post['image'] = tx.Params.value
     }
-
+    // if(tx.Params.key === 'followings'){
+      
+    //   let array = tx.Params.value.map(e => getName(e));
+    //   let res = await Promise.all(array);
+    //   post['content'] = `Bắt đầu theo dõi `
+    //   res.map(i => post['content'] += (i.data.Name + ', '))
+    // }
   }
   if(tx.Operation === 'post'){
     post['content'] = tx.Params.content.text

@@ -1,0 +1,13 @@
+.item {
+  width: 100%;
+  height: 50px;
+  background-color: azure;
+}
+
+.postOWner:hover {
+  cursor: pointer;
+}
+
+.cut-word:hover {
+  cursor: pointer;
+}
