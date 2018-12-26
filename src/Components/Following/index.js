@@ -5,6 +5,7 @@ import getAvatar from '../../API/getAvatar';
 import makeTx from '../../Functions/makeTx';
 import { connect } from 'react-redux'
 import { AddFollow, RemoveFollow } from '../../Actions/Profile';
+import {withRouter} from 'react-router-dom'
 
 const Following = (props) => {
   const { publickey } = props;
@@ -75,7 +76,7 @@ const Following = (props) => {
         break;
     }
   }
-  
+
   return (
     <div className="card">
       <div className='header_follow'></div>
@@ -88,13 +89,9 @@ const Following = (props) => {
         {
           user !== '' &&
           <Fragment>
-            <h3 className='cut-word'>{user}</h3>
+            <h3 onClick={() => props.history.push(`/profile/${publickey}`)} className='cut-word'>{user}</h3>
             <p className='cut-word'>{publickey}</p>
           </Fragment>
-        }
-        {
-          user === '' &&
-          <h3 className='cut-word'>{publickey}</h3>
         }
       </div>
     </div>
@@ -106,4 +103,4 @@ const mapDispatchToProps = dispatch => ({
   RemoveFollow: (address) => dispatch(RemoveFollow(address)),
 })
 
-export default connect(null, mapDispatchToProps)(Following)
+export default withRouter(connect(null, mapDispatchToProps)(Following))

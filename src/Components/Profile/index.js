@@ -161,6 +161,7 @@ class Profile extends React.Component {
             {!editProfile ? (
               <React.Fragment>
                 <div className="ProfileCard_Name">{Profile.Name}</div>
+                <div className="ProfileCard_Address">@{params.address}</div>
               </React.Fragment>
             ) : (
                 <ProfileForm {...Profile} PublicKey={PublicKey} SecretKey={SecretKey} ChangeName={this.props.ChangeName} />

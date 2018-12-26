@@ -43,7 +43,7 @@ class Dashboard extends React.Component {
         if(json.Operation === 'interact')
           tmp2 = hashs.find(e => e === json.Params.object)
         console.log(tmp || tmp2);
-        if(tmp || tmp2){
+        if(json.Address === this.props.PublicKey || tmp || tmp2){
           console.log('update');
           let res = await explorePost(this.props.PublicKey, 1, 10);
           this.setState({ explore:[]}, () => this.setState({explore: res.data.Post}))
