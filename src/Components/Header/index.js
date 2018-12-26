@@ -7,7 +7,7 @@ import resizeImage from 'resize-image'
 import makeTx from '../../Functions/makeTx';
 const Marker = 'data:image/jpeg;base64,'
 let i =1;
-const Header = ({getProfile, PublicKey,SecretKey, editProfile, setEditProfile, Avatar, history, Following, Follower, Address, Energy, Money, Sequence}) => {
+const Header = ({handleBtnFollowChange ,getProfile, PublicKey,SecretKey, editProfile, setEditProfile, Avatar, history, Following, MyProfile, Follower, Address, Energy, Money, Sequence}) => {
   let [newAvatar, setNewAvatar] = useState(null);
   let handleImgChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -71,7 +71,7 @@ const Header = ({getProfile, PublicKey,SecretKey, editProfile, setEditProfile, A
           </div>
         </div>
         {
-          PublicKey === Address && 
+          PublicKey === Address ?
           <div className="button-container">
           {!editProfile ?
             <button onClick={()=> setEditProfile(true)}>Edit</button> :
@@ -83,7 +83,10 @@ const Header = ({getProfile, PublicKey,SecretKey, editProfile, setEditProfile, A
               }}>Cancel</button>
             </React.Fragment>
           }
-        </div>
+        </div> : 
+          <div className='button-container'>
+            {MyProfile.Following.find(e => e === Address) ? <button onClick={() => handleBtnFollowChange(1, Address)}>Bỏ theo dõi</button> : <button onClick={() => handleBtnFollowChange(2, Address)}>Theo dõi</button>}
+          </div> 
         }
         
       </div>

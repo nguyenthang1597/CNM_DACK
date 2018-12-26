@@ -25,7 +25,7 @@ class Profile extends React.Component {
     }
     else {
       getAllInfo(props.match.params.address).then(res =>  this.setState({
-        Profile: res.data,
+        Profile: {...res.data},
       }))
     }
   }
@@ -42,6 +42,46 @@ class Profile extends React.Component {
     this.setState({
       editProfile: value,
     })
+  }
+
+  handleBtnFollowChange = async(type, _address) => {
+    
+    const Params = {
+      key: 'followings',
+      value: {
+        addresses: []
+      }
+    }
+
+    switch(type) {
+      case 1:
+      {
+        // UnFollow
+        Params.value.addresses = this.props.MyProfile.Following.filter(e => e !== _address)
+        try {
+          await makeTx(this.props.PublicKey,'update_account',Params,this.props.SecretKey);
+          this.props.RemoveFollow(_address);
+        } catch (error) {
+          alert('Lỗi')
+        }
+      }
+      break;
+      case 2: {
+        // Follow
+        Params.value.addresses = [...this.props.MyProfile.Following, _address];
+        try {
+          await makeTx(this.props.PublicKey,'update_account',Params,this.props.SecretKey);
+          this.props.AddFollow(_address)
+        } catch (error) {
+          alert('Lỗi')
+        }
+      }
+      break;
+    }
+    setTimeout( () => {
+      // Delay
+      this.getProfile(this.props);
+    }, 3000)
   }
 
   render() {
@@ -63,6 +103,8 @@ class Profile extends React.Component {
           PublicKey={PublicKey}
           SecretKey={SecretKey}
           getProfile={this.getProfile}
+          MyProfile={this.props.MyProfile}
+          handleBtnFollowChange={this.handleBtnFollowChange}
         />
         <div className={!editProfile ? "grid" : "profile_grid"}>
           <div style={{ marginTop: 40 }}>
