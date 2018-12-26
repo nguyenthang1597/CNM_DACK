@@ -21,23 +21,27 @@ class Item extends Component {
         getName(this.props.Address).then(res => {
             this.setState({ Name: res.data.Name })
         });
-        if(this.props.Following.find(e => e === this.props.Address)) {
-            this.setState({
-                isFollow: true,
-            })
-        }
     }
     componentWillReceiveProps(props) {
         this.setState({
             Avatar: null,
-            Name: ''
+            Name: '',
+            isFollow: false,
         })
-        getAvatar(props.Address).then(res => {
-            this.setState({ Avatar: res.data.Avatar })
-        });
-        getName(props.Address).then(res => {
-            this.setState({ Name: res.data.Name })
-        });
+        setTimeout(()=> {
+            getAvatar(props.Address).then(res => {
+                this.setState({ Avatar: res.data.Avatar })
+            });
+            getName(props.Address).then(res => {
+                this.setState({ Name: res.data.Name })
+            });
+            if(this.props.Following.find(e => e === this.props.Address)) {
+                console.log("asdasdasd");
+                this.setState({
+                    isFollow: true,
+                })
+            }
+        },1000)
     }
 
     handleBtnFollowClick = async(type, _address) => {
