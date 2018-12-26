@@ -60,8 +60,6 @@ const Profile = ({ Profile, Posts, following, follower,Username,getPosts,SecretK
 const ProfileForm = ({ Name, Username, Phone, Address, DoB ,SecretKey}) => {
   let name = useFormInput(Name);
   const updateName = async() =>{
-    console.log("NAME",Username)
-    console.log("NAME1",SecretKey)
   try {
     await UpdateName(Username, name.value, SecretKey)
     alert('Update thành công!')

@@ -33,6 +33,7 @@ const Topbar = (props) => {
           <div className={`tab ${tab === 'noti' ? 'active' : null}`} onClick={() => { props.history.push('/notification'); setTab('noti'); }} ><FontAwesomeIcon icon={faBell} style={{ marginRight: 5 }} />Thông báo</div>
           <div className={`tab ${tab === 'smo' ? 'active' : null}`} onClick={() => { props.history.push('/sendmoney'); setTab('smo'); }}><FontAwesomeIcon icon={faDollarSign} style={{ marginRight: 5 }} />Chuyển tiền</div>
         </div>
+        <input className="btnSearch" placeholder="Tìm kiếm"/>
         <div className='avatar' onClick={() => setCaret(!caret)}>
           <img className='avatar_32' src={props.Avatar || 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'} alt='avatar' />
           {
