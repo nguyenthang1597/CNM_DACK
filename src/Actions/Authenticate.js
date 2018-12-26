@@ -27,7 +27,6 @@ export const authenticate =  (SecretKey) =>async dispatch => {
       dispatch(failerAuth())
     }
   } catch (error) {
-    console.log(error)
     dispatch(failerAuth())
   }
 }

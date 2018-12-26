@@ -4,8 +4,12 @@ import {Switch, Route, BrowserRouter}  from 'react-router-dom';
 import Dashboard from '../Dashboard'
 import Notification from '../Notification'
 import Profile from '../../Containers/Profile'
+
+
 const Home = ({PublicKey, SecretKey, getUserInfo}) => {
   document.title = 'Home'
+
+    
   useEffect(() => {
     getUserInfo(PublicKey)
   }, [getUserInfo])

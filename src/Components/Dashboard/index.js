@@ -6,6 +6,8 @@ import Post from '../Post'
 import { Link, withRouter } from 'react-router-dom'
 import ListPost from '../ListPost'
 import explorePost from '../../API/explorePost'
+window.WebSocket = window.WebSocket || window.MozWebSocket;
+var connection = new WebSocket('ws://localhost:8081');
 
 class Dashboard extends React.Component {
   constructor(props) {
@@ -16,11 +18,43 @@ class Dashboard extends React.Component {
       loadmore: false
     }
   }
+
+  handleSocket = () =>{
+   
+    connection.onopen = function(){
+      console.log('connect')
+    }
+    connection.onerror = function (error) {
+      // an error occurred when sending/receiving data
+    };
+
+    connection.onmessage = async (message) => {
+      try {
+        var json = JSON.parse(message.data);
+        let res = await explorePost(this.props.PublicKey, 1, 20);
+        console.log(res.data)
+        this.setState({explore: []}, () => {
+          this.setState({ explore: res.data.Post,page: 1, loadmore: false }, () => {
+            console.log('Cap nhat thanh cong');
+            console.log(this.state)
+          })
+        })
+      } catch (e) {
+        console.log('This doesn\'t look like a valid JSON: ',
+            message.data);
+        return;
+      }
+
+      
+      
+    };
+  }
+
   componentDidMount = async () => {
     const { page } = this.state;
     let res = await explorePost(this.props.PublicKey, page, 20);
     this.setState({ explore: res.data.Post })
-
+    this.handleSocket();
     window.addEventListener('scroll', this.handleScroll)
   }
   componentWillUnmount(){
@@ -44,7 +78,6 @@ class Dashboard extends React.Component {
       }, async () => {
         const {explore, page} = this.state;
         let res = await explorePost(this.props.PublicKey, page + 1, 20)
-        console.log(res)
         if(res.data.Post.length){
           this.setState({
             explore: explore.concat(res.data.Post),
@@ -60,7 +93,6 @@ class Dashboard extends React.Component {
   render() {
     const {PublicKey, SecretKey, Profile} = this.props;
     const {explore} = this.state;
-    console.log(`explore ${this.state.page}`, explore)
     return (
       <div className='grid'>
         <LeftSide Profile={Profile}/>

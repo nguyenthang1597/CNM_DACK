@@ -2,7 +2,6 @@ import {sign} from '../lib/transaction'
 import axios from 'axios'
 import {API_URL} from '../Config'
 export default async (account, operation, params, secret) => {
-  console.log(params)
   let a = await axios.post(`${API_URL}/tx/unsignedhash`, {
     account,
     operation,
@@ -18,7 +17,6 @@ export default async (account, operation, params, secret) => {
     ...tx,
     params: params
   }
-  console.log(_newTx)
   return await axios.post(`${API_URL}/tx/sendtx`, {
     tx: _newTx
   }, {

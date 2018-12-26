@@ -13,7 +13,6 @@ const InputNewPost = (props) => {
       alert('Thành công')
     } catch (error) {
       alert('Thất bại')
-      console.log(error);
       
     }
     
@@ -26,7 +25,7 @@ const InputNewPost = (props) => {
       </div>
       <input className='inputNewPost' {...text}/>
       <button onClick={() => {
-        // sendPost()
+        sendPost()
         text.setValue('')
       }}>Đăng</button>
     </div>

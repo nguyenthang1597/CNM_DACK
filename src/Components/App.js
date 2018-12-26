@@ -16,7 +16,7 @@ import Topbar from './Topbar'
 import Following from './Following'
 library.add(faStroopwafel)
 const logger = createLogger();
-const store = createStore(Reducers, applyMiddleware(thunk, logger));
+const store = createStore(Reducers, applyMiddleware(thunk));
 
 
 const App = (props) => {
