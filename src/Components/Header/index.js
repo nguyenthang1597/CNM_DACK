@@ -60,7 +60,7 @@ const Header = ({handleBtnFollowChange ,getProfile, PublicKey,SecretKey, editPro
             <span className='ProfileBar_label'>Năng lượng</span>
             <div className='ProfileBar_value'>{Energy ? `${Math.ceil(Energy)} OXY` : 0}</div>
           </div>
-          <div className='ProfileBar_Item'>
+          <div className='ProfileBar_Item' onClick={()=>{history.push(`/profile/${Address}/paymenthistory`)}}>
             <span className='ProfileBar_label'>Tiền</span>
             <div className='ProfileBar_value'>{Money ? `${Money} CEL`: 0}</div>
           </div>

@@ -177,6 +177,11 @@ class Profile extends React.Component {
               path="/profile/:id/follower"
               render={props => <ListFollow address={params.address} type={2} arrayFollowing={this.props.MyProfile.Following} array={Profile.Followers} {...props} PublicKey={PublicKey} SecretKey={SecretKey} />}
             />
+            <Route
+              exact
+              path="/profile/:id/paymenthistory"
+              render={props => <ListPost posts={Profile.Payments} {...props}/>}
+            />
             <Route 
               exact
               path='/profile/:id'
