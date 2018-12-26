@@ -75,7 +75,7 @@ const Following = (props) => {
         break;
     }
   }
-
+  
   return (
     <div className="card">
       <div className='header_follow'></div>

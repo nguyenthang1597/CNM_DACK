@@ -6,7 +6,7 @@ const ListFollow = ({array , type, arrayFollowing, PublicKey, SecretKey, address
   return (
     <div className='listFollow'>
       {
-        array.map((i, index) => <Following address={address} array={array} PublicKey={PublicKey} SecretKey={SecretKey} arrayFollowing={arrayFollowing} type={type} key={index} publickey={i} />)
+        array.map((i, index) => <Following address={address} array={array} PublicKey={PublicKey} SecretKey={SecretKey} arrayFollowing={arrayFollowing} type={type} key={index} publickey={i}/>)
       }
     </div>
   )

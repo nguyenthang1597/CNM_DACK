@@ -38,7 +38,7 @@ const LeftSide = ({Profile, PublicKey, history}) => {
   )
 }
 
-const mapStateToProps = ({Profile, Authenticate: {PublicKey}, Follow: {following, follower, loading}}) => ({Profile, PublicKey})
+const mapStateToProps = ({Profile, Authenticate: {PublicKey}}) => ({Profile, PublicKey})
 const mapDispathToProps = dispatch => ({
   updateAvatar: (image) => dispatch(updateAvatar(image))
 })

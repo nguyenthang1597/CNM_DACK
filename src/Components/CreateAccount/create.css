@@ -1,0 +1,51 @@
+.container {
+    width: 590px;
+    display: block;
+    margin-top: 55px;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid rgba(0, 0, 0, .25);
+    background-color: white;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+  }
+  .title {
+    text-align: center;
+    margin-top: 50px;
+    color: #1DA1F2;
+  }
+  .publicKey {
+    color: #14171a;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 28px;
+    padding: 4px 7px;
+    width: 80%;
+    border-radius: 50px;
+    border: 1px solid;
+    margin-left: auto;
+    margin-right: auto;
+    border-color: #1DA1F2;
+
+  }
+  
+  .btnCreate {
+    padding: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 50px;
+    background: transparent;
+    border: 1px solid;
+    border-color: #1DA1F2;
+    font-weight: bold;
+    font-size: 15px;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto
+  }
+  .btnCreate:hover {
+    background-color: #1DA1F2;
+    outline: none;
+    cursor: pointer;
+  }

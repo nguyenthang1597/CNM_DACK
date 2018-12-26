@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Topbar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faUser, faSignOutAlt, faDollarSign } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faUser, faSignOutAlt, faDollarSign,faUserPlus} from '@fortawesome/free-solid-svg-icons'
 import { Link, withRouter } from 'react-router-dom'
 const Topbar = (props) => {
   let [tab, setTab] = useState('home');
@@ -50,10 +50,12 @@ const Topbar = (props) => {
                 <li className='info'>
                   <Link to={`/profile/${props.PublicKey}`} style={{ textDecoration: 'none', color: 'black' }}><FontAwesomeIcon icon={faUser} style={{ marginRight: 10 }} /> Hồ sơ</Link>
                 </li>
+                <li className='info'>
+                  <Link to={`/createaccount`} style={{ textDecoration: 'none', color: 'black' }}><FontAwesomeIcon icon={faUserPlus} style={{ marginRight: 10 }} />Tạo tài khoản</Link>
+                </li>
                 <div className='divider' />
                 <li className='info'>
                   <Link to='/login' onClick={() => handleLogout()} style={{ textDecoration: 'none', color: 'black' }}><FontAwesomeIcon icon={faSignOutAlt} style={{ marginRight: 10 }} /> Đăng xuất</Link>
-
                 </li>
               </div>
             </div>

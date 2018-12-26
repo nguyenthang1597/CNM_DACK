@@ -8,7 +8,7 @@ import makeTx from '../../Functions/makeTx'
 import getAllInfo from '../../API/getAllInfo'
 import ListPost from "../ListPost";
 import getAllPost from "../../API/getAllPost";
-
+import InputNewPost from '../Dashboard/InputNewPost'
 class Profile extends React.Component {
 
   constructor(props) {
@@ -180,7 +180,11 @@ class Profile extends React.Component {
             <Route 
               exact
               path='/profile/:id'
-              render={props => <ListPost PublicKey={PublicKey} posts={this.state.Post} SecretKey={SecretKey}/>}
+              render={props =>
+              <React.Fragment>
+                 <InputNewPost PublicKey={PublicKey} SecretKey={SecretKey} />
+                 <ListPost PublicKey={PublicKey} posts={this.state.Post} SecretKey={SecretKey}/>
+              </React.Fragment>}
             />
           </div>
         </div>

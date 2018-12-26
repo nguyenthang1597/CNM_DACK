@@ -2,7 +2,7 @@ import React from 'react'
 import LeftSide from '../LeftSide'
 import './Dashboard.css'
 import InputNewPost from './InputNewPost'
-
+import {connect} from 'react-redux'
 import {  withRouter } from 'react-router-dom'
 import ListPost from '../ListPost'
 import explorePost from '../../API/explorePost'
@@ -30,16 +30,24 @@ class Dashboard extends React.Component {
     };
 
     connection.onmessage = async (message) => {
+      console.log(this.state.explore);
+      let listFollow = this.props.Profile.Following;
+      let hashs = this.state.explore.map(e => e.Hash);
+      console.log(listFollow);
+      console.log(hashs);
       try {
         var json = JSON.parse(message.data);
-        let res = await explorePost(this.props.PublicKey, 1, 20);
-        console.log(res.data)
-        this.setState({explore: []}, () => {
-          this.setState({ explore: res.data.Post,page: 1, loadmore: false }, () => {
-            console.log('Cap nhat thanh cong');
-            console.log(this.state)
-          })
-        })
+        console.log(json);
+        var tmp, tmp2;
+        tmp = listFollow.find(e => e === json.Address)
+        if(json.Operation === 'interact')
+          tmp2 = hashs.find(e => e === json.Params.object)
+        console.log(tmp || tmp2);
+        if(tmp || tmp2){
+          console.log('update');
+          let res = await explorePost(this.props.PublicKey, 1, 10);
+          this.setState({ explore:[]}, () => this.setState({explore: res.data.Post}))
+        }
       } catch (e) {
         console.log('This doesn\'t look like a valid JSON: ',
             message.data);
@@ -50,7 +58,7 @@ class Dashboard extends React.Component {
 
   componentDidMount = async () => {
     const { page } = this.state;
-    let res = await explorePost(this.props.PublicKey, page, 20);
+    let res = await explorePost(this.props.PublicKey, page, 10);
     this.setState({ explore: res.data.Post })
     this.handleSocket();
     window.addEventListener('scroll', this.handleScroll)
@@ -75,7 +83,7 @@ class Dashboard extends React.Component {
         loadmore: true
       }, async () => {
         const {explore, page} = this.state;
-        let res = await explorePost(this.props.PublicKey, page + 1, 20)
+        let res = await explorePost(this.props.PublicKey, page + 1, 10)
         if(res.data.Post.length){
           this.setState({
             explore: explore.concat(res.data.Post),
@@ -88,10 +96,11 @@ class Dashboard extends React.Component {
   };
   render() {
     const {PublicKey, SecretKey, Profile} = this.props;
+    console.log(Profile);
     const {explore} = this.state;
     return (
       <div className='grid'>
-        <LeftSide Profile={Profile}/>
+        <LeftSide/>
         <div>
           <InputNewPost PublicKey={PublicKey} SecretKey={SecretKey} />
           <ListPost posts={explore} PublicKey={PublicKey} SecretKey={SecretKey}/>
@@ -101,5 +110,6 @@ class Dashboard extends React.Component {
     )
   }
 }
+const mapStateToProps = ({Profile}) => ({Profile})
 
-export default withRouter(Dashboard);
+export default withRouter(connect(mapStateToProps)(Dashboard));

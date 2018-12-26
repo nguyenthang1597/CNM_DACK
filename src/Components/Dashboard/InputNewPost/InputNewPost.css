@@ -41,3 +41,9 @@
   border-radius: 20%;
   background-color: #e7f5fd;
 }
+.btnDang {
+  border-radius: 20%;
+  background-color: #1DA1F2;
+  border-width: 2px;
+  height: 30;
+}
