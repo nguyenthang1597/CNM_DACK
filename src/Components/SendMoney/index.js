@@ -96,14 +96,15 @@ class SendMoney extends Component {
     handleBtnSearchClick = () => {
         let arr = this.props.users.filter(i=>i.Address===this.state.txtSearch )
         this.setState({
-            listPerson: arr
+            listPerson: _.chunk(arr, 6),
         })
-        console.log("AA",this.state.listPerson)
+        
     }
 
     handleSearchChange = (e) => {
         this.setState({
             txtSearch: e.target.value,
+            listPerson: _.chunk(this.props.users, 6),
         })
     }
 
@@ -127,7 +128,7 @@ class SendMoney extends Component {
                     <div className="left-column">
 
                         <div className="my-profile">
-                            <img className="my-avatar" src={Profile.Avatar}></img>
+                            <img className="my-avatar" src={Profile.Avatar.Marker+Profile.Avatar.Avatar}></img>
                             <div className="my-infomation">
                                 <p className="my-name">{Profile.Name}</p>
                                 <p className="public-key">@{PublicKey}</p>

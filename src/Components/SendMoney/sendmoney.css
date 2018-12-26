@@ -248,6 +248,8 @@
     font-size: 14px;
     margin-top: 5px;
     color: gray;
+    word-wrap: break-word;
+
 }
 
 .receiver-item:hover {
