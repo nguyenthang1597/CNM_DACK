@@ -119,7 +119,7 @@ const Post = props => {
     };
     makeTx(props.PublicKey, 'interact', Params, props.SecretKey);
   }
-
+  console.log(post, reactions);
   return (
     <React.Fragment>
       <div className="post">
@@ -152,13 +152,13 @@ const Post = props => {
             </div>
           </div>
           <div className="body">
-            <p>{post.content}</p>
+            <p className="content">{post.content}</p>
             {post.image && <img src={`data:image/jpeg;base64,${post.image}`} />}
           </div>
           <div className="footer">
             <div className="footer-item postStat">
               <div className={`item-interaction ${interaction.class}`}>
-                <FontAwesomeIcon icon={interaction.icon} /> {interaction.text}
+                <FontAwesomeIcon icon={interaction.icon} /> {interaction.text} ({reactions ? reactions.filter(e => e.Reaction !== 0).length : 0})
               </div>
               <div className="popup-content">
                 <div
@@ -210,7 +210,7 @@ const Post = props => {
               onClick={() => setShowComment(!showComment)}
             >
               <FontAwesomeIcon icon={faComment} />
-              <div className="footer-item-content">Bình luận</div>
+              <div className="footer-item-content">Bình luận ({comments.length})</div>
             </div>
             <div className="footer-item">
               <FontAwesomeIcon icon={faShare} />
@@ -224,6 +224,7 @@ const Post = props => {
           comments={comments}
           reactions={reactions}
           close={setShowComment}
+          hash={props.post.Hash}
         />}
     </React.Fragment>
   );

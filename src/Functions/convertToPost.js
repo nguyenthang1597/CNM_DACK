@@ -17,7 +17,12 @@ const convertToPost = async (tx) => {
   let ownerName = reqOwnerName.data.Name;
   
   post['owner'] = ownerName;
-  
+  if (tx.Operation === 'create_account') {
+    let reqOtherName = await getName(tx.Params.address);
+    let otherName = reqOtherName.data.Name || tx.Params.address;
+    post['othername'] = otherName;
+    post['content'] = `Đã tạo tài khoản ${otherName}`;
+  }
   if (tx.Operation === 'payment') {
     let reqOtherName = await getName(tx.Params.address);
     let otherName = reqOtherName.data.Name || tx.Params.address;

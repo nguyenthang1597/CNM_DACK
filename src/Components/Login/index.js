@@ -8,7 +8,6 @@ const Login = ({isAuthenticating, authenticate}) => {
     authenticate(secretkey.value);
   }
 
-
   return (
     <div className='loginContainer'>
       <div className='loginTitle'>Login</div>

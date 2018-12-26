@@ -1,0 +1,57 @@
+.react-tab {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.react-tab .tab {
+    width: 20px;
+    font-size: 20px;
+}
+
+.react-tab .like {
+    color: rgb(94, 186, 248);
+}
+
+.react-tab .love {
+    color: rgba(243, 45, 38, 0.979);
+}
+
+.react-tab .haha {
+    color: rgba(243, 219, 83, 0.979);
+}
+
+.react-tab .angry {
+    color: rgba(241, 165, 50, 0.979);
+}
+
+.interact-container {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+}
+
+.list-interact {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    flex: 1;
+}
+
+.list-interact .item {
+    height: 40px !important;
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+    width: 100%;
+    background-color: #e6ecf0;
+    justify-content: space-between;
+    flex-direction: column;
+    font-size: 14px;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 3px;
+    border-radius: 15px
+}

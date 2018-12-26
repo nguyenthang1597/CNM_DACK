@@ -4,7 +4,6 @@ export const REQUEST_USER = 'REQUEST_USER';
 
 const receiveUser = data => ({type: RECEIVE_USER, data});
 
-
 const requestUser = () => ({type: REQUEST_USER});
 
 export const GetAllUser = () => dispatch => {
@@ -12,7 +11,6 @@ export const GetAllUser = () => dispatch => {
   return getAllUser()
   .then(res => {
     let data = res.data.Accounts;
-    console.log("AAB", data)
     dispatch(receiveUser(data));
   })
 }

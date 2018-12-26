@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Topbar.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faHome, faBell, faEnvelope, faUser, faSignOutAlt, faDollarSign } from '@fortawesome/free-solid-svg-icons'
+import { faHome, faUser, faSignOutAlt, faDollarSign,faUserPlus} from '@fortawesome/free-solid-svg-icons'
 import { Link, withRouter } from 'react-router-dom'
 const Topbar = (props) => {
   let [tab, setTab] = useState('home');
@@ -30,9 +30,9 @@ const Topbar = (props) => {
             props.history.push('/');
             setTab('home');
             }}><FontAwesomeIcon icon={faHome} style={{ marginRight: 5 }} />Trang chủ</div>
-          <div className={`tab ${tab === 'noti' ? 'active' : null}`} onClick={() => { props.history.push('/notification'); setTab('noti'); }} ><FontAwesomeIcon icon={faBell} style={{ marginRight: 5 }} />Thông báo</div>
           <div className={`tab ${tab === 'smo' ? 'active' : null}`} onClick={() => { props.history.push('/sendmoney'); setTab('smo'); }}><FontAwesomeIcon icon={faDollarSign} style={{ marginRight: 5 }} />Chuyển tiền</div>
         </div>
+        
         <div className='avatar' onClick={() => setCaret(!caret)}>
           <img className='avatar_32' src={props.Avatar ? `data:image/jpeg;base64,${props.Avatar.Avatar}` : 'https://abs.twimg.com/sticky/default_profile_images/default_profile_normal.png'} alt='avatar' />
           {
@@ -50,10 +50,12 @@ const Topbar = (props) => {
                 <li className='info'>
                   <Link to={`/profile/${props.PublicKey}`} style={{ textDecoration: 'none', color: 'black' }}><FontAwesomeIcon icon={faUser} style={{ marginRight: 10 }} /> Hồ sơ</Link>
                 </li>
+                <li className='info'>
+                  <Link to={`/createaccount`} style={{ textDecoration: 'none', color: 'black' }}><FontAwesomeIcon icon={faUserPlus} style={{ marginRight: 10 }} />Tạo tài khoản</Link>
+                </li>
                 <div className='divider' />
                 <li className='info'>
                   <Link to='/login' onClick={() => handleLogout()} style={{ textDecoration: 'none', color: 'black' }}><FontAwesomeIcon icon={faSignOutAlt} style={{ marginRight: 10 }} /> Đăng xuất</Link>
-
                 </li>
               </div>
             </div>

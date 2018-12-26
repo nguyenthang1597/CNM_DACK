@@ -5,7 +5,7 @@ import Dashboard from '../Dashboard'
 import Notification from '../Notification'
 import Profile from '../../Containers/Profile'
 import SendMoney from '../SendMoney'
-
+import CreateAccount from '../CreateAccount'
 const Home = ({PublicKey, SecretKey, getUserInfo}) => {
   document.title = 'Home'
 
@@ -20,6 +20,7 @@ const Home = ({PublicKey, SecretKey, getUserInfo}) => {
       <Route exact path='/notification' component={Notification}/>
       <Route path='/sendmoney' component={SendMoney}/>
       <Route path='/profile/:address' component={Profile}/>
+      <Route path='/createaccount' component={CreateAccount}/>
     </React.Fragment>
   )
 }
