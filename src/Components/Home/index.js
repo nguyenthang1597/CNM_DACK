@@ -1,10 +1,10 @@
-import React, {useState, useEffect} from 'react';
+import React, { useEffect} from 'react';
 import Topbar from '../../Containers/Topbar';
-import {Switch, Route, BrowserRouter}  from 'react-router-dom';
+import {Route,}  from 'react-router-dom';
 import Dashboard from '../Dashboard'
 import Notification from '../Notification'
 import Profile from '../../Containers/Profile'
-
+import SendMoney from '../SendMoney'
 
 const Home = ({PublicKey, SecretKey, getUserInfo}) => {
   document.title = 'Home'
@@ -18,6 +18,7 @@ const Home = ({PublicKey, SecretKey, getUserInfo}) => {
       <Topbar PublicKey={PublicKey}/>
       <Route exact path='/' render={props => <Dashboard {...props} PublicKey={PublicKey} SecretKey={SecretKey}/>} />
       <Route exact path='/notification' component={Notification}/>
+      <Route path='/sendmoney' component={SendMoney}/>
       <Route path='/profile/:address' component={Profile}/>
     </React.Fragment>
   )

@@ -16,7 +16,6 @@ const Header = ({getProfile, PublicKey,SecretKey, editProfile, setEditProfile, A
              setNewAvatar(e.target.result)
            };
            reader.readAsDataURL(event.target.files[0]);
-           
        }
   }
 
@@ -54,7 +53,7 @@ const Header = ({getProfile, PublicKey,SecretKey, editProfile, setEditProfile, A
             <div className='ProfileBar_value'>{Following ? Following.length : 0}</div>
           </div>
           <div className='ProfileBar_Item' onClick={()=>{history.push(`/profile/${Address}/follower`)}}>
-            <span className='ProfileBar_label'>Theo dõi tôi</span>
+            <span className='ProfileBar_label'>Theo dõi bởi</span>
             <div className='ProfileBar_value'>{Follower ? Follower.length : 0}</div>
           </div>
           <div className='ProfileBar_Item'>
@@ -121,13 +120,6 @@ const Header = ({getProfile, PublicKey,SecretKey, editProfile, setEditProfile, A
         </div>
       </div>
       }
-
-
-
-
-
-
-
     </div>
   )
 }

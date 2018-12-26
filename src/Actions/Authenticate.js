@@ -4,11 +4,11 @@ export const SUCCESS_AUTH = 'SUCCESS_AUTH';
 export const FAILER_AUTH = 'FAILER_AUTH';
 export const LOGOUT = "LOGOUT"
 
-const requestAuth = () => ({type: REQUEST_AUTH})
+const requestAuth = () => ({ type: REQUEST_AUTH })
 
-const successAuth = (data) => ({type: SUCCESS_AUTH, data})
+const successAuth = (data) => ({ type: SUCCESS_AUTH, data })
 
-const failerAuth = () => ({type: FAILER_AUTH})
+const failerAuth = () => ({ type: FAILER_AUTH })
 
 export const logOut = () => (dispatch) => {
   dispatch({

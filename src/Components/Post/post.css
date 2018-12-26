@@ -11,7 +11,6 @@
   margin-bottom: 0px;
 }
 
-
 .header {
   display: flex;
   position: relative;
@@ -49,7 +48,7 @@
 
 .postAt{
   font-size: 14px;
-color: #657786;
+  color: #657786;
 }
 .postAt::before{
   content: "\00b7";
@@ -60,25 +59,142 @@ color: #657786;
 .footer{
   display: flex;
   flex-direction: row;
-  width: 40%;
-  justify-content: space-between
+  width: 90%;
+  justify-content: space-between;
+  border-top: 1px solid rgba(146, 142, 142, 0.5);
+  margin-top: 10px
 }
 
+.footer-item {
+  height: 25px;
+  font-size: 16px;
+  padding: 5px;
+  color: gray;
+  display: flex;
+  flex-direction: row;
+}
+
+.footer-item-content {
+  margin-left: 5px
+}
+
+.footer-item:hover {
+  background-color: #e8ebf0;
+  cursor: pointer;
+}
+
+/* Add animation (fade in the popup) */
+@-webkit-keyframes fadeIn {
+  from {opacity: 0;} 
+  to {opacity: 1;}
+}
+
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity:1 ;}
+}
+
+.popup-content {
+  visibility: hidden;
+  background-color: white;
+  text-align: center;
+  height: 40px;
+  margin-top: -50px;
+  margin-left: -25px;
+  width: 270px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  border-radius: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  padding-left: 5px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  z-index: 1;
+  padding-right: 5px;
+}
+
+.postStat:hover .popup-content {
+  visibility: visible;
+  -webkit-animation: fadeIn 0.5s;
+  animation: fadeIn 0.5s;
+}
+
+.interaction {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  transition: all .2s ease-in-out;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  color: white;
+}
+
+.interaction.like {
+  background-color: rgb(94, 186, 248);
+}
+
+.interaction.love {
+  background-color: rgba(243, 45, 38, 0.979);
+}
+
+.interaction.haha{
+  background-color: rgba(243, 219, 83, 0.979);
+}
+
+.interaction.angry {
+  background-color: rgba(241, 165, 50, 0.979);
+}
+
+.interaction:hover{
+  transform: scale(1.1); 
+}
+
+.interaction:hover .tooltiptext{
+  visibility: visible;
+}
 
 .tooltiptext {
-    visibility: hidden;
-    width: 120px;
-    background-color: black;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px 0;
+  visibility: hidden;
+  background-color: rgba(0, 0, 0, 0.7);
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  font-size: 10px;
+  padding: 2px;
+  margin-top: -30px;
 
-    /* Position the tooltip */
-    position: absolute;
-    z-index: 1;
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
 }
 
-.postStat:hover .tooltiptext {
-  visibility: visible;
+.postContent .body {
+  width: auto;
+  word-break: break-word;
+}
+
+
+.item-interaction.like {
+  color:rgb(94, 186, 248);
+}
+
+.item-interaction.love {
+  color: rgba(243, 45, 38, 0.979);
+
+}
+
+.item-interaction.haha {
+  color: #cebd2f;
+
+}
+
+.item-interaction.angry {
+  color: rgba(241, 157, 30, 0.979);
+
 }
