@@ -3,6 +3,7 @@ import './LeftSide.css'
 import { withRouter } from 'react-router-dom'
 import {connect} from 'react-redux'
 import {updateAvatar} from '../../Actions/Profile'
+
 const LeftSide = ({Profile, PublicKey, history}) => {
   return (
     <div className='leftSide'>

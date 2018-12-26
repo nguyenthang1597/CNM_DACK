@@ -4,6 +4,5 @@ export default (address, to, amount, secret) => {
     address: to,
     amount
   }
-
   return makeTx(address, 'payment', params, secret);
 }

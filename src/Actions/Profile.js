@@ -1,5 +1,4 @@
-import getAvatar from '../API/getAvatar'
-import getName from '../API/getName'
+
 import getAllInfo from '../API/getAllInfo';
 
 export const UPDATE_AVATAR = 'UPDATE_AVATAR';
@@ -14,7 +13,7 @@ export const REMOVE_FOLLOW = 'REMOVE_FOLLOW';
 export const CHANGE_NAME =  'CHANGE_NAME';
 
 export const updateAvatar = (Avatar) => ({type: UPDATE_AVATAR, Avatar})
-export const updateInfo = (info) => ({type: UPDATE_AVATAR, info})
+export const updateInfo = (info) => ({type: UPDATE_INFO, info})
 export const receiveInfo = (info) => ({type: RECEIVE_INFO, info})
 
 const requestInfo = () => ({type: REQUEST_INFO});

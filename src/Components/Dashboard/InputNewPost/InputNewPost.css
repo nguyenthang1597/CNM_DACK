@@ -19,6 +19,9 @@
   border-radius: 10px;
   padding-left: 8px;
   border: 1px solid #e6ecf0;
+  resize: none;
+  overflow: hidden;
+  position: relative;
 }
 
 .inputNewPost:focus{
@@ -33,4 +36,8 @@
   position: relative;
   top: 50%;
   transform: translateY(-50%);
+}
+.btnPost {
+  border-radius: 20%;
+  background-color: #e7f5fd;
 }

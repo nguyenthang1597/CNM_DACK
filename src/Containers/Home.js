@@ -1,9 +1,11 @@
-import {connect} from 'react-redux';
+import { connect } from 'react-redux';
 import Home from '../Components/Home'
-import {getUserInfo} from '../Actions/Profile'
-const mapStateToProps = ({Authenticate: {PublicKey, SecretKey}}) => ({
+import { getUserInfo } from '../Actions/Profile'
+
+const mapStateToProps = ({ Profile: { Avatar }, Authenticate: { PublicKey, SecretKey } }) => ({
+  Avatar,
   PublicKey,
-  SecretKey
+  SecretKey,
 })
 
 const mapDispatchToProps = dispatch => ({

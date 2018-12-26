@@ -79,7 +79,6 @@ const Header = ({handleBtnFollowChange ,getProfile, PublicKey,SecretKey, editPro
               <button onClick={()=> {
                 setNewAvatar(null)
                 setEditProfile(false)
-                
               }}>Cancel</button>
             </React.Fragment>
           }

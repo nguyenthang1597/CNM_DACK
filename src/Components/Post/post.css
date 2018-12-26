@@ -198,3 +198,6 @@
   color: rgba(241, 157, 30, 0.979);
 
 }
+.content {
+  white-space: pre-line;
+}

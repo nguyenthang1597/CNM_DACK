@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import LeftSide from '../LeftSide'
 import './Dashboard.css'
 import InputNewPost from './InputNewPost'
-import Post from '../Post'
-import { Link, withRouter } from 'react-router-dom'
+
+import {  withRouter } from 'react-router-dom'
 import ListPost from '../ListPost'
 import explorePost from '../../API/explorePost'
 
@@ -105,29 +105,5 @@ class Dashboard extends React.Component {
     )
   }
 }
-
-
-
-
-
-// const Dashboard = ({ PublicKey, SecretKey }) => {
-//   let [explore, setExplore] = useState([]);
-//   let [page, setPage] = useState(1);
-//   let [loadmore, setLoadmore] = useState(true);
-//   useEffect(() => {
-//     explorePost(PublicKey, page, 20).then(res => {
-//       setExplore(res.data.Post);
-//       setLoadmore(false)
-//     })
-//     window.addEventListener("scroll", handleScroll());
-//     // return function clean(){
-//     //   window.removeEventListener("scroll", handleScroll);
-//     // }
-//   }, [explorePost]);
-
-
-
-
-// }
 
 export default withRouter(Dashboard);
