@@ -23,7 +23,6 @@ const Header = ({handleBtnFollowChange ,getProfile, PublicKey,SecretKey, editPro
     var tmpimage = new Image();
     tmpimage.onload = async() => {
       var data = resizeImage.resize(tmpimage, 100, 100, resizeImage.JPEG);
-      console.log(data.slice(Marker.length))
       let params = {
         key: 'picture',
         value: data.slice(Marker.length)

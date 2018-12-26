@@ -6,6 +6,8 @@ import { Route } from "react-router-dom";
 import ListFollow from "../ListFollow";
 import makeTx from '../../Functions/makeTx'
 import getAllInfo from '../../API/getAllInfo'
+import ListPost from "../ListPost";
+import getAllPost from "../../API/getAllPost";
 
 class Profile extends React.Component {
 
@@ -14,8 +16,43 @@ class Profile extends React.Component {
     this.state = {
       editProfile: false,
       Profile: {},
+      Post: [],
+      page: 1,
+      loadmore: false
     }
   }
+
+  handleScroll = () => {
+    const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
+    const body = document.body;
+    const html = document.documentElement;
+    const docHeight = Math.max(
+      body.scrollHeight,
+      body.offsetHeight,
+      html.clientHeight,
+      html.scrollHeight,
+      html.offsetHeight
+    );
+    
+    const windowBottom = windowHeight + window.pageYOffset;
+    if (windowBottom >= docHeight && !this.state.loadmore) {
+      this.setState({
+        loadmore: true
+      }, async () => {
+        const {Post, page} = this.state;
+        let res = await getAllPost(this.props.match.params.address, page + 1, 20)
+        if(res.data.data.length){
+          this.setState({
+            Post: Post.concat(res.data.data),
+            page: page + 1,
+            loadmore: false
+          })
+        }
+  
+      })
+      
+    }
+  };
 
   getProfile = (props) => {
     if (props.PublicKey === props.match.params.address) {
@@ -29,13 +66,27 @@ class Profile extends React.Component {
       }))
     }
   }
+  componentDidMount()  {
+    window.addEventListener('scroll', this.handleScroll)
+  };
+  
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleScroll)
+  }
+  
 
   componentWillMount() {
     this.getProfile(this.props);
+    getAllPost(this.props.match.params.address, 1, 10)
+    .then(res => {
+      console.log(res)
+      this.setState({Post: res.data.data})
+    })
   }
 
   componentWillReceiveProps(nextProps) {
     this.getProfile(nextProps);
+
   }
 
   setEditProfile = (value) => {
@@ -87,7 +138,6 @@ class Profile extends React.Component {
   render() {
     let {Profile, editProfile} = this.state;
     const {match: { params }, PublicKey, SecretKey} = this.props;
-    console.log(Profile);
     return (
       <div className="profile">
         <Header
@@ -125,7 +175,12 @@ class Profile extends React.Component {
             <Route
               exact
               path="/profile/:id/follower"
-              render={props => <ListFollow address={params.address} type={2} arrayFollowing={Profile.Following} array={Profile.Followers} {...props} PublicKey={PublicKey} SecretKey={SecretKey} />}
+              render={props => <ListFollow address={params.address} type={2} arrayFollowing={this.props.MyProfile.Following} array={Profile.Followers} {...props} PublicKey={PublicKey} SecretKey={SecretKey} />}
+            />
+            <Route 
+              exact
+              path='/profile/:id'
+              render={props => <ListPost PublicKey={PublicKey} posts={this.state.Post} SecretKey={SecretKey}/>}
             />
           </div>
         </div>

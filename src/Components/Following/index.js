@@ -22,7 +22,7 @@ const Following = (props) => {
     let _hideButton = false;
     if (props.PublicKey !== props.address) {
       if (props.type === 2) {
-        if (props.arrayFollowing.find(e => e === publickey)) {
+        if (props.arrayFollowing.find(e => e === publickey) || publickey === props.PublicKey) {
           _hideButton = true;
         }
       }
