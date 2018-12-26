@@ -52,7 +52,7 @@ class Dashboard extends React.Component {
 
   componentDidMount = async () => {
     const { page } = this.state;
-    let res = await explorePost(this.props.PublicKey, page, 20);
+    let res = await explorePost(this.props.PublicKey, page, 10);
     this.setState({ explore: res.data.Post })
     this.handleSocket();
     window.addEventListener('scroll', this.handleScroll)
@@ -77,7 +77,7 @@ class Dashboard extends React.Component {
         loadmore: true
       }, async () => {
         const {explore, page} = this.state;
-        let res = await explorePost(this.props.PublicKey, page + 1, 20)
+        let res = await explorePost(this.props.PublicKey, page + 1, 10)
         if(res.data.Post.length){
           this.setState({
             explore: explore.concat(res.data.Post),

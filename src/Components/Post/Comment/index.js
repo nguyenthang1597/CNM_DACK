@@ -4,6 +4,7 @@ import comment from '../../../Functions/comment'
 import useFormInput from '../../../Functions/useFormInput'
 import CommentItem from '../CommentItem'
 import InteractItem from '../InteractItem'
+import {connect} from 'react-redux'
 const Comment = (props) => {
   let [tab, setTab] = useState(1);
   let content = useFormInput('');
@@ -27,10 +28,12 @@ const Comment = (props) => {
       </div>
       <div className='cmInput'>
         <textarea className='cmtxta' {...content}/>
-        <div className='cmButton' onClick={() => comment('GAJQ47RMDTXYTCBMMW4A4DUMTB5RQLTGQZDMMABW6RTQJGKINJ4JTRTP', props.hash, content.value, 'SARDDYAEVEABQTGOZEDOI454XUBXCF5LMNDX6Q3MGFZ53MONF2XDDQIU')}>Đăng</div>
+        <div className='cmButton' onClick={() => comment(props.PublicKey, props.hash, content.value, props.SecretKey)}>Đăng</div>
       </div>
     </div>
   )
 }
 
-export default Comment
+const mapStateToProps = ({Authenticate: {PublicKey, SecretKey}}) => ({PublicKey, SecretKey})
+
+export default connect(mapStateToProps)(Comment)

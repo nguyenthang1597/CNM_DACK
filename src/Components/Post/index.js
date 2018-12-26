@@ -221,6 +221,7 @@ const Post = props => {
       </div>
       {showComment &&
         <Comment
+          hash={props.post.Hash}
           comments={comments}
           reactions={reactions}
           close={setShowComment}
