@@ -5,6 +5,7 @@ import { connect } from 'react-redux'
 import _ from 'lodash'
 import Item from './Item'
 import {AddFollow, RemoveFollow} from '../../../Actions/Profile'
+import Search from './Search'
 
 class RightColumn extends Component {
 
@@ -13,6 +14,7 @@ class RightColumn extends Component {
         this.state = {
             listUser: [[]],
             page: 0,
+            txtFind: ''
         }
     }
 
@@ -51,6 +53,24 @@ class RightColumn extends Component {
             page: _page
         })
     }
+    
+    handleBtnFindClick = (txtFind) => {
+        let _listUser =[[]]
+        if(txtFind === "") {
+            _listUser = _.chunk(this.props.listUser,4);
+        }
+        else {
+            let dataFind = this.props.listUser.filter(i => i.Address.indexOf(txtFind) != -1);
+            if(dataFind.length !== 0) {
+                _listUser = _.chunk(dataFind, 4);
+            }
+        }
+
+        this.setState ({
+            listUser: _listUser,
+            page: 0,
+        })
+    }
 
     render() {
         return (
@@ -58,6 +78,9 @@ class RightColumn extends Component {
                 <div className={"right-colum-title"}>
                     <span>Đề nghị</span>
                 </div>
+
+                <Search handleBtnFindClick={this.handleBtnFindClick}/>
+                
                 
                 {this.state.listUser[this.state.page].map(item => {
                     return <Item RemoveFollow={this.props.RemoveFollow} AddFollow={this.props.AddFollow}  Following={this.props.Following} SecretKey={this.props.SecretKey} PublicKey={this.props.PublicKey} Address={item.Address}/>

@@ -158,7 +158,7 @@ const Post = props => {
           <div className="footer">
             <div className="footer-item postStat">
               <div className={`item-interaction ${interaction.class}`}>
-                <FontAwesomeIcon icon={interaction.icon} /> {interaction.text}
+                <FontAwesomeIcon icon={interaction.icon} /> {interaction.text} ({reactions.length})
               </div>
               <div className="popup-content">
                 <div
@@ -210,7 +210,7 @@ const Post = props => {
               onClick={() => setShowComment(!showComment)}
             >
               <FontAwesomeIcon icon={faComment} />
-              <div className="footer-item-content">Bình luận</div>
+              <div className="footer-item-content">Bình luận ({comments.length})</div>
             </div>
             <div className="footer-item">
               <FontAwesomeIcon icon={faShare} />
@@ -224,6 +224,7 @@ const Post = props => {
           comments={comments}
           reactions={reactions}
           close={setShowComment}
+          hash={props.post.Hash}
         />}
     </React.Fragment>
   );

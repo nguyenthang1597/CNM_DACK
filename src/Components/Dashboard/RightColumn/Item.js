@@ -36,7 +36,6 @@ class Item extends Component {
                 this.setState({ Name: res.data.Name })
             });
             if(this.props.Following.find(e => e === this.props.Address)) {
-                console.log("asdasdasd");
                 this.setState({
                     isFollow: true,
                 })

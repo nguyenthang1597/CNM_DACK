@@ -1,6 +1,6 @@
 .loginContainer {
   width: 400px;
-  height: 300px;
+  height: 190px;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
@@ -29,7 +29,7 @@
 }
 
 
-.loginButton{
+.loginButton {
   width: 30%;
   left: 35%;
   height: 40px;
@@ -43,6 +43,10 @@
   font-size: 1em;
   font-weight: 800;
 }
+
+.loginButton:hover {
+  cursor: pointer;
+}  
 
 .loginButtonLoading{
   position: relative;

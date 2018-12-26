@@ -24,9 +24,11 @@ export const authenticate =  (SecretKey) =>async dispatch => {
       dispatch(successAuth({PublicKey: res.data.PublicKey, SecretKey}))
     }
     else {
+      alert("Lỗi đăng nhập thất bại")
       dispatch(failerAuth())
     }
   } catch (error) {
+    alert("Lỗi đăng nhập thất bại")
     dispatch(failerAuth())
   }
 }

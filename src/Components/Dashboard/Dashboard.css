@@ -86,4 +86,29 @@
   justify-content: center;
 }
 
+.search-follow {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border: 1px solid rgba(0,0,0,0.3);
+  border-radius: 15px;
+}
+
+.search-follow input{
+  width: 86%;
+  height: 25px;
+  border: 1px solid transparent;
+  border-radius: 15px;
+  text-overflow: ellipsis;
+  overflow: hidden; 
+  white-space: nowrap;
+  padding-left: 8px;
+}
+
+.search-follow svg {
+  margin-left: 5px;
+}
+
+.search-follow svg:hover {
+  cursor: pointer;
+}
 
