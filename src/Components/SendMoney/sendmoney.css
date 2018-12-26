@@ -46,6 +46,7 @@
 
 .public-key {
     line-height: 20px;
+    color: gray;
     word-wrap: break-word;
 }
 
@@ -118,6 +119,7 @@
 .receiver-public-key {
     line-height: 20px;
     word-wrap: break-word;
+    color: gray;
 }
 
 .delete-receiver {
@@ -177,7 +179,18 @@
 .input-search {
     width: 100%;
     font-size: 18px;
-    height: 40px;
+    height: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-right: 10px;
+    border-radius: 50px;
+    background: transparent;
+    border-color: #4c0e76;
+    border: 1px solid;
+    font-weight: bold;
+    font-size: 15px;
+    outline: none;
+    margin: auto;
 }
 
 .btn-search {
@@ -188,6 +201,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    border-radius: 20px
 }
 
 .btn-search:hover {
@@ -233,6 +247,7 @@
 .receiver-item-info .Key {
     font-size: 14px;
     margin-top: 5px;
+    color: gray;
 }
 
 .receiver-item:hover {
@@ -244,7 +259,8 @@
     height: 530px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between
+    justify-content: space-between;
+    margin-right: 20px
 }
 
 .next-prev {

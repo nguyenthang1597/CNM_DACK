@@ -8,6 +8,8 @@ import SendMoney from '../SendMoney'
 
 const Home = ({PublicKey, SecretKey, getUserInfo}) => {
   document.title = 'Home'
+
+    
   useEffect(() => {
     getUserInfo(PublicKey)
   }, [getUserInfo])

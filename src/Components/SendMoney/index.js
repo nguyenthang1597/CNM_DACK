@@ -1,22 +1,20 @@
-import React, { Component } from 'react';
+import React, { Component,useEffect,useState} from 'react';
 import { faSearch } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './sendmoney.css'
 
 import _ from 'lodash'
-
-
-
-const LIST = [{ a: 1 }, { a: 5 }, { a: 5 }, { a: 1 }, { a: 2 }, { a: 1 }, { a: 1 }, { a: 1 }, { a: 1 }, { a: 7 }, { a: 1 }, { a: 1 }, { a: 5 }, { a: 1 }, { a: 1 }, { a: 1 }, { a: 1 }, { a: 5 }, { a: 1 }, { a: 6 }, { a: 1 }, { a: 9 }, { a: 1 }, { a: 7 }, { a: 1 }, { a: 1 }, { a: 1 },]
-
+import sendMoney from '../../Functions/payment'
+import {connect} from 'react-redux';
+import {GetAllUser} from '../../Actions/Account'
+import getInfo from '../../API/getInfo'
 class SendMoney extends Component {
-
     constructor(props) {
         super(props);
         this.state = {
-            txtMoney: "",
+            txtMoney: 0,
             txtSearch: '',
-            listPerson: _.chunk(LIST, 6),
+            listPerson: [],
             page: 0,
             receiver: {
                 avatarUrl: "",
@@ -26,15 +24,33 @@ class SendMoney extends Component {
             showReceiver: false
         }
     }
-
+    loadAllUser(){
+        const {getAllUser,users} = this.props
+        getAllUser()
+    }
+    componentWillMount(){
+        this.loadAllUser()
+    }
+    componentWillReceiveProps(props) {
+        this.setState({
+            listPerson: _.chunk(props.users, 6),
+        })
+    }
     handleInputMoneyChange = (e) => {
         this.setState({
-            txtMoney: e.target.value
+            txtMoney: parseInt(e.target.value,10)
         });
     }
 
-    handleBtnSendClick = () => {
-        alert(this.state.txtMoney);
+    handleBtnSendClick = async() => {
+        const {PublicKey,SecretKey} = this.props
+        const {receiver,txtMoney} = this.state
+        try {
+            await sendMoney(PublicKey,receiver.publicKey,txtMoney,SecretKey)
+            alert("Chuyển tiền thành công")
+        }catch(e) {
+            alert("Chuyển tiền không thành công")
+        }
     }
 
     handleBtnDeleteClick = () => {
@@ -78,7 +94,11 @@ class SendMoney extends Component {
     }
 
     handleBtnSearchClick = () => {
-        alert(this.state.txtSearch)
+        let arr = this.props.users.filter(i=>i.Address===this.state.txtSearch )
+        this.setState({
+            listPerson: arr
+        })
+        console.log("AA",this.state.listPerson)
     }
 
     handleSearchChange = (e) => {
@@ -87,11 +107,11 @@ class SendMoney extends Component {
         })
     }
 
-    handleReceiverItemClick = (item) => {
+    handleReceiverItemClick = (item, info) => {
         let _receiver = {
-            avatarUrl: "https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
-            name: item.a,
-            publicKey: '@jjkajhskdljaslkjdklasjldkjasljdlaksdlka',
+            avatarUrl: info.Avatar.Marker+info.Avatar.Avatar,
+            name: info.Name,
+            publicKey: item.Address,
         }
         this.setState({
             showReceiver: true,
@@ -100,41 +120,40 @@ class SendMoney extends Component {
     }
 
     render() {
+        const {Profile,PublicKey} = this.props
         return (
             <div className="container">
                 <div className="content">
                     <div className="left-column">
 
                         <div className="my-profile">
-                            <img className="my-avatar" src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></img>
+                            <img className="my-avatar" src={Profile.Avatar}></img>
                             <div className="my-infomation">
-                                <p className="my-name">Nguyen Van A</p>
-                                <p className="public-key">dsjfhsdhjfhsdhfkhsdfjlsahfjhsakfhjkashfjhjshfdjkhafkhsdjkhfjkashfkl</p>
+                                <p className="my-name">{Profile.Name}</p>
+                                <p className="public-key">@{PublicKey}</p>
                                 <div className="info-money">
-                                    <p>Tong tien: 12121213</p>
-                                    <p>Nang luong: 411213123</p>
+                                    <p>Balance: {Profile.Balance}</p>
+                                    <p>Energy: {Profile.Energy}</p>
                                 </div>
                             </div>
                         </div>
                         {/* End profile */}
 
                         <div className="form-send-money">
-                            <p className="money">So tien can chuyen: </p>
-                            <input onChange={this.handleInputMoneyChange} className="input-money"></input>
-                            <p className="money">Chuyen tien cho: </p>
-
+                            <p className="money">Người nhận </p>
                             <div className="receiver-profile-container">
                                 {this.state.showReceiver &&
                                     <div className="receiver-profile">
                                         <img className="receiver-avatar" src={this.state.receiver.avatarUrl}></img>
                                         <div className="receiver-infomation">
                                             <p className="receiver-name">{this.state.receiver.name}</p>
-                                            <p className="receiver-public-key">{this.state.receiver.publicKey}</p>
+                                            <p className="receiver-public-key">@{this.state.receiver.publicKey}</p>
                                         </div>
-                                        <button onClick={this.handleBtnDeleteClick} className="delete-receiver">Xoa</button>
+                                        <button onClick={this.handleBtnDeleteClick} className="delete-receiver">Xóa</button>
                                     </div>}
                             </div>
-
+                            <p className="money">Số tiền chuyển: </p>
+                            <input onChange={this.handleInputMoneyChange} className="input-money" type='number'></input>
                             <div className="div-button">
                                 <button onClick={this.handleBtnSendClick} className="btn-send">Send</button>
                             </div>
@@ -142,25 +161,19 @@ class SendMoney extends Component {
                     </div>
                     <div className="right-column">
                         <div className="search">
-                            <input onChange={this.handleSearchChange} className='input-search' placeholder="Tim kiem ..." />
+                            <input onChange={this.handleSearchChange} className='input-search' placeholder="Tìm kiếm ..." />
                             <button onClick={this.handleBtnSearchClick} className='btn-search'><FontAwesomeIcon icon={faSearch} /></button>
                         </div>
 
                         <div className="list-receiver-container">
-                            {/* List hien thi danh sach nhung nguoi co the chuyen tien */}
+                            {this.state.listPerson.length ===0 ? null : 
                             <div className="list-receiver">
                                 {this.state.listPerson[this.state.page].map(item => (
-                                    <div onClick={() =>this.handleReceiverItemClick(item)} className="receiver-item">
-                                        <img src="https://images.pexels.com/photos/67636/rose-blue-flower-rose-blooms-67636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"></img>
-                                        <div className="receiver-item-info">
-                                            <div className='Name'>{item.a}</div>
-                                            <div className="Key">@ASKLJDLKJALKSJDLKJASLKDJLJASDJASJLD:</div>
-                                        </div>
-                                    </div>
+                                    <ProfileForm item={item} click={this.handleReceiverItemClick}/>
                                 ))}
                                 {/* Item */}
 
-                            </div>
+                            </div>}
                             {/* Phan trang */}
                             <div className="next-prev">
                                 <button onClick={this.handleBtnPrevClick}>Prev</button>
@@ -176,5 +189,25 @@ class SendMoney extends Component {
         );
     }
 }
-
-export default SendMoney;
+const ProfileForm = ({item,click}) => {
+    let [info,setInfo]= useState()
+    useEffect(() => {
+        getInfo(item.Address).then(res=>setInfo(res.data))
+      }, [item.Address])
+    return (
+    info ? 
+    <div onClick={() => click(item, info)} className="receiver-item">
+        <img src={info.Avatar.Marker+info.Avatar.Avatar}></img>
+        <div className="receiver-item-info">
+            <div className='Name'>{info.Name}</div>
+            <div className="Key">@{item.Address}</div>
+        </div>
+    </div>:null
+    );
+  };
+  
+const mapStateToProps = ({Profile, Authenticate: {PublicKey,SecretKey},Account:{users}}) => ({Profile,PublicKey, SecretKey,users})
+const mapDispathToProps = dispatch => ({
+  getAllUser:()=>dispatch(GetAllUser()),
+})
+export default connect(mapStateToProps, mapDispathToProps)(SendMoney);

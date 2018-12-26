@@ -157,6 +157,7 @@ h4.add-profile-photo {
 .button-container button:hover {
   background-color: rgba(0, 0, 0, 0.2);
   outline: none;
+  cursor: pointer;
 }
 
 .Header-Photo-NoEdit {
