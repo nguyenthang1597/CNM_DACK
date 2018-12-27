@@ -65,7 +65,6 @@ class Item extends Component {
               } catch (error) {
                 alert('Lỗi')
               }
-            console.log(Params);
             }
             break;
             case 2: {
@@ -80,7 +79,6 @@ class Item extends Component {
               } catch (error) {
                 alert('Lỗi')
               }
-                console.log(Params);
             }
             break;
           }

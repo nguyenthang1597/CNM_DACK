@@ -13,6 +13,7 @@ const InputNewPost = (props) => {
       }
       let res = await post(props.PublicKey, text.value, props.SecretKey)
       alert('Thành công')
+      setTimeout(() => props.reloadPost(), 1000)
     } catch (error) {
       alert('Thất bại')
 

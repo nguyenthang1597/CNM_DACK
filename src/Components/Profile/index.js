@@ -9,6 +9,9 @@ import getAllInfo from '../../API/getAllInfo'
 import ListPost from "../ListPost";
 import getAllPost from "../../API/getAllPost";
 import InputNewPost from '../Dashboard/InputNewPost'
+import PaymentHistory from '../PaymentHistory'
+
+var connection = new WebSocket('ws://localhost:8081');
 class Profile extends React.Component {
 
   constructor(props) {
@@ -79,8 +82,7 @@ class Profile extends React.Component {
     this.getProfile(this.props);
     getAllPost(this.props.match.params.address, 1, 10)
     .then(res => {
-      console.log(res)
-      this.setState({Post: res.data.data})
+      this.setState({Post: res.data.data, page: 1})
     })
   }
 
@@ -178,13 +180,21 @@ class Profile extends React.Component {
               path="/profile/:id/follower"
               render={props => <ListFollow address={params.address} type={2} arrayFollowing={this.props.MyProfile.Following} array={Profile.Followers} {...props} PublicKey={PublicKey} SecretKey={SecretKey} />}
             />
+            <Route
+              exact
+              path="/profile/:id/paymenthistory"
+              render={props => <PaymentHistory Payments={Profile.Payments} {...props}/>}
+            />
             <Route 
               exact
               path='/profile/:id'
               render={props =>
               <React.Fragment>
-                 <InputNewPost PublicKey={PublicKey} SecretKey={SecretKey} />
-                 <ListPost PublicKey={PublicKey} posts={this.state.Post} SecretKey={SecretKey}/>
+                {
+                  params.address === PublicKey && <InputNewPost PublicKey={PublicKey} SecretKey={SecretKey} />
+                  
+                }
+                 <ListPost connection={connection} PublicKey={PublicKey} posts={this.state.Post} SecretKey={SecretKey}/>
               </React.Fragment>}
             />
           </div>

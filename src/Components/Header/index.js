@@ -7,7 +7,7 @@ import resizeImage from 'resize-image'
 import makeTx from '../../Functions/makeTx';
 const Marker = 'data:image/jpeg;base64,'
 let i =1;
-const Header = ({handleBtnFollowChange ,getProfile, PublicKey,SecretKey, editProfile, setEditProfile, Avatar, history, Following, MyProfile, Follower, Address, Energy, Money, Sequence}) => {
+const Header = ({handleBtnFollowChange , PublicKey,SecretKey, editProfile, setEditProfile, Avatar, history, Following, MyProfile, Follower, Address, Energy, Money, Sequence}) => {
   let [newAvatar, setNewAvatar] = useState(null);
   let handleImgChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -23,14 +23,13 @@ const Header = ({handleBtnFollowChange ,getProfile, PublicKey,SecretKey, editPro
     var tmpimage = new Image();
     tmpimage.onload = async() => {
       var data = resizeImage.resize(tmpimage, 100, 100, resizeImage.JPEG);
-      let params = {
+      var params = {
         key: 'picture',
         value: data.slice(Marker.length)
       }
       try {
         await makeTx(PublicKey,'update_account', params, SecretKey)
         alert('Update avatar thành công!')
-        getProfile()
       } catch (error) {
         alert('update avatar không thành công')
       }
@@ -63,7 +62,7 @@ const Header = ({handleBtnFollowChange ,getProfile, PublicKey,SecretKey, editPro
             <span className='ProfileBar_label'>Năng lượng</span>
             <div className='ProfileBar_value'>{Energy ? `${Math.ceil(Energy)} OXY` : 0}</div>
           </div>
-          <div className='ProfileBar_Item'>
+          <div className='ProfileBar_Item' onClick={()=>{history.push(`/profile/${Address}/paymenthistory`)}}>
             <span className='ProfileBar_label'>Tiền</span>
             <div className='ProfileBar_value'>{Money ? `${Money} CEL`: 0}</div>
           </div>

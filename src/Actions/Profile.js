@@ -26,6 +26,8 @@ export const getUserInfo = address => dispatch => {
   })
 }
 
+export const UpdateAvatar  = (Avatar) => dispatch => dispatch({type:UPDATE_AVATAR, Avatar: Avatar})
+
 export const AddFollow = (newFollow) => dispatch => {
   dispatch({
     type: ADD_FOLLOW,

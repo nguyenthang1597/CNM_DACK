@@ -19,6 +19,8 @@ import getCommentReaction from '../../API/getCommentReaction';
 import { withRouter } from 'react-router-dom';
 
 const Post = props => {
+  const POST = props.post;
+  let connection = props.connection
   let [showComment, setShowComment] = useState(false);
   let [post, setPost] = useState({});
   let [hasInteraction, setHasInterraction] = useState(false);
@@ -27,6 +29,59 @@ const Post = props => {
   let [reactions, setReactions] = useState([]);
   let [comments, setComments] = useState([]);
 
+
+  connection.onopen = function () {
+    console.log('connect')
+  }
+  connection.onerror = function (error) {
+    // an error occurred when sending/receiving data
+  };
+
+  connection.onmessage = async (message) => {
+    try {
+      var json = JSON.parse(message.data);
+     
+      if (json.Operation === 'interact' && json.Params.object === POST.Hash)
+        return getCommentReaction(POST.Hash).then(res => {
+          setComments(res.data.comments);
+          setReactions(res.data.reactions);
+          let result = res.data.reactions.find(e => e._id === props.PublicKey);
+
+          if (result) {
+            let newInter;
+            switch (result.Reaction) {
+              case 1:
+                newInter = createInteraction(faThumbsUp, 'Thích', 'like', 1);
+                break;
+              case 2:
+                newInter = createInteraction(faHeart, 'Yêu thích', 'love', 2);
+                break;
+              case 3:
+                newInter = createInteraction(faGrinSquintTears, 'Haha', 'haha', 3);
+                break;
+              case 4:
+                newInter = createInteraction(faSurprise, 'Wow', 'haha', 4);
+                break;
+              case 5:
+                newInter = createInteraction(faFrown, 'Buồn', 'haha', 5);
+                break;
+              case 6:
+                newInter = createInteraction(faAngry, 'Giận dữ', 'angry', 6);
+                break;
+              default:
+                newInter = defaultInter;
+            }
+            setInteraction(newInter);
+            setHasInterraction(true);
+          }
+        });
+
+    } catch (e) {
+      console.log('This doesn\'t look like a valid JSON: ',
+        message.data);
+      return;
+    }
+  };
   useEffect(
     () => {
       convertToPost(props.post).then(_post => setPost(_post));
@@ -63,8 +118,7 @@ const Post = props => {
           setHasInterraction(true);
         }
       });
-    },
-    [convertToPost, getCommentReaction]
+    }, [props.post.Hash]
   );
 
   function createInteraction(_icon, _text, _class, _index) {
@@ -119,7 +173,6 @@ const Post = props => {
     };
     makeTx(props.PublicKey, 'interact', Params, props.SecretKey);
   }
-  console.log(post, reactions);
   return (
     <React.Fragment>
       <div className="post">
@@ -221,10 +274,10 @@ const Post = props => {
       </div>
       {showComment &&
         <Comment
+          hash={POST.Hash}
           comments={comments}
           reactions={reactions}
           close={setShowComment}
-          hash={props.post.Hash}
         />}
     </React.Fragment>
   );
