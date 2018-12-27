@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import moment from 'moment'
 import getName from '../../../API/getName';
 const InteractItem = (props) => {
-  console.log(props.reaction)
   let [name, setName] = useState('');
   useEffect(() => {
     getName(props.reaction._id).then(res => setName(res.data.Name));

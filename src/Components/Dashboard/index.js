@@ -20,51 +20,20 @@ class Dashboard extends React.Component {
     }
   }
 
-  handleSocket = () =>{
-   
-    connection.onopen = function(){
-      console.log('connect')
-    }
-    connection.onerror = function (error) {
-      // an error occurred when sending/receiving data
-    };
-
-    connection.onmessage = async (message) => {
-      console.log(this.state.explore);
-      let listFollow = this.props.Profile.Following;
-      let hashs = this.state.explore.map(e => e.Hash);
-      console.log(listFollow);
-      console.log(hashs);
-      try {
-        var json = JSON.parse(message.data);
-        console.log(json);
-        var tmp, tmp2;
-        tmp = listFollow.find(e => e === json.Address)
-        if(json.Operation === 'interact')
-          tmp2 = hashs.find(e => e === json.Params.object)
-        console.log(tmp || tmp2);
-        if(tmp || tmp2){
-          console.log('update');
-          let res = await explorePost(this.props.PublicKey, 1, 10);
-          this.setState({ explore:[]}, () => this.setState({explore: res.data.Post}))
-        }
-      } catch (e) {
-        console.log('This doesn\'t look like a valid JSON: ',
-            message.data);
-        return;
-      }
-    };
-  }
 
   componentDidMount = async () => {
     const { page } = this.state;
     let res = await explorePost(this.props.PublicKey, page, 10);
     this.setState({ explore: res.data.Post })
-    this.handleSocket();
     window.addEventListener('scroll', this.handleScroll)
   }
   componentWillUnmount(){
     window.removeEventListener('scroll', this.handleScroll)
+  }
+
+  reloadPost = async () => {
+    let res = await explorePost(this.props.PublicKey, 1, 10);
+    this.setState({ explore: res.data.Post, page: 1 })
   }
   handleScroll = () => {
     const windowHeight = "innerHeight" in window ? window.innerHeight : document.documentElement.offsetHeight;
@@ -96,14 +65,13 @@ class Dashboard extends React.Component {
   };
   render() {
     const {PublicKey, SecretKey, Profile} = this.props;
-    console.log(Profile);
     const {explore} = this.state;
     return (
       <div className='grid'>
         <LeftSide/>
         <div>
-          <InputNewPost PublicKey={PublicKey} SecretKey={SecretKey} />
-          <ListPost posts={explore} PublicKey={PublicKey} SecretKey={SecretKey}/>
+          <InputNewPost PublicKey={PublicKey} SecretKey={SecretKey} reloadPost={this.reloadPost} />
+          <ListPost connection={connection} posts={explore} PublicKey={PublicKey} SecretKey={SecretKey}/>
         </div>
         <RightColumn />
       </div>

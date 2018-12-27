@@ -93,3 +93,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   outline: none;
   cursor: pointer;
 }
+
+.ProfileCard_Address {
+  width: auto;
+  word-break: break-word;
+}

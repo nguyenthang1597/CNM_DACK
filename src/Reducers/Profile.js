@@ -27,6 +27,8 @@ export default (state = initState, action) => {
       return { ...state, loading: false, ...action.info };
     case ADD_FOLLOW:
       return { ...state, Following: [...state.Following, action.newFollow] };
+      case UPDATE_AVATAR:
+      return {...state, Avatar: {Avatar: action.Avatar}}
     case REMOVE_FOLLOW:
       return {
         ...state,

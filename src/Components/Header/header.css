@@ -114,6 +114,14 @@ h4.add-profile-photo {
   width: 100%;
 }
 
+h4.add-profile-photo:hover {
+  cursor: pointer;
+}
+
+.btnSaveAvatar:hover {
+  cursor: pointer;
+}
+
 .add-profile-container svg.svg-inline--fa.fa-camera.fa-w-16 {
   width: 35px;
   height: 35px;
@@ -243,7 +251,7 @@ h4.add-profile-photo {
     top: 42px;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
-    z-index: 0;
+    z-index: 10;
     opacity: 0;
 }
 
